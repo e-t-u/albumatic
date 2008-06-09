@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.8.dtd">
 <!-- Project file for project albumatic -->
-<!-- Saved: 2008-06-09, 01:53:11 -->
+<!-- Saved: 2008-06-09, 02:19:24 -->
 <!-- Copyright (C) 2008 ,  -->
 <Project version="3.8">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -12,7 +12,7 @@
   <Email></Email>
   <Sources>
     <Source>
-      <Name>helloworld.py</Name>
+      <Name>main.py</Name>
     </Source>
   </Sources>
   <Forms>
@@ -22,6 +22,16 @@
   <Interfaces>
   </Interfaces>
   <Others>
+    <Other>
+      <Dir>stylesheets</Dir>
+      <Name>main.css</Name>
+    </Other>
+    <Other>
+      <Name>index.yaml</Name>
+    </Other>
+    <Other>
+      <Name>app.yaml</Name>
+    </Other>
   </Others>
   <Vcs>
     <VcsType>Subversion</VcsType>
@@ -30,9 +40,9 @@
   </Vcs>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
