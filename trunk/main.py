@@ -7,10 +7,13 @@ from google.appengine.ext import db
 import os
 from google.appengine.ext.webapp import template
 
-class Greeting(db.Model):
-  author = db.UserProperty()
-  content = db.StringProperty(multiline=True)
-  date = db.DateTimeProperty(auto_now_add=True)
+class Catalog(db.Model):
+    country = db.StringProperty()
+    year = db.DateTimeProperty()
+    number = db.IntegerProperty()
+    type = db.StringProperty()
+    inlabel = db.StringProperty()
+    outlable = db.StringProperty()
 
 class MainPage(webapp.RequestHandler):
   def get(self):
@@ -33,7 +36,31 @@ class MainPage(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'index.html')
     self.response.out.write(template.render(path, template_values))
 
-class Guestbook(webapp.RequestHandler):
+class Stamp(webapp.RequestHandler):
+    def get(self,  country="ambomaa"):
+        self.response.headers['Content-Type'] = 'text/plain'
+        self.response.out.write(country)
+
+class Reset(webapp.RequestHandler):
+    def get(self):
+        if not users.get_current_user():
+            greeting = users.create_login_url("/")
+            self.response.out.write('<html><body><a href=\"%s\">Login first as admin</a></body></html>' % greeting)
+            return
+        if users.is_current_user_admin():
+            while True:
+                q = Catalog.all() # max 1000 at time
+                if q == None:
+                    break
+                for result in q:
+                    del q
+            self.response.headers['Content-Type'] = 'text/plain'
+            self.response.out.write("reset done")
+        else:
+            self.response.headers['Content-Type'] = 'text/plain'
+            self.response.out.write("reset requires admin")
+
+class MainPage(webapp.RequestHandler):
   def post(self):
     greeting = Greeting()
 
@@ -47,7 +74,8 @@ class Guestbook(webapp.RequestHandler):
 def main():
   application = webapp.WSGIApplication(
                                        [('/', MainPage),
-                                        ('/sign', Guestbook)],
+                                        (r'/stamp/[A-Za-z]+', Stamp), 
+                                        ('/reset', Reset)],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)
 
