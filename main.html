@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <title>Albumatic</title>
+  </head>
+
+  <body>
+    <h1>Albumatic</h1>
+
+    {% if message %}
+        <p><b>{{ message }}</b></p>
+    {% endif %}
+
+    <form name="pagedescription" action="/pdf" method="post">
+      <p>
+      <fieldset>
+	<legend>Page headers and footers</legend>
+	<label>Header1: </label>
+	  <input name="country" value="COUNTRY" cols="40"/>
+	<label>Header2:  </label>
+	  <input name="area" value="area" cols="40"/>
+	</div>
+	<label>Year: </label>
+	  <input name="year" cols="10"/>
+	</div>
+	<label>Page: </label>
+	  <input name="page" value="1" cols="10"/>
+	</div>
+      </fieldset>
+      <fieldset>
+	<legend>Stamp positions</legend>
+	<label>Layout: </label>
+	  <input name="stamps" value="ABBA-AA-BB" cols="40"/>
+	</div>
+      </fieldset>
+      <fieldset>
+	<legend>Page size and margins</legend>
+	<select name="pagesize">
+	  <option value="A4">A4</option>
+	  <option value="letter">letter</option>
+	  <option value="custom" disabled>custom</option>
+	</select>
+	<label>Custom size:</label>
+	<input name="pagewidth" disabled="disabled"/>
+	<input name="pageheight" disabled="disabled"/>
+	<label>Top margin: </label>
+	<input name="topmargin" cols="5"/>
+	<label>Bottom margin: </label>
+	<input name="bottommargin" cols="5"/>
+	<label>Left margin: </label>
+	<input name="leftmargin" cols="5"/>
+	<label>Right margin: </label>
+	<input name="rightmargin" cols="5"/>
+	<label>Left footer: </label>
+	<input name="leftfooter" cols="5" disabled="disabled"/>
+	<label>Right footer: </label>
+	<input name="rightfooter" cols="5" disabled="disabled"/>
+	<label>header1pos</label>
+        <input name="header1pos"/>
+        <label>header1font</label>
+	<input name="header1font"/>
+	<label>header2pos</label>
+        <input name="header1pos"/>
+        <label>header2font</label>
+	<input name="header1font"/>
+      </p>
+      </fieldset>
+      <div><input type="submit" value="Show album page"/></div>
+      <div><input type="reset" value="Reset to defaults"/></div>
+    </form>
+
+    <p>
+      <a href="pdf/COUNTRY/Area/Year/No/ABA-BBB-AA">test print</a>
+      <a href="prefs">Set personal preferences</a>
+    </p>
+
+    <p>{{ user_message }}</p>
+    <p><a href="{{ url }}">{{ url_linktext }}</a></p>
+
+    {% if admin %}
+        <p><a href="resetdb">Reset defaults</a></p>
+    {% endif %}
+
+  </body>
+</html>

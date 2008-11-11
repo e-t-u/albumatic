@@ -1,24 +1,39 @@
 #!/usr/bin/env python
 
 import cgi
-import datetime
+#import datetime
 import wsgiref.handlers
 
 from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.ext import webapp
+from google.appengine.ext.webapp import template
 
 from reportlab.pdfgen.canvas import Canvas
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A4, letter
 from reportlab.lib.units import mm
 
+import os
+import logging
 
 class Conf(db.Model):
   user = db.UserProperty()
+  timestamp = db.DateTimeProperty(auto_now=True)
   pagewidth = db.FloatProperty()
   pageheight = db.FloatProperty()
   logotxt = db.StringProperty()
 
+
+def setDefaults(user):
+  conf = Conf(
+    user = user,
+    pagewidth = A4[0], # does not work
+    pageheight = A4[1],
+#        pagewidth = 150*mm,
+#        pageheight = 150*mm,
+    logotxt = "Anonymous Albumatics")
+  conf.save()
+  
 
 class Resetdb(webapp.RequestHandler):
   def get(self):
@@ -29,30 +44,39 @@ class Resetdb(webapp.RequestHandler):
         '">First, log in as admin</a>')
     elif users.is_current_user_admin():
       self.response.out.write('reset')
-      conf = Conf(
-        user = users.User("__default__"),
-        pagewidth = A4[0],
-        pageheight = A4[1],
-#        pagewidth = 150*mm,
-#        pageheight = 150*mm,
-        logotxt = "Anonymous Albumatics")
-      conf.save()
+      user = users.User("__default__"),
+      setDefaults(user)
     else:
-      self.response.out.write('non admin')
+      self.response.out.write('non admin user')
 
 
 class MainPage(webapp.RequestHandler):
   def get(self):
-    self.response.out.write(
-"""
-<html><body>
-<a href="pdf/COUNTRY/Area/Year/No/ABA-BBB-AA">test print</a>
-<a href="prefs">Set personal preferences</a>
-<a href="%s">Logout</a>
-<a href="/resetdb">Admin: reset defaults</a>
-</body></html>
-""" % users.create_logout_url("/")
-    )
+    user = users.get_current_user()
+    admin = False
+    prefs = False
+    if user:
+      prefs = True
+      login_message = 'Logged in as ' + user.nickname()
+      url = users.create_logout_url(self.request.uri)
+      url_linktext = 'Logout'
+      if users.is_current_user_admin():
+        login_message += ' (admin)'
+        admin = True
+    else:
+      login_message = 'Not logged in'
+      url = users.create_login_url(self.request.uri)
+      url_linktext = 'You have to log in to set preferences'
+    template_values = {
+      'message': None,
+      'prefs': prefs,
+      'login_message': login_message,
+      'url': url,
+      'url_linktext': url_linktext,
+      'admin': admin,
+      }
+    path = os.path.join(os.path.dirname(__file__), 'main.html')
+    self.response.out.write(template.render(path, template_values))
 
 
 class Prefs(webapp.RequestHandler):
@@ -72,13 +96,9 @@ class Prefs(webapp.RequestHandler):
         pageheight = A4[1],
         logotxt = logotxt)
       conf.put()
-      self.response.out.write(
-"""
-<html><body>
-<p>logotext set as %s</p>
-</body></html>
-""" % logotxt
-      )
+    path = os.path.join(os.path.dirname(__file__), 'main.html')
+    self.response.out.write(template.render(path, template_values))
+
 
 class Stamp():
   def __init__(self, w, h, text=None, label=None):
@@ -222,7 +242,45 @@ class Page():
 
 class Pdf(webapp.RequestHandler):
   def post(self):
-    a = 1
+    self.response.headers['Content-Type'] = 'application/pdf'
+    country = self.request.get("country")
+    area = self.request.get("area")
+    year = self.request.get("year")
+    page = self.request.get("page")
+    stamps = self.request.get("stamps")
+    pagesize = self.request.get("pagesize")
+#    pageheight = self.request.get("pageheight")
+#    pagewidth = self.request.get("pagewidth")
+    topmargin = self.request.get("topmargin")
+    bottommargin = self.request.get("bottommargin")
+    leftmargin = self.request.get("leftmargin")
+    rightmargin = self.request.get("rightmargin")
+    leftfooter = self.request.get("leftfooter")
+    rightfooter = self.request.get("rightfooter")
+    header1pos = self.request.get("header1pos")
+    header1font = self.request.get("header1font")
+    header2pos = self.request.get("header2pos")
+    header2font = self.request.get("header2font")
+    if pagesize == "A4":
+      (pagewidth, pageheight) = A4
+    elif pagesize == "letter":
+      (pagewidth, pageheight) = letter
+    else:
+      (pagewidth, pageheight) = A4 # custom size not implemented yet     
+    logotxt = "Albumatic"
+    p = Page(
+      header1 = country,
+      header2 = area,
+      leftfooter = logotxt,
+      rightfooter = year + '/' + page)
+    p.addSize('A', 30 * mm, 40 * mm)
+    p.addSize('B', 20 * mm, 30 * mm)
+    for line in stamps.split('-'):
+      p.addLine(line)
+    pdf = Canvas(self.response.out, (pagewidth, pageheight))
+    p.generate(pdf)
+    pdf.save()
+    
   def get(self, country="COUNTRY", area="Area", year="YYYY", no="#", templ="ABBA-AA-BBB"):
     self.response.headers['Content-Type'] = 'application/pdf'
     user = users.get_current_user()
