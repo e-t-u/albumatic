@@ -11,7 +11,7 @@ You can go to http://albumatic.appspot.com/. There is some log-in
 and preferences trials that are not usable yet.
 
 But, you can test the lay-out engine by giving directly the URL like:
-http://albumatic.appspot.com/COUNTRY/Area/year/page/ABBA-BBB-AA.
+http://albumatic.appspot.com/pdf/COUNTRY/Area/year/page/ABBA-BBB-AA.
 
 You get a PDF album page with headers from URL COUNTRY and Area and
 footer from year/page (A4 page size!). The lay-out of stamps is taken
