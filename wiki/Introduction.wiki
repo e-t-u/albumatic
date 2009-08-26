@@ -1,8 +1,21 @@
 #summary One-sentence summary of this page.
 
+
+= New! =
+
+I am re-activating development of this program.
+
+The new idea is not to make a database into the program but to make a generic
+tool that can generate an Album page based on URL. The URL contains all the
+necessary information to build the page.
+
+That means that the album pages per se can be located in this Wiki
+or in any other web page.
+
+
 = Introduction =
 
-You can now test the new development.
+Albumatic is a tool to generate stamp album pages.
 
 
 = Details =
@@ -20,6 +33,7 @@ called A and B. In this example, there are three rows containing 4, 3 and 2
 stamps on rows. A is a larger stamp and B smaller.
 
 PDF is generated using ReportLab Python module.
+
 
 = TODO =
 
