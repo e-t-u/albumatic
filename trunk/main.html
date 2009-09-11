@@ -1,74 +1,66 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <link type="text/css" rel="stylesheet" href="style.css" />
+    <link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
     <title>Albumatic</title>
   </head>
 
   <body>
-    <h1>Albumatic</h1>
+    <h1>Albumatic v2</h1>
 
+    <p>Albumatic generates stamp album pages in PDF based on
+    arguments given in the URL.</p>
+
+    <p>For example, if you access URL:</p>
+
+    <p><a url="http://albumatic.appspot.com/pdf/USA/Definitives/2009/1/ABA-BBB-AA">
+    http://albumatic.appspot.com/pdf/USA/Definitives/2009/1/ABA-BBB-AA</a></p>
+
+    <p>You will get an album page with headers and three rows of stamps.</p>
+
+    <p>Feel free to create link pages that allows people to 
+    generate album pages for different collection areas.</p>
+    
+    <p>You can define attributes to modify page layout. You write them to the end of the URL lik</p>
+
+    <p><a url="http://albumatic/appsplot.com/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&header1pos=10">
+    http://albumatic/appsplot.com/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&header1pos=25</a></p>
+ 
+    Attributes are:
+    <ul>
+    <li>unit, default mm, allowed values: mm, in, pica, pt, in (all the later measurements are in this unit)</li>
+    <li>pagewidth,  default A4</li>
+    <li>pageheight, default A4<li>
+    <li>logotext, default Albumatic, written to the left footer<li>
+    <li>topmargin, default 12 mm</li>
+    <li>bottommargin, default 18 mm</li>
+    <li>leftmargin, default 15 mm</li>
+    <li>rightmargin", default 15 mm</li>
+    <li>header1pos, default 25 mm</li>
+    <li>header1font, default ("Helvetica", 36)</li>
+    <li>header2pos, default 35 mm</li>
+    <li>header2font", ("Helvetica", 18)</li>
+    <li>maxxdistance, default 15 mm</li>
+    <li>maxydistance, default 25 mm</li>
+    <li>header1, can be used to set header1 instead of the first part of the URL</li>
+    <li>header2, can be used to set header2 instead of the second part of the URL</li>
+    <li>leftfooter, currently synonym to logotext</li>
+    <li>rightfooter, defaults to year + '/' + no where year and no comes from URL</li>
+    </ul>
+
+    <p>You can log in to set some preferences. For example, you
+    can print pages in Letter size even though the links were
+    designed for A4 paper size. You can use your Google 
+    account (like Gmail) as your log in. This application 
+    will not see your password.</p>
+
+    <p>This application is running in Google App Engine infrastructure
+    and it is written using Python and Reportlab PDF generation
+    library.<p>
+    
     {% if message %}
         <p><b>{{ message }}</b></p>
     {% endif %}
-
-    <form name="pagedescription" action="/pdf" method="post">
-      <p>
-      <fieldset>
-	<legend>Page headers and footers</legend>
-	<label>Header1: </label>
-	  <input name="country" value="COUNTRY" cols="40"/>
-	<label>Header2:  </label>
-	  <input name="area" value="area" cols="40"/>
-	</div>
-	<label>Year: </label>
-	  <input name="year" cols="10"/>
-	</div>
-	<label>Page: </label>
-	  <input name="page" value="1" cols="10"/>
-	</div>
-      </fieldset>
-      <fieldset>
-	<legend>Stamp positions</legend>
-	<label>Layout: </label>
-	  <input name="stamps" value="ABBA-AA-BB" cols="40"/>
-	</div>
-      </fieldset>
-      <fieldset>
-	<legend>Page size and margins</legend>
-	<select name="pagesize">
-	  <option value="A4">A4</option>
-	  <option value="letter">letter</option>
-	  <option value="custom" disabled>custom</option>
-	</select>
-	<label>Custom size:</label>
-	<input name="pagewidth" disabled="disabled"/>
-	<input name="pageheight" disabled="disabled"/>
-	<label>Top margin: </label>
-	<input name="topmargin" cols="5"/>
-	<label>Bottom margin: </label>
-	<input name="bottommargin" cols="5"/>
-	<label>Left margin: </label>
-	<input name="leftmargin" cols="5"/>
-	<label>Right margin: </label>
-	<input name="rightmargin" cols="5"/>
-	<label>Left footer: </label>
-	<input name="leftfooter" cols="5" disabled="disabled"/>
-	<label>Right footer: </label>
-	<input name="rightfooter" cols="5" disabled="disabled"/>
-	<label>header1pos</label>
-        <input name="header1pos"/>
-        <label>header1font</label>
-	<input name="header1font"/>
-	<label>header2pos</label>
-        <input name="header1pos"/>
-        <label>header2font</label>
-	<input name="header1font"/>
-      </p>
-      </fieldset>
-      <div><input type="submit" value="Show album page"/></div>
-      <div><input type="reset" value="Reset to defaults"/></div>
-    </form>
 
     <p>
       <a href="pdf/COUNTRY/Area/Year/No/ABA-BBB-AA">test print</a>
