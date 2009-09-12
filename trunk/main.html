@@ -13,7 +13,7 @@
 
     <p>For example, if you access URL:</p>
 
-    <p><a url="http://albumatic.appspot.com/pdf/USA/Definitives/2009/1/ABA-BBB-AA">
+    <p><a href="/pdf/USA/Definitives/2009/1/ABA-BBB-AA">
     http://albumatic.appspot.com/pdf/USA/Definitives/2009/1/ABA-BBB-AA</a></p>
 
     <p>You will get an album page with headers and three rows of stamps.</p>
@@ -23,8 +23,8 @@
     
     <p>You can define attributes to modify page layout. You write them to the end of the URL lik</p>
 
-    <p><a url="http://albumatic/appsplot.com/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&header1pos=10">
-    http://albumatic/appsplot.com/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&header1pos=25</a></p>
+    <p><a href="/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&header1pos=10">
+    http://albumatic/appsplot.com/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&header1pos=10</a></p>
  
     Attributes are:
     <ul>
@@ -46,9 +46,23 @@
     <li>header2, can be used to set header2 instead of the second part of the URL</li>
     <li>leftfooter, currently synonym to logotext</li>
     <li>rightfooter, defaults to year + '/' + no where year and no comes from URL</li>
+    <li>size_X=10,20, overwrite standard size X to width 10 and height 20</li>
+    <li>template, can be used to set stamp layout instead of the last part of the path in URL</li>
     </ul>
 
-    <p>You can log in to set some preferences. For example, you
+    <p>Standard sizes follow sizes available as ready cut stamp mounts
+    (from Hawid and/or Leuctturm) with our own naming. The size A is the most narrow,
+    size B is the same width but taller. All the "potrait" stamps or square stamps are uppercase
+    and the "landscape stamps are lowercase. All the potrait sizes can be seen in this
+    <a href="/pdf?template=ABCDEFG-HIJKLM-NOPQR-STUV-WXYZ">page.</a></p>
+    
+    <p>And landscape sizes in this
+    <a href="/pdf?template=abcde-fghi-jklm-nopq-rst-uv">page</a></p>
+    
+    <p>Any size letter can be redefined like in this
+    <a href="/pdf?template=ABA-X&size_B=50,50&size_X=150,80">page</a></p>
+    
+    <p>(CURRENTLY NOT WORKING:) You can log in to set some preferences. For example, you
     can print pages in Letter size even though the links were
     designed for A4 paper size. You can use your Google 
     account (like Gmail) as your log in. This application 

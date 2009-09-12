@@ -130,9 +130,14 @@ class Page():
         self.lines = []
         self.nlines = 0
         self.size = {}
+        for attr in dir(conf):
+            if attr[:5] == 'size_':
+                name = attr[5:]
+                val = getattr(conf,  attr)
+                self.size[name] = val
 
-    def addSize(self, name, w, h):
-        self.size[name] = (w, h)
+#    def _add_size(self, name, w, h):
+#        self.size[name] = (w, h)
 
     def addLine(self, line):
         stamps = []
@@ -166,19 +171,19 @@ class Page():
 
     def _generateStamps(self, pdf, w, h):
         """The layout algorithm of stamp frames.
-        
+
         In principle, the free space is divided 
         evenly between the stamps. The distance
         of a stamp and the margin is the same as the
         distance between stamps.
-        
+
         However, it is more common that stamps
         are in the middle and the space in between
         is limited by maxxdistance and maxydistance.
-        
+
         If there is a label outside the stamp frame,
         it does not affect the placemente of frames.
-        
+
         """
         conf = self.conf
         free_h = h - self._sumLineHeight()
@@ -238,6 +243,57 @@ class Page():
         pdf.showPage()
 
 
+stamp_sizes = {
+    "A": (20, 24),  # h
+    "B": (20, 26),  # h
+    "C": (21, 24),  # hl
+    "D": (21.5, 26),  # hl
+    "E": (21.5, 30),  # l
+    "F": (23, 27.5),  # h
+    "G": (24, 29),  # h
+    "H": (24, 40),  # h
+    "I": (24, 41),  # l
+    "J": (25, 30),  # h
+    "K": (25, 36),  # h
+    "L": (26, 31),  # hl
+    "M": (26, 36),  # h
+    "N": (26, 40),  # hl
+    "O": (26, 41),  # hl
+    "P": (26, 43),  # hl
+    "Q": (27.5, 33),  # h
+    "R": (28, 34),  # h
+    "S": (28, 39),  # h
+    "T": (29, 36),  # h
+    "U": (30, 39),  # h
+    "V": (30, 41),  # h
+    "W": (33, 55),  # hl
+    "X": (35, 35),  # hl
+    "Y": (41, 41),  # hl
+    "Z": (41, 53),  # h
+    "a": (24, 21),  # hl
+    "b": (26, 21.5),  # hl
+    "c": (29, 24),  # h
+    "d": (31, 24),  # h
+    "e": (31, 26),  # h
+    "f": (33, 27.5),  # hl
+    "g": (34, 28),  # h
+    "h": (36, 25),  # h
+    "i": (36, 26),  # hl
+    "j": (36, 29),  # h
+    "k": (39, 28),  # h
+    "l": (39, 30),  # h
+    "m": (40, 24),  # h
+    "n": (40, 26),  # h
+    "o": (40, 33),  # h
+    "p": (41, 24),  # hl
+    "q": (41, 26),  # hl
+    "r": (41, 30),  # hl
+    "s": (43, 26),  # hl
+    "t": (46, 27.5),  # hl
+    "u": (53, 41),  # h
+    "v": (55, 33)  # hl
+    }
+
 class Conf:
     """Class where to collect page configuration values.
 
@@ -280,25 +336,20 @@ class Pdf(webapp.RequestHandler):
                 if not val == "pdf":
                     error += "<p>Internal error, second field should be 'pdf'</p>"
             elif n == 2:
-                country = val
+                conf.country = val
             elif n == 3:
-                area = val
+                conf.area = val
             elif n == 4:
-                year = val
+                conf.year = val
             elif n == 5:
-                no = val
+                conf.no = val
             elif n == 6:
-                templ = val
-        if not country:
-            country="COUNTRY"
-        if not area:
-            area="Area"
-        if not year:
-            year="YYYY"
-        if not no:
-            no="#"
-        if not templ:
-            templ="ABBA-AA-BBB"
+                conf.templ = val
+        conf.set_default("country",  "COUNTRY")
+        conf.set_default("area",  "Area")
+        conf.set_default("year",  "YYYY")
+        conf.set_default("no",  "#")
+        conf.set_default("template",  "ABBA-hh-BBB")
         if self.request.query_string:
             for assignment in self.request.query_string.split('&'):
                 var,  val = assignment.split('=')
@@ -326,7 +377,7 @@ class Pdf(webapp.RequestHandler):
                 setattr(conf,  attr,  float(getattr(conf,  attr)) * unit)
             except:
                 error += "could not interpret size of " + attr + "\n"
-        # TODO: shorthand page size "letter"
+        # TODO: shorthand for page size "letter"
         conf.set_default("pagewidth",  A4[0])
         conf.set_default("pageheight", A4[1])
         conf.set_default("logotext", "Albumatic")
@@ -344,16 +395,36 @@ class Pdf(webapp.RequestHandler):
         # TODO: overwrite attributes with user's profile
         # TODO: translate header country to your local language
         # These settings you don't normally change, but you can
-        conf.set_default("header1",  country)
-        conf.set_default("header2",  area)
+        conf.set_default("header1",  conf.country)
+        conf.set_default("header2",  conf.area)
         conf.set_default("leftfooter",  conf.logotext)
-        conf.set_default("rightfooter",  year + '/' + no)
+        conf.set_default("rightfooter",  conf.year + '/' + conf.no)
+        for attr in conf.__dict__:
+            if attr[:5] == "size_":
+                name = attr[5:]
+                val = getattr(conf,  attr)
+                size = val.split(",")
+                if len(size) != 2:
+                    error += "<p>size of " + name + "must be w,h</p>"
+                try:
+                    w = float(size[0]) * unit
+                    h = float(size[1]) * unit
+                except:
+                    error += "<p>could not parse size " + name + "=" + val + "</p>"
+                setattr(conf,  attr,  (w,  h))
+        for key,  value in stamp_sizes.items():
+            if not len(value) == 2:
+                error += "<p>internal error: default size wrong</p>"
+            try:
+                w = float(value[0]) * mm
+                h = float(value[1]) * mm
+            except:
+                error += "<p>internal error: default size wrong (not float)</p>"
+            conf.set_default("size_" + key,  (w,  h))
         if error == "":
             self.response.headers['Content-Type'] = 'application/pdf'
             p = Page(conf)
-            p.addSize('A', 30 * mm, 40 * mm)
-            p.addSize('B', 20 * mm, 30 * mm)
-            for line in templ.split('-'):
+            for line in conf.template.split('-'):
                 p.addLine(line)
             pdf = Canvas(self.response.out, (conf.pagewidth, conf.pageheight))
             p.generate(pdf)
@@ -364,7 +435,7 @@ class Pdf(webapp.RequestHandler):
 
 application = webapp.WSGIApplication([
     ('/', MainPage),
-    ('/pdf/.*', Pdf),
+    ('/pdf.*', Pdf),
 #    ('/resetdb', Resetdb),
 #    ('/prefs', Prefs)
     ], debug=True)
