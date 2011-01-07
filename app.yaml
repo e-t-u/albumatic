@@ -1,8 +1,11 @@
 application: albumatic
-version: 2
+version: 3
 runtime: python
 api_version: 1
 
 handlers:
 - url: .*
   script: albumatic.py
+
+- url: /stylesheets
+  static_dir: stylesheets
