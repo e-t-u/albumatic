@@ -61,25 +61,31 @@
     
     <p>Any size letter can be redefined like in this
     <a href="/pdf?template=ABA-X&size_B=50,50&size_X=150,80">page</a></p>
-    
+
+<!--
     <p>(CURRENTLY NOT WORKING:) You can log in to set some preferences. For example, you
     can print pages in Letter size even though the links were
     designed for A4 paper size. You can use your Google 
     account (like Gmail) as your log in. This application 
     will not see your password.</p>
+-->
 
     <p>This application is running in Google App Engine infrastructure
     and it is written using Python and Reportlab PDF generation
-    library.<p>
+    library. The source code is available in
+    <a href="http://code.google.com/p/albumatic">http://code.google.com/p/albumatic</a>
+    <p>
     
     {% if message %}
         <p><b>{{ message }}</b></p>
     {% endif %}
 
+<!--
     <p>
       <a href="pdf/COUNTRY/Area/Year/No/ABA-BBB-AA">test print</a>
       <a href="prefs">Set personal preferences</a>
     </p>
+-->
 
     <p>{{ user_message }}</p>
     <p><a href="{{ url }}">{{ url_linktext }}</a></p>
