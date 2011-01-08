@@ -1,6 +1,7 @@
 body {
   font-family: Verdana, Helvetica, sans-serif;
   background-color: #DDDDDD;
+  max-width: 600px;
 }
 img {
   margin-left: 3cm;
