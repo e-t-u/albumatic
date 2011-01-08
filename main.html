@@ -105,7 +105,7 @@
 
     <p><code>
     url=http://albumatic.appspot.com/pdf/USA/Definitives/<br>
-    attr=unit=in&pagewidth=8.5&pageheight=11<br>
+    attr="?unit=in&pagewidth=8.5&pageheight=11"<br>
     wget $url/1/ABBA-hh-XX$attr -O 1.pdf<br>
     wget $url/2/BBB-ccc-ddd$attr -O 2.pdf<br>
     ...<br>
@@ -168,8 +168,8 @@
 
 <!--
     <p>{{ user_message }}</p>
--->
     <p><a href="{{ url }}">{{ url_linktext }}</a></p>
+-->
 
     {% if admin %}
         <p><a href="resetdb">Reset defaults</a></p>
