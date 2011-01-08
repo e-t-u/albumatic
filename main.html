@@ -6,22 +6,56 @@
   </head>
 
   <body>
-    <h1>Albumatic v2</h1>
+    <h1>Albumatic v3</h1>
 
     <p>Albumatic generates stamp album pages in PDF based on
     arguments given in the URL.</p>
 
     <p>For example, if you access URL:</p>
 
-    <p><a href="/pdf/USA/Definitives/2009/1/ABA-BBB-AA">
-    http://albumatic.appspot.com/pdf/USA/Definitives/2009/1/ABA-BBB-AA</a></p>
+    <p><a href="/pdf/USA/Definitives/2009/1/ABBA-hh-BBB">
+    http://albumatic.appspot.com/pdf/USA/Definitives/2009/1/ABBA-hh-BBB</a></p>
 
-    <p>You will get an album page with headers and three rows of stamps.</p>
+    <p>You will get an album page with headers and three rows of stamps.
+    Each letter in the template identifies one stamp, and dashes separate lines.</p>
 
-    <p>Feel free to create link pages that allows people to 
-    generate album pages for different collection areas.</p>
+    <img src="/static/ABBA-hh-BBB.png" alt="four stamps, two stamps, three stamps" />
+
+    <h2>Stamp sizes</h2>
+
+    Stamp size is described with a letter in the template. Potrait or square
+    stamps are uppercase letters and landscape stamps are lowercase letters.
+
+    <p>Standard sizes follow sizes available as ready cut stamp mounts
+    (from Hawid and/or Leuchtturm) with our own naming.</p>
+
+    <p>The size A is the most narrow potrait stamp - size B is the
+    same width but taller.  Stamps "a" and "A" are not necessarily of
+    the same size rotated.</p>
+
+    <p>Table of the sizes is available as <a
+    href="/static/StandardSizes.pdf">PDF</a>.</p>
+
+    <p>All the potrait sizes can be seen in this album
+    <a href="/pdf?template=ABCDEFG-HIJKLM-NOPQR-STUV-WXYZ">page.</a></p>
     
-    <p>You can define attributes to modify page layout. You write them to the end of the URL lik</p>
+    <p>And landscape sizes in this album
+    <a href="/pdf?template=abcde-fghi-jklm-nopq-rst-uv">page</a></p>
+    
+    <h2>Custom sizes</h2>
+
+    <p>Any size letter can be redefined as:</p>
+    <p>
+    <a href="/pdf/////ABA-X?size_B=50,50&size_X=150,80">
+    http://albumatic.appspot.com/pdf/////ABA-X?size_B=50,50&size_X=150,80</a>
+    </p>
+
+    <img src="/static/ABA-X.png">
+
+    <h2>Additional attributes</h2>
+
+    <p>You can define attributes to modify page layout. You write them
+    to the end of the URL as:</p>
 
     <p><a href="/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&header1pos=10">
     http://albumatic.appspot.com/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&header1pos=10</a></p>
@@ -30,16 +64,20 @@
     <ul>
     <li>unit, default mm, allowed values: mm, in, pica, pt, in (all the later measurements are in this unit)</li>
     <li>pagewidth,  default A4</li>
-    <li>pageheight, default A4<li>
-    <li>logotext, default Albumatic, written to the left footer<li>
+    <li>pageheight, default A4</li>
+    <li>logotext, default Albumatic, written to the left footer</li>
     <li>topmargin, default 12 mm</li>
     <li>bottommargin, default 18 mm</li>
     <li>leftmargin, default 15 mm</li>
     <li>rightmargin", default 15 mm</li>
     <li>header1pos, default 25 mm</li>
+<!--
     <li>header1font, default ("Helvetica", 36)</li>
+-->
     <li>header2pos, default 35 mm</li>
+<!--
     <li>header2font", ("Helvetica", 18)</li>
+-->
     <li>maxxdistance, default 15 mm</li>
     <li>maxydistance, default 25 mm</li>
     <li>header1, can be used to set header1 instead of the first part of the URL</li>
@@ -50,21 +88,37 @@
     <li>template, can be used to set stamp layout instead of the last part of the path in URL</li>
     </ul>
 
-    <p>Standard sizes follow sizes available as ready cut stamp mounts
-    (from Hawid and/or Leuctturm) with our own naming. The size A is the most narrow,
-    size B is the same width but taller. All the "potrait" stamps or square stamps are uppercase
-    and the "landscape stamps are lowercase.
+    Header font is currently fixed as Helvetica 36pt and 18pt.
 
-    Table of the sizes is available as <a href="/static/StandardSizes.pdf">PDF</a>.
+    <h2>Automating full album generation</h2>
 
-    All the potrait sizes can be seen in this album
-    <a href="/pdf?template=ABCDEFG-HIJKLM-NOPQR-STUV-WXYZ">page.</a></p>
-    
-    <p>And landscape sizes in this album
-    <a href="/pdf?template=abcde-fghi-jklm-nopq-rst-uv">page</a></p>
-    
-    <p>Any size letter can be redefined like in this
-    <a href="/pdf?template=ABA-X&size_B=50,50&size_X=150,80">page</a></p>
+    <!-- examples in this section are not yet tested -->
+
+    <p>A natural way to use Albumatic is to create web pages with links
+    to generate full albums. It is also trivial to automate requests with
+    any automatic web page retriever.</p>
+
+    <p>A command line program Gnu wget is available for both Linux (standard
+    tool) and for <a href=http://gnuwin32.sourceforge.net/packages/wget.htm>
+    Windows</a> command line.</p>
+
+    <p>If you want to generate album, you save much work with a scrip language
+    like Linux shell scripts. You can do someting like:</p>
+
+    <code>
+    url = http://albumatic.appspot.com/pdf/USA/Definitives/<br>
+    attr = pagewidth=8.5in&pageheight=11in<br>
+    wget $url/1/ABBA-hh-XX$attr<br>
+    wget $url/2/BBB-ccc-ddd$attr<br>
+    ...<br>
+    </Code>
+
+    <p>Another alternative is to make a web page (why not publish it...)
+    and retrive it all at once with command<p>
+
+    <code>
+    wget --recursive http://myserver/mypage.html
+    </code>
 
 <!--
     <p>(CURRENTLY NOT WORKING:) You can log in to set some preferences. For example, you
@@ -74,12 +128,15 @@
     will not see your password.</p>
 -->
 
+    <h2>About Albumatic</h2>
     <p>This application is running in Google App Engine infrastructure
     and it is written using Python and Reportlab PDF generation
     library. The source code is available in
     <a href="http://code.google.com/p/albumatic">http://code.google.com/p/albumatic</a>
     <p>
-    
+
+    <p>Albumatic is written by Esa Turtiainen</p>
+
     {% if message %}
         <p><b>{{ message }}</b></p>
     {% endif %}
@@ -91,7 +148,9 @@
     </p>
 -->
 
+<!--
     <p>{{ user_message }}</p>
+-->
     <p><a href="{{ url }}">{{ url_linktext }}</a></p>
 
     {% if admin %}

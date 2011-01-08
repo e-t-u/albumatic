@@ -1,5 +1,24 @@
 #!/usr/bin/env python
 
+#
+# Google App Engine program to print stamp album pages
+#
+# In the current version there is no session but all the
+# results depend only from the URL given without any stored
+# state.
+#
+# The first version used session and those parts of the 
+# program are not yet removed (they may be still needed).
+# That is why there is so much confusing code commented out.
+#
+# This program requires Reportlab library to produce
+# PDF documents. Note that it does not work with google app
+# engine local development server but it works as a part
+# of uploaded application (bug in Google app engine?).
+#
+# Esa Turtiainen, 2009-2011, licence GPL v3
+#
+
 import cgi
 #import datetime
 import wsgiref.handlers
@@ -344,12 +363,12 @@ class Pdf(webapp.RequestHandler):
             elif n == 5:
                 conf.no = val
             elif n == 6:
-                conf.templ = val
+                conf.template = val
         conf.set_default("country",  "COUNTRY")
         conf.set_default("area",  "Area")
         conf.set_default("year",  "YYYY")
         conf.set_default("no",  "#")
-        conf.set_default("template",  "ABBA-hh-BBB")
+        conf.set_default("template",  "X")
         if self.request.query_string:
             for assignment in self.request.query_string.split('&'):
                 var,  val = assignment.split('=')
