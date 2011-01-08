@@ -92,8 +92,6 @@
 
     <h2>Automating full album generation</h2>
 
-    <!-- examples in this section are not yet tested -->
-
     <p>A natural way to use Albumatic is to create web pages with links
     to generate full albums. It is also trivial to automate requests with
     any automatic web page retriever.</p>
@@ -105,20 +103,25 @@
     <p>If you want to generate album, you save much work with a scrip language
     like Linux shell scripts. You can do someting like:</p>
 
-    <code>
-    url = http://albumatic.appspot.com/pdf/USA/Definitives/<br>
-    attr = pagewidth=8.5in&pageheight=11in<br>
-    wget $url/1/ABBA-hh-XX$attr<br>
-    wget $url/2/BBB-ccc-ddd$attr<br>
+    <p><code>
+    url=http://albumatic.appspot.com/pdf/USA/Definitives/<br>
+    attr=unit=in&pagewidth=8.5&pageheight=11<br>
+    wget $url/1/ABBA-hh-XX$attr -O 1.pdf<br>
+    wget $url/2/BBB-ccc-ddd$attr -O 2.pdf<br>
     ...<br>
-    </Code>
+    </code></p>
 
     <p>Another alternative is to make a web page (why not publish it...)
     and retrive it all at once with command<p>
 
-    <code>
+    <p><code>
     wget --recursive http://myserver/mypage.html
-    </code>
+    </code></p>
+
+    <p>The problem here is that the default file name is derived from the
+    last part of the URL or template. In some albums there may be several
+    pages with the same template.</p>
+   
 
 <!--
     <p>(CURRENTLY NOT WORKING:) You can log in to set some preferences. For example, you
@@ -140,6 +143,21 @@
     {% if message %}
         <p><b>{{ message }}</b></p>
     {% endif %}
+
+    <h2>TODO</h2>
+
+    <p>The mechanism to add descriptive text to stamps is badly needed.
+    There are two things to consider: URL length and 
+    international character encoding. It seems that URL
+    can be several thousands of characters in modern browsers and
+    therefore it should not be a problem. International UTF-8 characters
+    can be quoted in URL but you can not generate them directly from
+    any keyboard. In practise, you have to write them to a file and some
+    program makes the tricky "quotation" used in URLs.</p>
+
+    <p>There will be a catalogue system that cenerates automatically
+    album pages. Some day.</p>
+
 
 <!--
     <p>
