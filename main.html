@@ -90,6 +90,24 @@
 
     Header font is currently fixed as Helvetica 36pt and 18pt.
 
+    <h2>Saving the work</h2>
+    
+    <p>If you save the basic URL, the default name for the save page
+    is the template name.
+    In most cases that is not what you want. Even though your browser
+    knows that the page returned is PDF-file, for later use it is better
+    to save files ending with ".pdf".</p>
+
+    <p>You can add still one part to the URL like "/1.pdf". The name 
+    does not have affect the page layout but it will be the default
+    of the page when you save it. For example, try to save the following
+    page:</p>
+    
+    <p>
+    <a href="/pdf/////ABA-X-dd/1.pdf">
+    http://albumatic.appspot.com/pdf/////ABA-X-dd/1.pdf</a>
+    </p>
+    
     <h2>Automating full album generation</h2>
 
     <p>A natural way to use Albumatic is to create web pages with links
@@ -100,14 +118,14 @@
     tool) and for <a href=http://gnuwin32.sourceforge.net/packages/wget.htm>
     Windows</a> command line.</p>
 
-    <p>If you want to generate an album, you save much work with a scrip language
+    <p>If you want to generate an album, you save much work with a script language
     like Linux shell scripts. You can do someting like:</p>
 
     <p><code>
     url=http://albumatic.appspot.com/pdf/USA/Definitives/<br>
     attr="?unit=in&pagewidth=8.5&pageheight=11"<br>
-    wget $url/1/ABBA-hh-XX$attr -O 1.pdf<br>
-    wget $url/2/BBB-ccc-ddd$attr -O 2.pdf<br>
+    wget $url/1/ABBA-hh-XX$attr/1.pdf<br>
+    wget $url/2/BBB-ccc-ddd$attr/2.pdf<br>
     ...<br>
     </code></p>
 
@@ -118,9 +136,7 @@
     wget --recursive http://myserver/mypage.html
     </code></p>
 
-    <p>The problem here is that the default file name is derived from the
-    last part of the URL or template. In some albums there may be several
-    pages with the same template.</p>
+    <p>It is important to name pages uniquely with the last part of the URL.</p>
    
 
 <!--
