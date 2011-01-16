@@ -20,6 +20,7 @@
 #
 
 import cgi
+import urllib
 #import datetime
 import wsgiref.handlers
 
@@ -355,13 +356,13 @@ class Pdf(webapp.RequestHandler):
                 if not val == "pdf":
                     error += "<p>Internal error, second field should be 'pdf'</p>"
             elif n == 2:
-                conf.country = val
+                conf.country = urllib.unquote(val)
             elif n == 3:
-                conf.area = val
+                conf.area = urllib.unquote(val)
             elif n == 4:
-                conf.year = val
+                conf.year = urllib.unquote(val)
             elif n == 5:
-                conf.no = val
+                conf.no = urllib.unquote(val)
             elif n == 6:
                 conf.template = val
         conf.set_default("country",  "COUNTRY")
