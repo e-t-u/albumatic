@@ -474,6 +474,23 @@ class Pdf(webapp.RequestHandler):
                     p.lines[row][col].text = text
                 except:
                     error += "<p>Stamp does not exist %s</p>" % attr
+	for attr in conf.__dict__:
+            if attr[:2] == "l_":
+                try:
+	            no = attr[2:]
+                    row, col = no.split("_")
+                    row = int(row)
+                    col = int(col)
+                except:
+                    error += "<p>Not a valid nunber pair in %s</p>" % attr
+		    row = 0
+                    col = 0
+                text = getattr(conf, attr)
+                text = urllib.unquote(text)
+                try:
+                    p.lines[row][col].label = text
+                except:
+                    error += "<p>Stamp does not exist %s</p>" % attr
         pdf = Canvas(self.response.out, (conf.pagewidth, conf.pageheight))
         p.generate(pdf)
 
