@@ -462,8 +462,10 @@ class Pdf(webapp.RequestHandler):
                 try:
 	            no = attr[2:]
                     row, col = no.split("_")
-                    row = int(row)
-                    col = int(col)
+                    row = int(row) - 1
+                    col = int(col) - 1
+                    if row < 0: raise Exception
+                    if col < 0: raise Exception
                 except:
                     error += "<p>Not a valid nunber pair in %s</p>" % attr
 		    row = 0
@@ -479,8 +481,10 @@ class Pdf(webapp.RequestHandler):
                 try:
 	            no = attr[2:]
                     row, col = no.split("_")
-                    row = int(row)
-                    col = int(col)
+                    row = int(row) - 1
+                    col = int(col) - 1
+                    if row < 0: raise Exception
+                    if col < 0: raise Exception
                 except:
                     error += "<p>Not a valid nunber pair in %s</p>" % attr
 		    row = 0
