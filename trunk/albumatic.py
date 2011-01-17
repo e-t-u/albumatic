@@ -127,6 +127,12 @@ class Stamp():
         self.text = text
         self.label = label
 
+    def set_label(self, text):
+	self.label = text
+
+    def set_text(self, text):
+	self.text = text
+
     def generate(self, pdf):
         p = pdf.beginPath()
         p.moveTo(0, 0)
@@ -372,8 +378,11 @@ class Pdf(webapp.RequestHandler):
         conf.set_default("template",  "X")
         if self.request.query_string:
             for assignment in self.request.query_string.split('&'):
-                var,  val = assignment.split('=')
-                setattr(conf,  var,  val)
+                try:
+                    var,  val = assignment.split('=')
+                    setattr(conf,  var,  val)
+                except:
+                    error += "<p>Empty assignment " + assignment + "</p>"
         if not hasattr(conf,  "unit"):
             conf.unit = "mm"
         if conf.unit == "mm":
@@ -441,13 +450,39 @@ class Pdf(webapp.RequestHandler):
             except:
                 error += "<p>internal error: default size wrong (not float)</p>"
             conf.set_default("size_" + key,  (w,  h))
+
+	#
+        # Arguments are prepared, ready to create Page
+        #
+        p = Page(conf)
+        for line in conf.template.split('-'):
+            p.addLine(line)
+	for attr in conf.__dict__:
+            if attr[:2] == "t_":
+                try:
+	            no = attr[2:]
+                    row, col = no.split("_")
+                    row = int(row)
+                    col = int(col)
+                except:
+                    error += "<p>Not a valid nunber pair in %s</p>" % attr
+		    row = 0
+                    col = 0
+                text = getattr(conf, attr)
+                text = urllib.unquote(text)
+                try:
+                    p.lines[row][col].text = text
+                except:
+                    error += "<p>Stamp does not exist %s</p>" % attr
+        pdf = Canvas(self.response.out, (conf.pagewidth, conf.pageheight))
+        p.generate(pdf)
+
+        #
+        # If there are errors, we return them as HTML, otherwise
+        # we return the PDF
+        #
         if error == "":
             self.response.headers['Content-Type'] = 'application/pdf'
-            p = Page(conf)
-            for line in conf.template.split('-'):
-                p.addLine(line)
-            pdf = Canvas(self.response.out, (conf.pagewidth, conf.pageheight))
-            p.generate(pdf)
             pdf.save()
         else:
             self.response.out.write(error)
