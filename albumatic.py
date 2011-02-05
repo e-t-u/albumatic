@@ -21,7 +21,6 @@
 
 import cgi
 import urllib
-#import datetime
 import wsgiref.handlers
 
 from google.appengine.ext import db
@@ -35,39 +34,6 @@ from reportlab.lib.units import mm,  inch,  pica
 
 import os
 import logging
-
-#class Conf(db.Model):
-#  user = db.UserProperty()
-#  timestamp = db.DateTimeProperty(auto_now=True)
-#  pagewidth = db.FloatProperty()
-#  pageheight = db.FloatProperty()
-#  logotxt = db.StringProperty()
-
-
-#def setDefaults(user):
-#  conf = Conf(
-#    user = user,
-#    pagewidth = A4[0], # does not work
-#    pageheight = A4[1],
-##        pagewidth = 150*mm,
-##        pageheight = 150*mm,
-#    logotxt = "Anonymous Albumatics")
-#  conf.save()
-
-
-#class Resetdb(webapp.RequestHandler):
-#  def get(self):
-#    if not users.get_current_user():
-#      self.response.out.write(
-#        '<a href="' +
-#        users.create_login_url('/resetdb') +
-#        '">First, log in as admin</a>')
-#    elif users.is_current_user_admin():
-#      self.response.out.write('reset')
-#      user = users.User("__default__"),
-#      setDefaults(user)
-#    else:
-#      self.response.out.write('non admin user')
 
 
 class MainPage(webapp.RequestHandler):
@@ -97,27 +63,6 @@ class MainPage(webapp.RequestHandler):
       }
     path = os.path.join(os.path.dirname(__file__), 'main.html')
     self.response.out.write(template.render(path, template_values))
-
-
-#class Prefs(webapp.RequestHandler):
-#  def get(self):
-#    user = users.get_current_user()
-#    if not user:
-#      self.response.out.write(
-#        '<a href="' +
-#        users.create_login_url('/prefs') +
-#        '">Log in to set personal preferences</a>'
-#      )
-#    else:
-#      logotxt = user.nickname()
-#      conf = Conf(
-#        user = user,
-#        pagewidth = A4[0],
-#        pageheight = A4[1],
-#        logotxt = logotxt)
-#      conf.put()
-#    path = os.path.join(os.path.dirname(__file__), 'main.html')
-#    self.response.out.write(template.render(path, template_values))
 
 
 class Stamp():
@@ -161,9 +106,6 @@ class Page():
                 name = attr[5:]
                 val = getattr(conf,  attr)
                 self.size[name] = val
-
-#    def _add_size(self, name, w, h):
-#        self.size[name] = (w, h)
 
     def addLine(self, line):
         stamps = []
@@ -346,12 +288,6 @@ class Conf:
 class Pdf(webapp.RequestHandler):
     """Handles web request to print a pdf page."""
     def get(self):
-#        user = users.get_current_user()
-#      if not user:
-#        user = users.User("__default__")
-#      q = Conf.all()
-#      q.filter("user =", user)
-#      conf = q.get()
         error = ""
         conf = Conf()
         for n,  val in enumerate(self.request.path.split("/")):
@@ -512,8 +448,6 @@ class Pdf(webapp.RequestHandler):
 application = webapp.WSGIApplication([
     ('/', MainPage),
     ('/pdf.*', Pdf),
-#    ('/resetdb', Resetdb),
-#    ('/prefs', Prefs)
     ], debug=True)
 
 
