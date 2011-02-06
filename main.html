@@ -167,10 +167,6 @@
 
     <p>Albumatic is written by Esa Turtiainen</p>
 
-    {% if message %}
-        <p><b>{{ message }}</b></p>
-    {% endif %}
-
     <h2>TODO</h2>
 
     <p>The mechanism to add descriptive text to stamps is badly needed.
@@ -185,6 +181,9 @@
     <p>There will be a catalogue system that cenerates automatically
     album pages. Some day.</p>
 
+    {% if message %}
+        <p><b>{{ message }}</b></p>
+    {% endif %}
 
 <!--
     <p>
@@ -196,11 +195,11 @@
 <!--
     <p>{{ user_message }}</p>
     <p><a href="{{ url }}">{{ url_linktext }}</a></p>
--->
 
     {% if admin %}
         <p><a href="resetdb">Reset defaults</a></p>
     {% endif %}
+-->
 
   </body>
 </html>

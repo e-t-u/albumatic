@@ -38,28 +38,28 @@ import logging
 
 class MainPage(webapp.RequestHandler):
   def get(self):
-    user = users.get_current_user()
+#    user = users.get_current_user()
     admin = False
     prefs = False
-    if user:
-      prefs = True
-      login_message = 'Logged in as ' + user.nickname()
-      url = users.create_logout_url(self.request.uri)
-      url_linktext = 'Logout'
-      if users.is_current_user_admin():
-        login_message += ' (admin)'
-        admin = True
-    else:
-      login_message = 'Not logged in'
-      url = users.create_login_url(self.request.uri)
-      url_linktext = 'You have to log in to set preferences'
+#    if user:
+#      prefs = True
+#      login_message = 'Logged in as ' + user.nickname()
+#      url = users.create_logout_url(self.request.uri)
+#      url_linktext = 'Logout'
+#      if users.is_current_user_admin():
+#        login_message += ' (admin)'
+#        admin = True
+#    else:
+#      login_message = 'Not logged in'
+#      url = users.create_login_url(self.request.uri)
+#      url_linktext = 'You have to log in to set preferences'
     template_values = {
       'message': None,
-      'prefs': prefs,
-      'login_message': login_message,
-      'url': url,
-      'url_linktext': url_linktext,
-      'admin': admin,
+#      'prefs': prefs,
+#      'login_message': login_message,
+#      'url': url,
+#      'url_linktext': url_linktext,
+#      'admin': admin,
       }
     path = os.path.join(os.path.dirname(__file__), 'main.html')
     self.response.out.write(template.render(path, template_values))
@@ -262,6 +262,7 @@ stamp_sizes = {
     "v": (55, 33)  # hl
     }
 
+
 class Conf:
     """Class where to collect page configuration values.
 
@@ -445,9 +446,20 @@ class Pdf(webapp.RequestHandler):
             self.response.out.write(error)
 
 
+# TODO: Pdf must be cleaned to be re-usable
+# Note that ReportLab SVG generation is beta
+# it would be safer to have internal PDF->SVG
+# converter
+#class Svg(webapp.RequestHandler):
+#    """Handles web request to return a SVG page."""
+#    def get(self):
+#        self.response.headers['Content-Type'] = 'image/svg+xml'
+
+
 application = webapp.WSGIApplication([
     ('/', MainPage),
     ('/pdf.*', Pdf),
+#    ('/svg.*', Svg),
     ], debug=True)
 
 
