@@ -1,8 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+  xml:lang="en" lang="en">
   <head>
-    <link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
     <title>Albumatic</title>
+    <link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
   </head>
 
   <body>
@@ -46,19 +50,19 @@
 
     <p>Any size letter can be redefined as:</p>
     <p>
-    <a href="/pdf/////ABA-X?size_B=50,50&size_X=150,80">
-    http://albumatic.appspot.com/pdf/////ABA-X?size_B=50,50&size_X=150,80</a>
+    <a href="/pdf/////ABA-X?size_B=50,50&amp;size_X=150,80">
+    http://albumatic.appspot.com/pdf/////ABA-X?size_B=50,50&amp;size_X=150,80</a>
     </p>
 
-    <img src="/static/ABA-X.png">
+    <img src="/static/ABA-X.png" alt="three stamps, one stamp"/>
 
     <h2>Additional attributes</h2>
 
     <p>You can define attributes to modify page layout. You write them
     to the end of the URL as:</p>
 
-    <p><a href="/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&header1pos=10">
-    http://albumatic.appspot.com/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&header1pos=10</a></p>
+    <p><a href="/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&amp;header1pos=10">
+    http://albumatic.appspot.com/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&amp;header1pos=10</a></p>
  
     Attributes are:
     <ul>
@@ -108,8 +112,47 @@
     http://albumatic.appspot.com/pdf/////ABA-X-dd/1.pdf</a>
     </p>
     
-    <h2>Manual postprocessing</h2>
+    <h2>Stamp labels</h2>
     
+    <p>Every stamp has two places to insert text. One is inside the
+    stamp frame called "text". Another is below the stamp called
+    "label".</p>
+    
+    <p>Texts are added as attributes to URL as:</p>
+    
+    <ul>
+    <li>t_1_1=text, adds text inside the stamp frame in
+    row 1, col 1</li>
+    <li>l_1_1=label, adds label below the stamp fram in
+    row 1, col 1</li>
+    <li>placeholders=texts/labels/both, adds all labels and/or
+    texts as the text "row, col"</li>
+    </ul>
+    
+    <h2>Internationalization</h2>
+    
+    <p>Texts (like titles) can
+    have international characters and spaces but they should be quoted
+    as in standard web URL. Writing directly international characters
+    to URL may or may not work depending on your browser.</p>
+    
+    <p>Texts are limited to one line.</p>    
+    
+    <p>For example (unquoted):</p>
+    <p><a
+href="/pdf/USA/2012///AAA-X/1.pdf?placeholders=texts&amp;l_1_2=variation
+cliché&amp;l_1_3=variation brût">
+
+http://albumatic.appspot.com/pdf/USA/2012///AAA-X/1.pdf?placeholders=texts&amp;l_1_2=variation
+cliché&amp;l_1_3=variation brût
+    </a></p>
+
+    <p><img src="/static/1.png" alt="three stamps, one stamp, two
+stamps have labels, all stamps have row,col as text inside,
+international characters are used" height="251" width="177"/></p>
+
+    <h2>Manual postprocessing</h2>
+   
     <p>The recommended way to make manual modifications to pages
     is to use free Inkscape program available for Linux, Windows and
     Mac. Inkscape is capable of reading PDF files and allows vector
@@ -119,6 +162,10 @@
     <p>Inkscape is available from
     <a href="http://inkscape.org">http://inkscape.org</a>.</p>
 
+    <p>It is useful to use attribute "placeholders=both" to have
+    text fields in the right place if you plan to make manual
+    postprocessing.</p>
+
     <h2>Automating full album generation</h2>
 
     <p>A natural way to use Albumatic is to create web pages with links
@@ -126,44 +173,35 @@
     any automatic web page retriever.</p>
 
     <p>A command line program Gnu wget is available for both Linux (standard
-    tool) and for <a href=http://gnuwin32.sourceforge.net/packages/wget.htm>
+    tool) and for <a href="http://gnuwin32.sourceforge.net/packages/wget.htm">
     Windows</a> command line.</p>
 
     <p>If you want to generate an album, you save much work with a script language
     like Linux shell scripts. You can do someting like:</p>
 
     <p><code>
-    url=http://albumatic.appspot.com/pdf/USA/Definitives/<br>
-    attr="?unit=in&pagewidth=8.5&pageheight=11"<br>
-    wget $url/1/ABBA-hh-XX/1.pdf$attr<br>
-    wget $url/2/BBB-ccc-ddd/2.pdf$attr<br>
-    ...<br>
+    url=http://albumatic.appspot.com/pdf/USA/Definitives/<br/>
+    attr="?unit=in&amp;pagewidth=8.5&amp;pageheight=11"<br/>
+    wget $url/1/ABBA-hh-XX/1.pdf$attr<br/>
+    wget $url/2/BBB-ccc-ddd/2.pdf$attr<br/>
+    ...<br/>
     </code></p>
 
     <p>Another alternative is to make a web page (why not publish it...)
-    and retrive it all at once with command<p>
+    and retrive it all at once with command</p>
 
     <p><code>
     wget --recursive http://myserver/mypage.html
     </code></p>
 
     <p>It is important to name pages uniquely with the last part of the URL.</p>
-   
-
-<!--
-    <p>(CURRENTLY NOT WORKING:) You can log in to set some preferences. For example, you
-    can print pages in Letter size even though the links were
-    designed for A4 paper size. You can use your Google 
-    account (like Gmail) as your log in. This application 
-    will not see your password.</p>
--->
 
     <h2>About Albumatic</h2>
     <p>This application is running in Google App Engine infrastructure
     and it is written using Python and Reportlab PDF generation
     library. The source code is available in
     <a href="http://code.google.com/p/albumatic">http://code.google.com/p/albumatic</a>
-    <p>
+    </p>
 
     <p>Albumatic is written by Esa Turtiainen</p>
 
@@ -184,22 +222,6 @@
     {% if message %}
         <p><b>{{ message }}</b></p>
     {% endif %}
-
-<!--
-    <p>
-      <a href="pdf/COUNTRY/Area/Year/No/ABA-BBB-AA">test print</a>
-      <a href="prefs">Set personal preferences</a>
-    </p>
--->
-
-<!--
-    <p>{{ user_message }}</p>
-    <p><a href="{{ url }}">{{ url_linktext }}</a></p>
-
-    {% if admin %}
-        <p><a href="resetdb">Reset defaults</a></p>
-    {% endif %}
--->
 
   </body>
 </html>
