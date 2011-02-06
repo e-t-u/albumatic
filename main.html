@@ -59,7 +59,7 @@
     <h2>Additional attributes</h2>
 
     <p>You can define attributes to modify page layout. You write them
-    to the end of the URL as:</p>
+    to the end of the URL as (forcing ugly title):</p>
 
     <p><a href="/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&amp;header1pos=10">
     http://albumatic.appspot.com/pdf/USA//2009/2/AAAA-BBBB?logotext=myalbum&amp;header1pos=10</a></p>
@@ -70,11 +70,11 @@
     <li>pagewidth,  default A4</li>
     <li>pageheight, default A4</li>
     <li>logotext, default Albumatic, written to the left footer</li>
-    <li>topmargin, default 12 mm</li>
-    <li>bottommargin, default 18 mm</li>
-    <li>leftmargin, default 15 mm</li>
-    <li>rightmargin", default 15 mm</li>
-    <li>header1pos, default 25 mm</li>
+    <li>topmargin, default 12 (mm)</li>
+    <li>bottommargin, default 18 (mm)</li>
+    <li>leftmargin, default 15 (mm)</li>
+    <li>rightmargin", default 15 (mm)</li>
+    <li>header1pos, default 25 (mm)</li>
 <!--
     <li>header1font, default ("Helvetica", 36)</li>
 -->
@@ -90,6 +90,9 @@
     <li>rightfooter, defaults to year + '/' + no where year and no comes from URL</li>
     <li>size_X=10,20, overwrite standard size X to width 10 and height 20</li>
     <li>template, can be used to set stamp layout instead of the last part of the path in URL</li>
+    <li>t_1_1, text of stamp position 1,1</li>
+    <li>l_1_1, label of stamp position 1,1</li>
+    <li>placeholders=texts/labels/both, put row, col coordinates as text/label placeholders</li>
     </ul>
 
     Header font is currently fixed as Helvetica 36pt and 18pt.
@@ -116,14 +119,15 @@
     
     <p>Every stamp has two places to insert text. One is inside the
     stamp frame called "text". Another is below the stamp called
-    "label".</p>
+    "label". The stamp place is identified by row and column. The topmost
+    row is the row number 1. The leftmost stamp place is column number 1.</p>
     
     <p>Texts are added as attributes to URL as:</p>
     
     <ul>
     <li>t_1_1=text, adds text inside the stamp frame in
     row 1, col 1</li>
-    <li>l_1_1=label, adds label below the stamp fram in
+    <li>l_1_1=label, adds label below the stamp frame in
     row 1, col 1</li>
     <li>placeholders=texts/labels/both, adds all labels and/or
     texts as the text "row, col"</li>
@@ -134,22 +138,24 @@
     <p>Texts (like titles) can
     have international characters and spaces but they should be quoted
     as in standard web URL. Writing directly international characters
-    to URL may or may not work depending on your browser.</p>
+    to URL may or may not work depending on your browser. In practise,
+    you may have to write tricky URL's to a file and use some
+    program makes the tricky "quotation" used in URLs.</p>
     
-    <p>Texts are limited to one line.</p>    
+    <p>Texts are limited to one line. It seems that URL
+    can be several thousands of characters in modern browsers and
+    therefore it the length of the URL should not be a problem.</p>
     
     <p>For example (unquoted):</p>
     <p><a
-href="/pdf/USA/2012///AAA-X/1.pdf?placeholders=texts&amp;l_1_2=variation
-cliché&amp;l_1_3=variation brût">
+href="/pdf/USA/2012///AAA-X/1.pdf?placeholders=texts&amp;l_1_2=variation cliché&amp;l_1_3=variation brût">
 
-http://albumatic.appspot.com/pdf/USA/2012///AAA-X/1.pdf?placeholders=texts&amp;l_1_2=variation
-cliché&amp;l_1_3=variation brût
+http://albumatic.appspot.com/pdf/USA/2012///AAA-X/1.pdf?placeholders=texts&amp;l_1_2=variation cliché&amp;l_1_3=variation brût
     </a></p>
 
     <p><img src="/static/1.png" alt="three stamps, one stamp, two
 stamps have labels, all stamps have row,col as text inside,
-international characters are used" height="251" width="177"/></p>
+international characters are used" height="527" width="373"/></p>
 
     <h2>Manual postprocessing</h2>
    
@@ -206,15 +212,6 @@ international characters are used" height="251" width="177"/></p>
     <p>Albumatic is written by Esa Turtiainen</p>
 
     <h2>TODO</h2>
-
-    <p>The mechanism to add descriptive text to stamps is badly needed.
-    There are two things to consider: URL length and 
-    international character encoding. It seems that URL
-    can be several thousands of characters in modern browsers and
-    therefore it should not be a problem. International UTF-8 characters
-    can be quoted in URL but you can not generate them directly from
-    any keyboard. In practise, you have to write them to a file and some
-    program makes the tricky "quotation" used in URLs.</p>
 
     <p>There will be a catalogue system that cenerates automatically
     album pages. Some day.</p>
