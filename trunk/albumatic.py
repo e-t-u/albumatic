@@ -432,6 +432,20 @@ class Pdf(webapp.RequestHandler):
                     p.lines[row][col].label = text
                 except:
                     error += "<p>Stamp does not exist %s</p>" % attr
+        if hasattr(conf, "placeholders"):
+            # default is "both" - only case when labels is not shown is when
+            # "texts" is defined and vice versa
+            showlabels = (not conf.placeholders == "texts")
+            showtexts = (not conf.placeholders == "labels")
+            for row, l in enumerate(p.lines):
+                for col, s in enumerate(l):
+                    # TODO: only if there is no previous value
+                    # TODO: placeholders=label/text/both (default)
+                    if showlabels and not p.lines[row][col].label:
+                        p.lines[row][col].label = "%s,%s" % (row + 1, col + 1)
+                    if showtexts and not p.lines[row][col].text:
+                        p.lines[row][col].text = "%s,%s" % (row + 1, col + 1)
+                
         pdf = Canvas(self.response.out, (conf.pagewidth, conf.pageheight))
         p.generate(pdf)
 
@@ -448,8 +462,8 @@ class Pdf(webapp.RequestHandler):
 
 # TODO: Pdf must be cleaned to be re-usable
 # Note that ReportLab SVG generation is beta
-# it would be safer to have internal PDF->SVG
-# converter
+# it would be safer to generate SVG from scratch
+# (python svgwrite)
 #class Svg(webapp.RequestHandler):
 #    """Handles web request to return a SVG page."""
 #    def get(self):
