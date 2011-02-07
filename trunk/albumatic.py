@@ -377,6 +377,8 @@ class Pdf(webapp.RequestHandler):
                     h = float(size[1]) * unit
                 except:
                     error += "<p>could not parse size " + name + "=" + val + "</p>"
+                    w = 1.0
+                    h = 1.0
                 setattr(conf,  attr,  (w,  h))
         for key,  value in stamp_sizes.items():
             if not len(value) == 2:
