@@ -114,16 +114,19 @@ python3 skills/albumatic/scripts/render_album.py \
 
 ## 4. Stamp Mount Catalog Reference
 
-| Code | Type | Dimensions (mm) | Dimensions (in) | Typical Uses |
+> **Note on Dimensions:** All sizes in Albumatic specify the **printed Mount Box (Frame)** on the album page, matching standard philatelic protective mounts (Hawid, Leuchtturm/Lighthouse, Prinz). Standard mounts provide $\approx 1.5 - 2\text{ mm}$ of clear border around the physical perforated stamp. Inner placeholder text is automatically inset $\ge 2.5 - 3.5\text{ mm}$ to stay hidden directly under the physical stamp.
+
+| Code | Type | Mount Box (mm) | Mount Box (in) | Typical Uses |
 | :--- | :--- | :--- | :--- | :--- |
 | **`A`** | Portrait | 20.0 × 24.0 mm | 0.79″ × 0.94″ | Standard small definitive stamps (US, UK, Europe) |
 | **`B`** | Portrait | 20.0 × 26.0 mm | 0.79″ × 1.02″ | Classic European definitives |
 | **`D`** | Portrait | 21.5 × 26.0 mm | 0.85″ × 1.02″ | Classic Finnish penni values (1875, 1885, 1889) |
 | **`G`** | Portrait | 24.0 × 29.0 mm | 0.94″ × 1.14″ | Large format Finnish Markka values |
-| **`L`** | Portrait | 26.0 × 31.0 mm | 1.02″ × 1.22″ | Finnish 1856 Oval issue, 1860/1866 Serpentine Roulettes |
+| **`L`** | Portrait | 26.0 × 31.0 mm | 1.02″ × 1.22″ | Finnish 1860/1866 Serpentine Roulettes |
 | **`X`** | Square | 35.0 × 35.0 mm | 1.38″ × 1.38″ | Large square stamps (China Large Dragon, Nepal Crossed Knives) |
 | **`a`** | Landscape | 24.0 × 21.0 mm | 0.94″ × 0.83″ | Standard landscape definitives |
 | **`d`** | Landscape | 31.0 × 24.0 mm | 1.22″ × 0.94″ | Landscape commemoratives (US 1934 Parks, Nepal Shiva) |
+| **`e`** | Landscape | 31.0 × 26.0 mm | 1.22″ × 1.02″ | Finnish 1856 Oval Issue (Portostämpel) |
 | **`h`** | Landscape | 36.0 × 25.0 mm | 1.42″ × 0.98″ | Wide landscape commemoratives |
 
 *Custom dimensions can be defined inline using `s:X=width,height` or query `?size_X=width,height`.*

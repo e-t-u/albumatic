@@ -10,6 +10,7 @@ It allows you to specify stamp arrangements, mount sizes, textual annotations, a
 
 - **100% Stateless:** No database, session, or login required. Every album page is deterministically computed from its configuration or URL parameters.
 - **Interactive Visual Web Designer:** Single-page app with drag-and-drop row/mount builders and instant real-time vector SVG preview.
+- **Standard Philatelic Mount Dimensions:** All size codes (`A`–`Z`, `a`–`v`) define the printed **Mount Box (Frame)** on the page (matching Hawid/Leuchtturm protective mounts), with automatic safe insets so inner text stays hidden under the physical stamp.
 - **REST API & Legacy URL Compatibility:** Fully supports modern JSON endpoints as well as legacy `/pdf/<country>/<area>/<year>/<no>/<template>` routes.
 - **Vector PDF & SVG Generation:** Clean, print-ready vector graphics rendered with ReportLab.
 - **Local & Remote Execution:** Can be run locally via CLI (`albumatic render`) or as a local web server (`albumatic serve`).
