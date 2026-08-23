@@ -1,6 +1,10 @@
 # -*- coding: UTF-8 -*-
 
+import os
 import pyalbumatic
+
+OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "finland_album")
+os.makedirs(OUT_DIR, exist_ok=True)
 
 a = pyalbumatic.Albumatic(verbose=True)
 
@@ -20,7 +24,7 @@ a["t_1_2"] = "10 kop"
 a["t_2_1"] = "5 kop"
 a["l_1_1"] = "Small Pearl"
 a["l_2_1"] = "Large Pearl"
-a.writefile("finland_1856.pdf")
+a.writefile(os.path.join(OUT_DIR, "finland_1856.pdf"))
 a.attrpop()
 
 a.attrpush()
@@ -36,7 +40,7 @@ a["l_1_1"] = "Perf. I"
 a["l_1_2"] = "Perf. I"
 a["l_2_1"] = "Perf. II"
 a["l_2_2"] = "Perf. II"
-a.writefile("finland_1860.pdf")
+a.writefile(os.path.join(OUT_DIR, "finland_1860.pdf"))
 a.attrpop()
 
 # Page 3: 1866 Penni- ja markka-arvot
@@ -50,7 +54,7 @@ a["t_1_2"] = "10 p//black"
 a["t_2_1"] = "20 p//blue"
 a["t_2_2"] = "40 p//rose"
 a["t_3_1"] = "1 mk//brown"
-a.writefile("finland_1866.pdf")
+a.writefile(os.path.join(OUT_DIR, "finland_1866.pdf"))
 a.attrpop()
 
 a.attrpush()
@@ -76,7 +80,7 @@ a["l_3_1"] = "Helsinki print"
 a["l_3_2"] = "Helsinki print"
 a["l_3_3"] = "Helsinki print//Perf. 11"
 a["l_3_4"] = "Helsinki print"
-a.writefile("finland_1875.pdf")
+a.writefile(os.path.join(OUT_DIR, "finland_1875.pdf"))
 a.attrpop()
 
 a.attrpush()
@@ -91,7 +95,7 @@ a["t_2_2"] = "25 p//blue"
 a["t_3_1"] = "1 mk//gray/pink"
 a["t_3_2"] = "5 mk//green/pink"
 a["t_3_3"] = "10 mk//brown/pink"
-a.writefile("finland_1885.pdf")
+a.writefile(os.path.join(OUT_DIR, "finland_1885.pdf"))
 a.attrpop()
 
 # Page 6: 1889 Value Only in Upper Corners
@@ -108,7 +112,7 @@ a["t_2_2"] = "25 p//blue"
 a["t_3_1"] = "1 mk//gray/pink"
 a["t_3_2"] = "5 mk//green/pink"
 a["t_3_3"] = "10 mk//brown/pink"
-a.writefile("finland_1889.pdf")
+a.writefile(os.path.join(OUT_DIR, "finland_1889.pdf"))
 a.attrpop()
 
 # Page 7: 1891 Russian Pattern (Venäläismalli)
@@ -130,8 +134,8 @@ a["t_3_4"] = "50 kop//green/violet"
 a["t_4_1"] = "1 rbl//brown/orange"
 a["t_4_2"] = "3.50 rbl//black/yellow"
 a["t_4_3"] = "7 rbl//black/orange"
-a.writefile("finland_1891.pdf")
+a.writefile(os.path.join(OUT_DIR, "finland_1891.pdf"))
 a.attrpop()
 
 a.attrpop()
-print("Generated 7 album pages for Finland 1856-1891.")
+print("Generated 7 album pages for Finland 1856-1891 in contrib/finland_album/.")

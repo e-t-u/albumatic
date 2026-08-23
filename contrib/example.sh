@@ -1,18 +1,15 @@
 #!/bin/sh
+# Example script to retrieve Albumatic pages automatically via HTTP
 
-#
-# This is an example bash (Linux) script to retrieve several 
-# albumatic pages automatically using wget.
-#
-
-URL=http://albumatic.appspot.com/pdf
+URL=http://localhost:8000/pdf
 ALBUM=USA/Definitives/2009
-ATTR=unit=in&pagewidth=8.5&pageheight=11  # letter
+ATTR="unit=in&pagewidth=8.5&pageheight=11"  # letter
 
 # very short and lazy shorthands
 U=$URL/$ALBUM
 A="?$ATTR"
 
 # get pages, modify templates here
-wget $U/1/ABBA-hh-XX$A -O 1.pdf
-wget $U/2/BBB-ccc-ddd$A -O 2.pdf
+curl -s "$U/1/ABBA-hh-XX$A" -o 1.pdf
+curl -s "$U/2/BBB-ccc-ddd$A" -o 2.pdf
+
