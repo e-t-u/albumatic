@@ -59,7 +59,7 @@ def test_parse_batch_notation_slash_separated():
 
 def test_parse_batch_notation_enriched():
     enriched_text = """
-    1881 | 1 | European Paper | XXX-X-XXX-X | t:1_1=blue,1_2=red | l:1_1=1A,1_2=2A
+    1881 | 1 | European Paper | XXX-X-XXX-X | t:1_1=blue,1_2=red | l:1_1=1A,1_2=2A | s:X=45,30,Z=60,40
     1881 | 2 | Good Paper     | XXX-XXX     | t:1_1=green
     1907 | 1 | Shiva          | dd-dd
     """
@@ -72,8 +72,11 @@ def test_parse_batch_notation_enriched():
     assert pages[0].texts["1_1"] == "blue"
     assert pages[0].texts["1_2"] == "red"
     assert pages[0].labels["1_1"] == "1A"
+    assert pages[0].custom_sizes["X"] == (45.0, 30.0)
+    assert pages[0].custom_sizes["Z"] == (60.0, 40.0)
 
     # Test serialization
     serialized = serialize_batch_notation(pages)
     assert "European Paper" in serialized
     assert "t:1_1=blue" in serialized
+    assert "s:X=45.0,30.0,Z=60.0,40.0" in serialized

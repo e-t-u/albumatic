@@ -197,6 +197,17 @@ def parse_batch_notation(text: str, base_config: Optional[PageConfig] = None) ->
                         if "=" in pair:
                             k, v = pair.split("=", 1)
                             labels[k.strip()] = v.strip()
+                elif extra.startswith("s:") or extra.startswith("size:"):
+                    # Supports s:X=45,30,Z=60,40 or s:X=45x30,Z=60x40 or semicolon-delimited
+                    import re
+                    matches = re.findall(r"([A-Za-z0-9_]+)=([0-9.]+)[,x/]([0-9.]+)", extra)
+                    custom_sizes = dict(p_data.get("custom_sizes", {}))
+                    for code, w_str, h_str in matches:
+                        try:
+                            custom_sizes[code] = (float(w_str), float(h_str))
+                        except Exception:
+                            pass
+                    p_data["custom_sizes"] = custom_sizes
 
             p_data["texts"] = texts
             p_data["labels"] = labels
@@ -217,7 +228,7 @@ def parse_batch_notation(text: str, base_config: Optional[PageConfig] = None) ->
 def serialize_batch_notation(pages: List[PageConfig]) -> str:
     """Serializes a list of PageConfig objects into a clean multi-line batch notation."""
     lines = []
-    lines.append("# Albumatic Batch Notation (Year | Page# | Area / Subtitle | Template | Texts | Labels)")
+    lines.append("# Albumatic Batch Notation (Year | Page# | Area / Subtitle | Template | Texts | Labels | Custom Sizes)")
     for page in pages:
         parts = [
             page.year or "",
@@ -231,5 +242,8 @@ def serialize_batch_notation(pages: List[PageConfig]) -> str:
         if page.labels:
             l_str = "l:" + ",".join(f"{k}={v}" for k, v in sorted(page.labels.items()))
             parts.append(l_str)
+        if page.custom_sizes:
+            s_str = "s:" + ",".join(f"{k}={v[0]},{v[1]}" for k, v in sorted(page.custom_sizes.items()))
+            parts.append(s_str)
         lines.append(" | ".join(parts))
     return "\n".join(lines)

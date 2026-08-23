@@ -67,6 +67,35 @@
 
           <!-- Dynamic Rows List -->
           <div id="rows-container" class="rows-container"></div>
+
+          <!-- Custom Mount Sizes Drawer -->
+          <details id="custom-sizes-details" style="margin-top:0.85rem; border-top:1px dashed var(--border); padding-top:0.6rem;">
+            <summary style="cursor:pointer; font-size:0.78rem; font-weight:600; color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
+              <span>📐 Custom Mount Sizes (e.g. override X, Z, or custom mm/in)</span>
+              <span style="font-size:0.7rem; color:var(--text-muted); font-weight:normal;">Manage ▾</span>
+            </summary>
+            <div style="margin-top:0.5rem; background:#f8fbff; border:1px solid #d0e2ff; border-radius:6px; padding:0.6rem;">
+              <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.5rem;">
+                Standard <strong>X</strong> is 35×35 mm. You can override <strong>X</strong> or assign custom dimensions to any letter or number (e.g. <code>X</code>, <code>1</code>, <code>Z</code>).
+              </p>
+              <div style="display:flex; gap:0.4rem; align-items:flex-end; flex-wrap:wrap; margin-bottom:0.5rem;">
+                <div style="width:65px;">
+                  <label style="font-size:0.7rem; color:var(--text-muted);">Code/Letter</label>
+                  <input type="text" id="custom-size-code" placeholder="X" maxlength="3" style="text-align:center; font-weight:bold; font-family:monospace;" />
+                </div>
+                <div style="width:75px;">
+                  <label style="font-size:0.7rem; color:var(--text-muted);">Width (<span class="unit-label">mm</span>)</label>
+                  <input type="number" id="custom-size-width" placeholder="45" step="any" />
+                </div>
+                <div style="width:75px;">
+                  <label style="font-size:0.7rem; color:var(--text-muted);">Height (<span class="unit-label">mm</span>)</label>
+                  <input type="number" id="custom-size-height" placeholder="30" step="any" />
+                </div>
+                <button type="button" id="btn-save-custom-size" class="btn btn-primary btn-sm" style="height:32px; padding:0 0.6rem;">+ Set Size</button>
+              </div>
+              <div id="custom-sizes-list" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></div>
+            </div>
+          </details>
         </section>
 
         <!-- Header & Page Meta Card -->
@@ -259,8 +288,21 @@
         </section>
 
         <section>
+          <h4 style="margin-bottom:0.4rem; color:var(--primary);">2. Defining Custom Sizes (e.g., X, Overrides & Arbitrary Dimensions)</h4>
+          <p style="font-size:0.85rem; margin-bottom:0.5rem;">
+            Standard <strong>X</strong> is 35×35 mm (Hawid square). You can override <strong>X</strong> or assign custom dimensions to any character code (e.g. <code>X</code>, <code>Z2</code>, <code>1</code>):
+          </p>
+          <ul style="font-size:0.85rem; padding-left:1.2rem; margin-bottom:0.5rem;">
+            <li><strong>In the Web Designer:</strong> Expand <em>"Custom Mount Sizes"</em> inside the Stamp Rows & Mounts card, enter the code (e.g. <code>X</code>) and dimensions (e.g. <code>45 × 30 mm</code>), then click <em>+ Set Size</em>.</li>
+            <li><strong>In Stateless URLs / Query:</strong> Append <code>?size_X=45,30</code> or <code>?s_X=45,30</code> (width, height in current unit).</li>
+            <li><strong>In Batch Notation:</strong> Add <code>| s:X=45,30</code> to the page record (e.g. <code>1881 | 1 | Custom Issue | XXX | s:X=45,30 | t:1_1=Blue</code>).</li>
+            <li><strong>In REST JSON API:</strong> Include <code>"custom_sizes": {"X": [45.0, 30.0]}</code> in the <code>PageConfig</code> payload.</li>
+          </ul>
+        </section>
+
+        <section>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <h4 style="color:var(--primary);">2. Standard Mount Sizes Catalog (Hawid / Leuchtturm)</h4>
+            <h4 style="color:var(--primary);">3. Standard Mount Sizes Catalog (Hawid / Leuchtturm)</h4>
             <input type="text" id="catalog-search" placeholder="Search size, mm, or inches..." style="font-size:0.75rem; width:220px;" />
           </div>
           <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.4rem;">
@@ -270,7 +312,7 @@
         </section>
 
         <section>
-          <h4 style="margin-bottom:0.4rem; color:var(--primary);">3. Full International Unicode Support</h4>
+          <h4 style="margin-bottom:0.4rem; color:var(--primary);">4. Full International Unicode Support</h4>
           <p style="font-size:0.85rem;">
             Titles, inner texts, and labels support the complete UTF-8 Unicode character set:
           </p>

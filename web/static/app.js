@@ -234,6 +234,17 @@ const BUILTIN_STAMP_SIZES = {
 };
 
 function getMountMetrics(code) {
+  const p = getCurrentPage();
+  if (p && p.custom_sizes && p.custom_sizes[code]) {
+    const custom = p.custom_sizes[code];
+    let w_mm = Array.isArray(custom) ? custom[0] : (custom.width || 25.0);
+    let h_mm = Array.isArray(custom) ? custom[1] : (custom.height || 30.0);
+    const w_in = Math.round((w_mm / 25.4) * 100) / 100;
+    const h_in = Math.round((h_mm / 25.4) * 100) / 100;
+    const orientation = w_mm >= h_mm ? "landscape" : "portrait";
+    return { w_mm, h_mm, w_in, h_in, orientation, is_custom: true };
+  }
+
   let s = standardSizes[code];
   let w_mm = 25.0, h_mm = 30.0;
   
@@ -248,16 +259,16 @@ function getMountMetrics(code) {
   const h_in = (s && s.height_in !== undefined && s.height_in !== null) ? Number(s.height_in) : Math.round((h_mm / 25.4) * 100) / 100;
   const orientation = (s && s.orientation) ? s.orientation : (code === code.toUpperCase() ? "portrait" : "landscape");
 
-  return { w_mm, h_mm, w_in, h_in, orientation };
+  return { w_mm, h_mm, w_in, h_in, orientation, is_custom: false };
 }
 
 function formatMountSizeShort(code) {
   const m = getMountMetrics(code);
   const p = getCurrentPage();
   if (p.unit === "in") {
-    return `${m.w_in}×${m.h_in}" (${m.w_mm}×${m.h_mm}mm)`;
+    return `${m.w_in}×${m.h_in}" (${m.w_mm}×${m.h_mm}mm)${m.is_custom ? ' ⭐' : ''}`;
   }
-  return `${m.w_mm}×${m.h_mm}mm`;
+  return `${m.w_mm}×${m.h_mm}mm${m.is_custom ? ' ⭐' : ''}`;
 }
 
 function setupEventListeners() {
@@ -298,6 +309,9 @@ function setupEventListeners() {
       updatePreviewDebounced();
     });
   });
+
+  // Custom size button
+  document.getElementById("btn-save-custom-size")?.addEventListener("click", addOrUpdateCustomSize);
 
   // Unit converter selector (Album-wide)
   const unitSelect = document.getElementById("unit");
@@ -699,7 +713,12 @@ function syncUIFromCurrentPage() {
       el.value = val === null ? "" : val;
     }
   }
+  // Sync unit labels in custom size drawer
+  document.querySelectorAll(".unit-label").forEach(el => {
+    el.textContent = p.unit || "mm";
+  });
   syncTemplateInput();
+  renderCustomSizes();
   renderRowBuilder();
 }
 
@@ -709,60 +728,67 @@ function syncTemplateInput() {
   if (el) el.value = p.template;
 }
 
-function renderRowBuilder() {
-  const container = document.getElementById("rows-container");
+function renderCustomSizes() {
+  const container = document.getElementById("custom-sizes-list");
   if (!container) return;
+  const p = getCurrentPage();
+  if (!p.custom_sizes) p.custom_sizes = {};
+  
   container.innerHTML = "";
+  const entries = Object.entries(p.custom_sizes);
+  if (entries.length === 0) {
+    container.innerHTML = `<span style="font-size:0.7rem; color:var(--text-muted); font-style:italic;">No custom sizes defined on this page yet.</span>`;
+    return;
+  }
+
+  for (const [code, dims] of entries) {
+    const w = Array.isArray(dims) ? dims[0] : dims.width;
+    const h = Array.isArray(dims) ? dims[1] : dims.height;
+    const pill = document.createElement("div");
+    pill.style.cssText = "display:inline-flex; align-items:center; gap:0.35rem; background:#fff; border:1px solid #1a73e8; border-radius:12px; padding:0.15rem 0.5rem; font-size:0.75rem;";
+    pill.innerHTML = `<strong>${code}</strong>: ${w}×${h} ${p.unit || 'mm'} <span style="cursor:pointer; color:#d93025; font-weight:bold; margin-left:0.2rem;" title="Delete custom size">✕</span>`;
+    pill.querySelector("span").addEventListener("click", () => deleteCustomSize(code));
+    container.appendChild(pill);
+  }
+}
+
+function addOrUpdateCustomSize() {
+  const codeInput = document.getElementById("custom-size-code");
+  const widthInput = document.getElementById("custom-size-width");
+  const heightInput = document.getElementById("custom-size-height");
+  if (!codeInput || !widthInput || !heightInput) return;
+
+  const code = codeInput.value.trim();
+  const width = parseFloat(widthInput.value);
+  const height = parseFloat(heightInput.value);
+
+  if (!code || isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
+    alert("Please enter a valid code/letter (e.g. X) and positive width & height.");
+    return;
+  }
 
   const p = getCurrentPage();
-  const lines = p.template ? p.template.split("-") : [];
+  if (!p.custom_sizes) p.custom_sizes = {};
+  
+  p.custom_sizes[code] = [width, height];
+  
+  codeInput.value = "";
+  widthInput.value = "";
+  heightInput.value = "";
 
-  lines.forEach((line, rIdx) => {
-    const rowNum = rIdx + 1;
-    const rowCard = document.createElement("div");
-    rowCard.className = "row-card";
+  renderCustomSizes();
+  renderRowBuilder();
+  updatePreview();
+}
 
-    const header = document.createElement("div");
-    header.className = "row-header";
-    header.innerHTML = `
-      <span style="font-weight:600; font-size:0.8rem;">Row ${rowNum} (${line.length} stamps)</span>
-      <div style="display:flex; gap:0.25rem;">
-        <button type="button" class="btn btn-outline btn-sm" onclick="addStampToRow(${rIdx})">+ Stamp</button>
-        <button type="button" class="btn btn-danger btn-sm" onclick="removeRow(${rIdx})">Delete</button>
-      </div>
-    `;
-    rowCard.appendChild(header);
-
-    const stampsList = document.createElement("div");
-    stampsList.className = "stamps-list";
-
-    for (let cIdx = 0; cIdx < line.length; cIdx++) {
-      const colNum = cIdx + 1;
-      const char = line[cIdx];
-      const coordKey = `${rowNum}_${colNum}`;
-      const dimLabel = formatMountSizeShort(char);
-
-      const chip = document.createElement("div");
-      chip.className = "stamp-chip";
-
-      chip.innerHTML = `
-        <div class="stamp-chip-header">
-          <span>#${colNum}</span>
-          <select style="font-weight:bold; font-size:0.75rem; color:var(--primary);" onchange="changeStampCode(${rIdx}, ${cIdx}, this.value)">
-            ${renderSizeOptions(char)}
-          </select>
-          <button type="button" class="btn btn-danger btn-sm" style="padding:0 3px; font-size:0.75rem;" onclick="removeStamp(${rIdx}, ${cIdx})">×</button>
-        </div>
-        <div style="font-size:0.65rem; color:var(--text-muted); text-align:center;">${dimLabel}</div>
-        <input type="text" placeholder="Text (e.g. 10c, ½A)" value="${p.texts[coordKey] || ''}" oninput="updateStampText('${coordKey}', this.value)" />
-        <input type="text" placeholder="Label (e.g. Paris 1870)" value="${p.labels[coordKey] || ''}" oninput="updateStampLabel('${coordKey}', this.value)" />
-      `;
-      stampsList.appendChild(chip);
-    }
-
-    rowCard.appendChild(stampsList);
-    container.appendChild(rowCard);
-  });
+function deleteCustomSize(code) {
+  const p = getCurrentPage();
+  if (p.custom_sizes && p.custom_sizes[code]) {
+    delete p.custom_sizes[code];
+    renderCustomSizes();
+    renderRowBuilder();
+    updatePreview();
+  }
 }
 
 function renderSizeOptions(selectedChar) {
@@ -770,9 +796,25 @@ function renderSizeOptions(selectedChar) {
   const portrait = [];
   const landscape = [];
   const p = getCurrentPage();
+
+  // Custom sizes defined on the active page
+  if (p.custom_sizes && Object.keys(p.custom_sizes).length > 0) {
+    opts += `<optgroup label="⭐ Custom Sizes">`;
+    for (const [code, dims] of Object.entries(p.custom_sizes)) {
+      const m = getMountMetrics(code);
+      const label = p.unit === "in"
+        ? `${code} (${m.w_in}×${m.h_in}" / ${m.w_mm}×${m.h_mm}mm)`
+        : `${code} (${m.w_mm}×${m.h_mm}mm / ${m.w_in}×${m.h_in}")`;
+      opts += `<option value="${code}" ${code === selectedChar ? 'selected' : ''}>${label}</option>`;
+    }
+    opts += `</optgroup>`;
+  }
+
   const codes = Object.keys(standardSizes).length > 0 ? Object.keys(standardSizes) : Object.keys(BUILTIN_STAMP_SIZES);
 
   codes.forEach(code => {
+    // Only include if not overridden by custom_sizes
+    if (p.custom_sizes && p.custom_sizes[code]) return;
     if (code.match(/[A-Z]/)) {
       portrait.push(code);
     } else {
@@ -839,7 +881,7 @@ window.removeStamp = (rowIdx, stampIdx) => {
   const p = getCurrentPage();
   const lines = p.template.split("-");
   const rowChars = lines[rowIdx].split("");
-  rowChars[stampIdx] = newCode;
+  rowChars.splice(stampIdx, 1);
   lines[rowIdx] = rowChars.join("");
   p.template = lines.join("-");
   syncTemplateInput();
