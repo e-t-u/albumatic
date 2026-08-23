@@ -323,11 +323,11 @@ function setupEventListeners() {
   }
 
   // Page Filmstrip Actions
+  document.getElementById("btn-prev-page")?.addEventListener("click", () => goToPage(currentPageIndex - 1));
+  document.getElementById("btn-next-page")?.addEventListener("click", () => goToPage(currentPageIndex + 1));
   document.getElementById("btn-add-page")?.addEventListener("click", addNewPage);
   document.getElementById("btn-duplicate-page")?.addEventListener("click", duplicateCurrentPage);
   document.getElementById("btn-delete-page")?.addEventListener("click", deleteCurrentPage);
-  document.getElementById("btn-move-left")?.addEventListener("click", () => movePage(-1));
-  document.getElementById("btn-move-right")?.addEventListener("click", () => movePage(1));
 
   // Add Row Button
   document.getElementById("btn-add-row")?.addEventListener("click", () => {
@@ -479,10 +479,23 @@ function renderFilmstrip() {
     counter.textContent = `Page ${currentPageIndex + 1} of ${albumState.pages.length}`;
   }
 
+  const prevBtn = document.getElementById("btn-prev-page");
+  const nextBtn = document.getElementById("btn-next-page");
+  if (prevBtn) prevBtn.disabled = (currentPageIndex <= 0);
+  if (nextBtn) nextBtn.disabled = (currentPageIndex >= albumState.pages.length - 1);
+
   const albumBtn = document.getElementById("btn-download-album-pdf");
   if (albumBtn) {
     albumBtn.textContent = `📥 Download Album PDF (${albumState.pages.length} pages)`;
   }
+}
+
+function goToPage(targetIndex) {
+  if (targetIndex < 0 || targetIndex >= albumState.pages.length) return;
+  currentPageIndex = targetIndex;
+  renderFilmstrip();
+  syncUIFromCurrentPage();
+  updatePreview();
 }
 
 function addNewPage() {

@@ -37,10 +37,12 @@
       <!-- Multi-Page Album Filmstrip -->
       <div class="album-filmstrip-bar" style="background:#f8f9fa; border-bottom:1px solid var(--border); padding:0.4rem 0.75rem;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
-          <span id="page-counter-label" style="font-size:0.75rem; font-weight:700; color:var(--text-muted);">Page 1 of 1</span>
+          <div style="display:flex; align-items:center; gap:0.3rem;">
+            <button id="btn-prev-page" class="btn btn-outline btn-sm" style="padding:0.1rem 0.45rem; font-weight:bold;" title="Previous Page (◀)">◀</button>
+            <span id="page-counter-label" style="font-size:0.75rem; font-weight:700; color:var(--text); min-width:75px; text-align:center;">Page 1 of 1</span>
+            <button id="btn-next-page" class="btn btn-outline btn-sm" style="padding:0.1rem 0.45rem; font-weight:bold;" title="Next Page (▶)">▶</button>
+          </div>
           <div style="display:flex; gap:0.25rem;">
-            <button id="btn-move-left" class="btn btn-outline btn-sm" style="padding:0.1rem 0.4rem;" title="Move Page Left">◀</button>
-            <button id="btn-move-right" class="btn btn-outline btn-sm" style="padding:0.1rem 0.4rem;" title="Move Page Right">▶</button>
             <button id="btn-duplicate-page" class="btn btn-outline btn-sm" style="padding:0.1rem 0.4rem;" title="Duplicate Page">📋 Duplicate</button>
             <button id="btn-delete-page" class="btn btn-danger btn-sm" style="padding:0.1rem 0.4rem;" title="Delete Page">🗑 Delete</button>
             <button id="btn-add-page" class="btn btn-primary btn-sm" style="padding:0.1rem 0.5rem;" title="Add New Page">+ Add Page</button>
