@@ -138,12 +138,14 @@ def test_stamp_inner_text_splitting_and_fitting():
         no="1",
         template="AAA",
         texts={"1_1": "1¢ green Yosemite", "1_2": "2¢ red orange", "1_3": "6¢ blue"},
-        labels={"1_1": "Yosemite", "1_2": "Grand Canyon", "1_3": "Crater Lake"}
+        labels={"1_1": "Yosemite\\n(El Capitan)", "1_2": "Grand Canyon /n National Park", "1_3": "Crater Lake"}
     )
     layout = LayoutEngine.compute(config)
     pdf_bytes = PDFRenderer.render(layout)
     assert len(pdf_bytes) > 0
     svg_str = SVGRenderer.render(layout)
     assert "Yosemite" in svg_str
+    assert "(El Capitan)" in svg_str
     assert "Grand Canyon" in svg_str
+    assert "National Park" in svg_str
 

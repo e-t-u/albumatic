@@ -373,22 +373,34 @@ class PDFRenderer:
                         line,
                     )
 
-            # Bottom label below mount
+            # Bottom label below mount (with multi-line separator support)
             if stamp.label:
+                avail_w = max(stamp.width_pt + 8.0, 36.0)
+                label_lines = split_stamp_text_lines(stamp.label, max_chars_per_line=16)
+                if not label_lines:
+                    label_lines = [stamp.label]
+
                 font_size = 8.5
-                try:
-                    str_w = pdf.stringWidth(stamp.label, font_regular, font_size)
-                    avail_w = max(stamp.width_pt + 6.0, 36.0)
-                    if str_w > avail_w:
-                        font_size = max(5.0, font_size * avail_w / str_w)
-                except Exception:
-                    pass
+                line_spacing = 1.15
+                for l in label_lines:
+                    try:
+                        str_w = pdf.stringWidth(l, font_regular, font_size)
+                        if str_w > avail_w:
+                            font_size = min(font_size, font_size * avail_w / max(str_w, 1.0))
+                    except Exception:
+                        pass
+                font_size = max(5.0, min(8.5, font_size))
+                line_h = font_size * line_spacing
                 pdf.setFont(font_regular, font_size)
-                pdf.drawCentredString(
-                    stamp.x_pt + (stamp.width_pt / 2.0),
-                    stamp.y_pt - (11.0 * pt),
-                    stamp.label,
-                )
+
+                start_ly = stamp.y_pt - (10.5 * pt)
+                for idx, line in enumerate(label_lines):
+                    ly = start_ly - (idx * line_h)
+                    pdf.drawCentredString(
+                        stamp.x_pt + (stamp.width_pt / 2.0),
+                        ly,
+                        line,
+                    )
 
         pdf.showPage()
 
@@ -520,16 +532,27 @@ class SVGRenderer:
                     ly = start_y + (idx * line_h)
                     parts.append(f'    <text class="stamp-text" style="font-size:{font_sz:.1f}px;" x="{cx:.2f}" y="{ly:.2f}">{html.escape(line)}</text>')
 
-            # Stamp label below
+            # Stamp label below (with multi-line separator support)
             if stamp.label:
                 lx = sx + (sw / 2.0)
-                ly = sy + sh + 11.0
-                est_w = len(stamp.label) * 4.9
-                avail_w = max(sw + 6.0, 36.0)
+                avail_w = max(sw + 8.0, 36.0)
+                label_lines = split_stamp_text_lines(stamp.label, max_chars_per_line=16)
+                if not label_lines:
+                    label_lines = [stamp.label]
+
                 font_sz = 8.5
-                if est_w > avail_w:
-                    font_sz = max(5.0, 8.5 * avail_w / est_w)
-                parts.append(f'    <text class="stamp-label" style="font-size:{font_sz:.1f}px;" x="{lx:.2f}" y="{ly:.2f}">{html.escape(stamp.label)}</text>')
+                line_spacing = 1.15
+                for l in label_lines:
+                    est_w = sum(font_sz * 1.0 if ord(ch) > 0x2E80 else (font_sz * 0.65 if ch.isupper() or ch.isdigit() or ch in '@#%&/-' else font_sz * 0.54) for ch in l)
+                    if est_w > avail_w:
+                        font_sz = min(font_sz, font_sz * avail_w / max(est_w, 1.0))
+                font_sz = max(5.0, min(8.5, font_sz))
+                line_h = font_sz * line_spacing
+
+                start_ly = sy + sh + 10.5
+                for idx, line in enumerate(label_lines):
+                    ly = start_ly + (idx * line_h)
+                    parts.append(f'    <text class="stamp-label" style="font-size:{font_sz:.1f}px;" x="{lx:.2f}" y="{ly:.2f}">{html.escape(line)}</text>')
 
             parts.append(f'  </g>')
 
