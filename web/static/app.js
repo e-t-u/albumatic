@@ -760,6 +760,51 @@ function setupEventListeners() {
   document.getElementById("catalog-search")?.addEventListener("input", (e) => {
     filterCatalog(e.target.value);
   });
+
+  // Global Keyboard Page Navigation (ArrowLeft / ArrowRight / PageUp / PageDown)
+  window.addEventListener("keydown", (e) => {
+    // 1. If any modal dialog is open, do not intercept navigation keys
+    const batchModal = document.getElementById("batch-modal");
+    const helpModal = document.getElementById("help-modal");
+    const exportModal = document.getElementById("export-modal");
+    if ((batchModal && batchModal.classList.contains("active")) || 
+        (helpModal && helpModal.classList.contains("active")) ||
+        (exportModal && exportModal.classList.contains("active"))) {
+      return;
+    }
+
+    // 2. Check if user is actively typing in a text field, input, or dropdown
+    const activeEl = document.activeElement;
+    const tag = activeEl ? activeEl.tagName.toUpperCase() : "";
+    const isInput = tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (activeEl && activeEl.isContentEditable);
+
+    // If focused on an input and not pressing a modifier (Alt/Ctrl/Cmd), preserve normal cursor movement
+    if (isInput && !e.altKey && !e.ctrlKey && !e.metaKey) {
+      return;
+    }
+
+    if (e.key === "ArrowLeft" || e.key === "PageUp") {
+      if (albumState.pages && albumState.pages.length > 1) {
+        e.preventDefault();
+        goToPage(currentPageIndex - 1);
+      }
+    } else if (e.key === "ArrowRight" || e.key === "PageDown") {
+      if (albumState.pages && albumState.pages.length > 1) {
+        e.preventDefault();
+        goToPage(currentPageIndex + 1);
+      }
+    } else if (e.key === "Home" && !isInput) {
+      if (albumState.pages && albumState.pages.length > 1) {
+        e.preventDefault();
+        goToPage(0);
+      }
+    } else if (e.key === "End" && !isInput) {
+      if (albumState.pages && albumState.pages.length > 1) {
+        e.preventDefault();
+        goToPage(albumState.pages.length - 1);
+      }
+    }
+  });
 }
 
 function renderFilmstrip() {

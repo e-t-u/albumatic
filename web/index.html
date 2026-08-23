@@ -46,9 +46,9 @@
       <div class="album-filmstrip-bar" style="background:#f8f9fa; border-bottom:1px solid var(--border); padding:0.4rem 0.75rem;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
           <div style="display:flex; align-items:center; gap:0.3rem;">
-            <button id="btn-prev-page" class="btn btn-outline btn-sm" style="padding:0.1rem 0.45rem; font-weight:bold;" title="Previous Page (◀)">◀</button>
+            <button id="btn-prev-page" class="btn btn-outline btn-sm" style="padding:0.1rem 0.45rem; font-weight:bold;" title="Previous Page (◀ or Left Arrow)">◀</button>
             <span id="page-counter-label" style="font-size:0.75rem; font-weight:700; color:var(--text); min-width:75px; text-align:center;">Page 1 of 1</span>
-            <button id="btn-next-page" class="btn btn-outline btn-sm" style="padding:0.1rem 0.45rem; font-weight:bold;" title="Next Page (▶)">▶</button>
+            <button id="btn-next-page" class="btn btn-outline btn-sm" style="padding:0.1rem 0.45rem; font-weight:bold;" title="Next Page (▶ or Right Arrow)">▶</button>
           </div>
           <div style="display:flex; gap:0.25rem;">
             <button id="btn-duplicate-page" class="btn btn-outline btn-sm" style="padding:0.1rem 0.4rem;" title="Duplicate Page">📋 Duplicate</button>
@@ -209,7 +209,7 @@
     </aside>
 
     <!-- Right Live Preview Pane -->
-    <main class="preview-pane">
+    <main class="preview-pane" tabindex="0" title="Live Preview (Click here to use Arrow Keys to navigate pages)">
       <div class="preview-toolbar">
         <span style="font-size: 0.8rem; font-weight: 500;">Real-time Preview</span>
         <div class="zoom-controls">
