@@ -1,7 +1,4 @@
 # -*- coding: UTF-8 -*-
-#
-# Generate classic stamp album pages for Finland 1856-1889 (Klassiset vaakunamerkit)
-#
 
 import pyalbumatic
 
@@ -16,7 +13,7 @@ a.attrpush()
 a.attrpush()
 a["year"] = "1856"
 a["no"] = "1"
-a["area"] = "1856 Soikiomalli — Oval Issue"
+a["area"] = "1856 Oval Issue"
 a["template"] = "ee-e"
 a["t_1_1"] = "5 kop"
 a["t_1_2"] = "10 kop"
@@ -26,11 +23,10 @@ a["l_2_1"] = "Large Pearl"
 a.writefile("finland_1856.pdf")
 a.attrpop()
 
-# Page 2: 1860 Isoposkihampaiset
 a.attrpush()
 a["year"] = "1860"
 a["no"] = "2"
-a["area"] = "1860 Vaakunamalli — Serpentine Roulette I"
+a["area"] = "1860 Large perforation, Currency Kop"
 a["template"] = "LL-LL"
 a["t_1_1"] = "5 kop//blue"
 a["t_1_2"] = "10 kop//rose"
@@ -57,11 +53,10 @@ a["t_3_1"] = "1 mk//brown"
 a.writefile("finland_1866.pdf")
 a.attrpop()
 
-# Page 4: 1875 Helsingin painos
 a.attrpush()
 a["year"] = "1875"
 a["no"] = "4"
-a["area"] = "1875–1882 Helsingin painos"
+a["area"] = "1875–1882 Value in all Corners"
 a["template"] = "D-DDDD-DDDD"
 a["t_1_1"] = "32 p//carmine"
 a["t_2_1"] = "2 p//gray"
@@ -83,19 +78,18 @@ a["l_3_4"] = "Hki"
 a.writefile("finland_1875.pdf")
 a.attrpop()
 
-# Page 5: 1885 New Colors
 a.attrpush()
 a["year"] = "1885"
 a["no"] = "5"
 a["area"] = "1885 New Colors"
-a["template"] = "DDDD-GGG"
+a["template"] = "DD-DD-DDD"
 a["t_1_1"] = "5 p//green"
 a["t_1_2"] = "10 p//rose"
-a["t_1_3"] = "20 p//orange"
-a["t_1_4"] = "25 p//blue"
-a["t_2_1"] = "1 mk//gray/pink"
-a["t_2_2"] = "5 mk//green/pink"
-a["t_2_3"] = "10 mk//brown/pink"
+a["t_2_1"] = "20 p//orange"
+a["t_2_2"] = "25 p//blue"
+a["t_3_1"] = "1 mk//gray/pink"
+a["t_3_2"] = "5 mk//green/pink"
+a["t_3_3"] = "10 mk//brown/pink"
 a.writefile("finland_1885.pdf")
 a.attrpop()
 
@@ -104,7 +98,7 @@ a.attrpush()
 a["year"] = "1889"
 a["no"] = "6"
 a["area"] = "1889 Value Only in Upper Corners"
-a["template"] = "DDD-DD-GGG"
+a["template"] = "DDD-DD-DDD"
 a["t_1_1"] = "2 p//gray"
 a["t_1_2"] = "5 p//green"
 a["t_1_3"] = "10 p//pink"

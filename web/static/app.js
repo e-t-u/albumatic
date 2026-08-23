@@ -119,7 +119,7 @@ const PRESETS = {
   "finland_album": [
     {
       country: "Suomi — Finland",
-      area: "1856 Soikiomalli — Oval Issue",
+      area: "1856 Oval Issue",
       year: "1856",
       no: "1",
       template: "ee-e",
@@ -128,7 +128,7 @@ const PRESETS = {
     },
     {
       country: "Suomi — Finland",
-      area: "1860 Vaakunamalli — Serpentine Roulette I",
+      area: "1860 Large perforation, Currency Kop",
       year: "1860",
       no: "2",
       template: "LL-LL",
@@ -145,7 +145,7 @@ const PRESETS = {
     },
     {
       country: "Suomi — Finland",
-      area: "1875–1882 Helsingin painos",
+      area: "1875–1882 Value in all Corners",
       year: "1875",
       no: "4",
       template: "D-DDDD-DDDD",
@@ -165,10 +165,11 @@ const PRESETS = {
       area: "1885 New Colors",
       year: "1885",
       no: "5",
-      template: "DDDD-GGG",
+      template: "DD-DD-DDD",
       texts: {
-        "1_1": "5 p//green", "1_2": "10 p//rose", "1_3": "20 p//orange", "1_4": "25 p//blue",
-        "2_1": "1 mk//gray/pink", "2_2": "5 mk//green/pink", "2_3": "10 mk//brown/pink"
+        "1_1": "5 p//green", "1_2": "10 p//rose",
+        "2_1": "20 p//orange", "2_2": "25 p//blue",
+        "3_1": "1 mk//gray/pink", "3_2": "5 mk//green/pink", "3_3": "10 mk//brown/pink"
       }
     },
     {
@@ -176,7 +177,7 @@ const PRESETS = {
       area: "1889 Value Only in Upper Corners",
       year: "1889",
       no: "6",
-      template: "DDD-DD-GGG",
+      template: "DDD-DD-DDD",
       texts: {
         "1_1": "2 p//gray", "1_2": "5 p//green", "1_3": "10 p//pink",
         "2_1": "20 p//orange", "2_2": "25 p//blue",
@@ -328,12 +329,12 @@ const BATCH_SAMPLES = {
   "usa_parks_batch": "1934 | 1 | 1934 National Parks Issue (Scott 740–749) | AAA-dddd-ddd | t:1_1=1¢ green,1_2=2¢ red orange,1_3=6¢ blue,2_1=3¢ purple,2_2=4¢ brown,2_3=5¢ blue,2_4=7¢ black,3_1=8¢ gray green,3_2=9¢ pink,3_3=10¢ slate gray | l:1_1=Yosemite (El Capitan),1_2=Grand Canyon,1_3=Crater Lake,2_1=Mt. Rainier,2_2=Mesa Verde,2_3=Yellowstone,2_4=Acadia,3_1=Zion (White Throne),3_2=Glacier National Park,3_3=Great Smoky Mts",
 
   "finland_batch": [
-    "1856 | 1 | 1856 Soikiomalli — Oval Issue | ee-e | t:1_1=5 kop,1_2=10 kop,2_1=5 kop | l:1_1=Small Pearl,2_1=Large Pearl",
-    "1860 | 2 | 1860 Vaakunamalli — Serpentine Roulette I | LL-LL | t:1_1=5 kop//blue,1_2=10 kop//rose,2_1=5 kop//dark blue,2_2=10 kop//carmine | l:1_1=Perf. I,1_2=Perf. I,2_1=Perf. II,2_2=Perf. II",
+    "1856 | 1 | 1856 Oval Issue | ee-e | t:1_1=5 kop,1_2=10 kop,2_1=5 kop | l:1_1=Small Pearl,2_1=Large Pearl",
+    "1860 | 2 | 1860 Large perforation, Currency Kop | LL-LL | t:1_1=5 kop//blue,1_2=10 kop//rose,2_1=5 kop//dark blue,2_2=10 kop//carmine | l:1_1=Perf. I,1_2=Perf. I,2_1=Perf. II,2_2=Perf. II",
     "1866 | 3 | 1866 Currency Penni and Markka (Perf. II) | LL-LL-L | t:1_1=5 p//brown,1_2=10 p//black,2_1=20 p//blue,2_2=40 p//rose,3_1=1 mk//brown",
-    "1875 | 4 | 1875–1882 Helsingin painos | D-DDDD-DDDD | t:1_1=32 p//carmine,2_1=2 p//gray,2_2=5 p//orange,2_3=8 p//green,2_4=10 p//olive brown,3_1=20 p//ultramarine,3_2=25 p//carmine,3_3=32 p//pink,3_4=1 mk//violet | l:1_1=Copenhagen print//14x13½,2_2=Hki,2_3=Hki,2_4=Hki,3_1=Hki,3_2=Hki,3_3=Hki//Perf. 11,3_4=Hki",
-    "1885 | 5 | 1885 New Colors | DDDD-GGG | t:1_1=5 p//green,1_2=10 p//rose,1_3=20 p//orange,1_4=25 p//blue,2_1=1 mk//gray/pink,2_2=5 mk//green/pink,2_3=10 mk//brown/pink",
-    "1889 | 6 | 1889 Value Only in Upper Corners | DDD-DD-GGG | t:1_1=2 p//gray,1_2=5 p//green,1_3=10 p//pink,2_1=20 p//orange,2_2=25 p//blue,3_1=1 mk//gray/pink,3_2=5 mk//green/pink,3_3=10 mk//brown/pink"
+    "1875 | 4 | 1875–1882 Value in all Corners | D-DDDD-DDDD | t:1_1=32 p//carmine,2_1=2 p//gray,2_2=5 p//orange,2_3=8 p//green,2_4=10 p//olive brown,3_1=20 p//ultramarine,3_2=25 p//carmine,3_3=32 p//pink,3_4=1 mk//violet | l:1_1=Copenhagen print//14x13½,2_2=Hki,2_3=Hki,2_4=Hki,3_1=Hki,3_2=Hki,3_3=Hki//Perf. 11,3_4=Hki",
+    "1885 | 5 | 1885 New Colors | DD-DD-DDD | t:1_1=5 p//green,1_2=10 p//rose,2_1=20 p//orange,2_2=25 p//blue,3_1=1 mk//gray/pink,3_2=5 mk//green/pink,3_3=10 mk//brown/pink",
+    "1889 | 6 | 1889 Value Only in Upper Corners | DDD-DD-DDD | t:1_1=2 p//gray,1_2=5 p//green,1_3=10 p//pink,2_1=20 p//orange,2_2=25 p//blue,3_1=1 mk//gray/pink,3_2=5 mk//green/pink,3_3=10 mk//brown/pink"
   ].join("\n"),
 
   "30_catalog": [

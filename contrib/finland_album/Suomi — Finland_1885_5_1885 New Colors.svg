@@ -16,38 +16,38 @@
   <text class="header1" x="297.64" y="104.88">Suomi — Finland</text>
   <text class="header2" x="297.64" y="133.23">1885 New Colors</text>
   <g class="stamp-group">
-    <rect class="stamp-frame" x="111.97" y="348.66" width="60.94" height="73.70" rx="1" />
-    <text class="stamp-text" style="font-size:7.0px;" x="142.44" y="381.38">5 p</text>
-    <text class="stamp-text" style="font-size:7.0px;" x="142.44" y="389.64">green</text>
+    <rect class="stamp-frame" x="215.43" y="280.63" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="313.35">5 p</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="321.61">green</text>
   </g>
   <g class="stamp-group">
-    <rect class="stamp-frame" x="215.43" y="348.66" width="60.94" height="73.70" rx="1" />
-    <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="381.38">10 p</text>
-    <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="389.64">rose</text>
+    <rect class="stamp-frame" x="318.90" y="280.63" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="313.35">10 p</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="321.61">rose</text>
   </g>
   <g class="stamp-group">
-    <rect class="stamp-frame" x="318.90" y="348.66" width="60.94" height="73.70" rx="1" />
-    <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="381.38">20 p</text>
-    <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="389.64">orange</text>
+    <rect class="stamp-frame" x="215.43" y="425.20" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="457.92">20 p</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="466.18">orange</text>
   </g>
   <g class="stamp-group">
-    <rect class="stamp-frame" x="422.36" y="348.66" width="60.94" height="73.70" rx="1" />
-    <text class="stamp-text" style="font-size:7.0px;" x="452.83" y="381.38">25 p</text>
-    <text class="stamp-text" style="font-size:7.0px;" x="452.83" y="389.64">blue</text>
+    <rect class="stamp-frame" x="318.90" y="425.20" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="457.92">25 p</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="466.18">blue</text>
   </g>
   <g class="stamp-group">
-    <rect class="stamp-frame" x="153.07" y="493.23" width="68.03" height="82.20" rx="1" />
-    <text class="stamp-text" style="font-size:7.0px;" x="187.09" y="530.20">1 mk</text>
-    <text class="stamp-text" style="font-size:7.0px;" x="187.09" y="538.46">gray/pink</text>
+    <rect class="stamp-frame" x="163.70" y="569.76" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="194.17" y="602.48">1 mk</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="194.17" y="610.74">gray/pink</text>
   </g>
   <g class="stamp-group">
-    <rect class="stamp-frame" x="263.62" y="493.23" width="68.03" height="82.20" rx="1" />
-    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="530.20">5 mk</text>
-    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="538.46">green/pink</text>
+    <rect class="stamp-frame" x="267.17" y="569.76" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="602.48">5 mk</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="610.74">green/pink</text>
   </g>
   <g class="stamp-group">
-    <rect class="stamp-frame" x="374.17" y="493.23" width="68.03" height="82.20" rx="1" />
-    <text class="stamp-text" style="font-size:7.0px;" x="408.19" y="530.20">10 mk</text>
-    <text class="stamp-text" style="font-size:7.0px;" x="408.19" y="538.46">brown/pink</text>
+    <rect class="stamp-frame" x="370.63" y="569.76" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="401.10" y="602.48">10 mk</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="401.10" y="610.74">brown/pink</text>
   </g>
 </svg>
