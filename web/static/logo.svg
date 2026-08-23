@@ -1,44 +1,54 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
   <defs>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#000" flood-opacity="0.25"/>
-    </filter>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="stampBg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#1a73e8"/>
-      <stop offset="100%" stop-color="#0d47a1"/>
+      <stop offset="100%" stop-color="#0b57d0"/>
+    </linearGradient>
+    <linearGradient id="innerBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
     </linearGradient>
   </defs>
 
-  <!-- Stamp Outer Perforations Background -->
-  <rect x="4" y="4" width="40" height="40" rx="4" fill="url(#bgGrad)" filter="url(#shadow)"/>
+  <!-- Perforated Stamp Base -->
+  <path d="M 7,4 
+L 10.2,4 A 1.8 1.8 0 0 0 13.8,4 
+L 18.2,4 A 1.8 1.8 0 0 0 21.8,4 
+L 26.2,4 A 1.8 1.8 0 0 0 29.8,4 
+L 34.2,4 A 1.8 1.8 0 0 0 37.8,4 
+L 41,4 Q 44,4 44,7 
+L 44,10.2 A 1.8 1.8 0 0 0 44,13.8 
+L 44,18.2 A 1.8 1.8 0 0 0 44,21.8 
+L 44,26.2 A 1.8 1.8 0 0 0 44,29.8 
+L 44,34.2 A 1.8 1.8 0 0 0 44,37.8 
+L 44,41 Q 44,44 41,44 
+L 37.8,44 A 1.8 1.8 0 0 0 34.2,44 
+L 29.8,44 A 1.8 1.8 0 0 0 26.2,44 
+L 21.8,44 A 1.8 1.8 0 0 0 18.2,44 
+L 13.8,44 A 1.8 1.8 0 0 0 10.2,44 
+L 7,44 Q 4,44 4,41 
+L 4,37.8 A 1.8 1.8 0 0 0 4,34.2 
+L 4,29.8 A 1.8 1.8 0 0 0 4,26.2 
+L 4,21.8 A 1.8 1.8 0 0 0 4,18.2 
+L 4,13.8 A 1.8 1.8 0 0 0 4,10.2 
+L 4,7 Q 4,4 7,4 Z" fill="url(#stampBg)"/>
 
-  <!-- Perforation notches -->
-  <circle cx="4" cy="12" r="2.2" fill="#202124"/>
-  <circle cx="4" cy="20" r="2.2" fill="#202124"/>
-  <circle cx="4" cy="28" r="2.2" fill="#202124"/>
-  <circle cx="4" cy="36" r="2.2" fill="#202124"/>
+  <!-- Inner Stamp Album Card -->
+  <rect x="8.5" y="8.5" width="31" height="31" rx="2.5" fill="url(#innerBg)"/>
 
-  <circle cx="44" cy="12" r="2.2" fill="#202124"/>
-  <circle cx="44" cy="20" r="2.2" fill="#202124"/>
-  <circle cx="44" cy="28" r="2.2" fill="#202124"/>
-  <circle cx="44" cy="36" r="2.2" fill="#202124"/>
+  <!-- Album Page Margin Border -->
+  <rect x="11.5" y="11.5" width="25" height="25" rx="1.5" fill="none" stroke="#cbd5e1" stroke-width="0.75"/>
 
-  <circle cx="12" cy="4" r="2.2" fill="#202124"/>
-  <circle cx="20" cy="4" r="2.2" fill="#202124"/>
-  <circle cx="28" cy="4" r="2.2" fill="#202124"/>
-  <circle cx="36" cy="4" r="2.2" fill="#202124"/>
+  <!-- Geometric Stamp Mounts Grid forming Monogram A -->
+  <!-- Top Stamp (Apex) -->
+  <rect x="19.5" y="14.5" width="9" height="7" rx="1" fill="#1a73e8"/>
+  
+  <!-- Bottom Left Stamp -->
+  <rect x="14.5" y="24.5" width="8.5" height="8" rx="1" fill="#1a73e8"/>
+  
+  <!-- Bottom Right Stamp -->
+  <rect x="25" y="24.5" width="8.5" height="8" rx="1" fill="#1a73e8"/>
 
-  <circle cx="12" cy="44" r="2.2" fill="#202124"/>
-  <circle cx="20" cy="44" r="2.2" fill="#202124"/>
-  <circle cx="28" cy="44" r="2.2" fill="#202124"/>
-  <circle cx="36" cy="44" r="2.2" fill="#202124"/>
-
-  <!-- Stamp Inner Margins -->
-  <rect x="8.5" y="8.5" width="31" height="31" rx="2" fill="#ffffff" stroke="#e8eaed" stroke-width="0.5"/>
-  <rect x="11.5" y="11.5" width="25" height="25" fill="none" stroke="#1a73e8" stroke-dasharray="2,1.5" stroke-width="0.75"/>
-
-  <!-- Philatelic Icon: Elegant Stylized Letter A with Postmark Arc -->
-  <path d="M24 14.5 L31 31 L27.5 31 L25.8 26.5 L22.2 26.5 L20.5 31 L17 31 Z M24 19 L23 23.5 L25 23.5 Z" fill="#1a73e8"/>
-  <path d="M12 28 C18 34, 30 34, 36 28" fill="none" stroke="#ea4335" stroke-width="1.2" stroke-linecap="round" opacity="0.85"/>
-  <circle cx="24" cy="14" r="1.5" fill="#fbbc04"/>
+  <!-- Connecting Layout Rail / Crossbar -->
+  <rect x="18" y="22.5" width="12" height="2" rx="1" fill="#f59e0b"/>
 </svg>
