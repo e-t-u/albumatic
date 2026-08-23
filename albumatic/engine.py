@@ -16,6 +16,53 @@ from .sizes import get_stamp_dimensions
 from .fonts import init_unicode_fonts
 
 
+def split_stamp_text_lines(text: str, max_chars_per_line: int = 10) -> List[str]:
+    """Splits stamp placeholder text into 1 to 3 balanced lines to fit under physical stamp."""
+    if not text:
+        return []
+    if "\n" in text:
+        return [l.strip() for l in text.split("\n") if l.strip()]
+    
+    text = text.strip()
+    if len(text) <= max_chars_per_line:
+        return [text]
+    
+    # Check parenthetical suffix e.g. "壹分银 (1 Candarin)" or "١٠ بارات (بني)"
+    if " (" in text and text.endswith(")"):
+        parts = text.split(" (", 1)
+        if len(parts[0]) <= (max_chars_per_line + 4) and len(parts[1]) <= (max_chars_per_line + 4):
+            return [parts[0].strip(), f"({parts[1]}".strip()]
+    
+    # Check slash separator e.g. "harmaa/ruusu"
+    if "/" in text and " " not in text:
+        parts = text.split("/", 1)
+        return [parts[0].strip(), f"/{parts[1]}".strip()]
+
+    # Split by spaces
+    words = text.split()
+    if len(words) <= 1:
+        return [text]
+    if len(words) == 2:
+        return words
+    
+    # If 3 words, e.g. "5 kop. sininen", "1¢ red orange"
+    if len(words) == 3:
+        if words[1].endswith("."):
+            return [f"{words[0]} {words[1]}", words[2]]
+        elif len(f"{words[0]} {words[1]}") <= max_chars_per_line:
+            return [f"{words[0]} {words[1]}", words[2]]
+        else:
+            return [words[0], f"{words[1]} {words[2]}"]
+
+    # 4 or more words e.g. "5 kop. pieni helmi"
+    if words[1].endswith("."):
+        return [f"{words[0]} {words[1]}", " ".join(words[2:])]
+    
+    # Split into two balanced chunks
+    mid = len(words) // 2
+    return [" ".join(words[:mid]), " ".join(words[mid:])]
+
+
 @dataclass
 class ComputedStamp:
     x_pt: float
@@ -269,22 +316,48 @@ class PDFRenderer:
             pdf.setLineWidth(0.5)
             pdf.drawPath(sp)
 
-            # Center text inside mount
+            # Center text inside physical stamp zone (under stamp, well inside transparent mount borders)
             if stamp.text:
-                font_size = 8.0
-                try:
-                    str_w = pdf.stringWidth(stamp.text, font_regular, font_size)
-                    avail_w = max(stamp.width_pt - 4.0, 10.0)
-                    if str_w > avail_w:
-                        font_size = max(4.5, font_size * avail_w / str_w)
-                except Exception:
-                    pass
+                inset_x = min(3.0 * mm, stamp.width_pt * 0.14)
+                inset_y = min(3.0 * mm, stamp.height_pt * 0.14)
+                target_w = max(stamp.width_pt - (2.0 * inset_x), 10.0)
+                target_h = max(stamp.height_pt - (2.0 * inset_y), 10.0)
+
+                approx_char_w = 4.2
+                max_chars = max(6, int(target_w / approx_char_w))
+                lines = split_stamp_text_lines(stamp.text, max_chars)
+                if not lines:
+                    lines = [stamp.text]
+
+                font_size = 7.5
+                line_spacing = 1.16
+                for l in lines:
+                    try:
+                        lw = pdf.stringWidth(l, font_regular, font_size)
+                        if lw > target_w:
+                            font_size = min(font_size, font_size * target_w / max(lw, 1.0))
+                    except Exception:
+                        pass
+
+                block_h = (len(lines) * font_size) + (max(0, len(lines) - 1) * font_size * (line_spacing - 1.0))
+                if block_h > target_h:
+                    font_size = min(font_size, font_size * target_h / max(block_h, 1.0))
+
+                font_size = max(4.0, min(8.0, font_size))
+                line_h = font_size * line_spacing
+                block_h = (len(lines) * font_size) + (max(0, len(lines) - 1) * font_size * (line_spacing - 1.0))
+
                 pdf.setFont(font_regular, font_size)
-                pdf.drawCentredString(
-                    stamp.x_pt + (stamp.width_pt / 2.0),
-                    stamp.y_pt + (stamp.height_pt / 2.0) - (font_size * 0.35),
-                    stamp.text,
-                )
+                cy = stamp.y_pt + (stamp.height_pt / 2.0)
+                start_y = cy + (block_h / 2.0) - (font_size * 0.78)
+
+                for idx, line in enumerate(lines):
+                    ly = start_y - (idx * line_h)
+                    pdf.drawCentredString(
+                        stamp.x_pt + (stamp.width_pt / 2.0),
+                        ly,
+                        line,
+                    )
 
             # Bottom label below mount
             if stamp.label:
@@ -398,16 +471,40 @@ class SVGRenderer:
             parts.append(f'  <g class="stamp-group">')
             parts.append(f'    <rect class="stamp-frame" x="{sx:.2f}" y="{sy:.2f}" width="{sw:.2f}" height="{sh:.2f}" rx="1" />')
 
-            # Stamp inner text
+            # Stamp inner text (split into lines to fit under physical stamp)
             if stamp.text:
                 cx = sx + (sw / 2.0)
                 cy = sy + (sh / 2.0)
-                est_w = len(stamp.text) * 4.6
-                avail_w = max(sw - 4.0, 10.0)
-                font_sz = 8.0
-                if est_w > avail_w:
-                    font_sz = max(4.5, 8.0 * avail_w / est_w)
-                parts.append(f'    <text class="stamp-text" style="font-size:{font_sz:.1f}px;" x="{cx:.2f}" y="{cy:.2f}">{html.escape(stamp.text)}</text>')
+                inset_x = min(3.0 * 2.835, sw * 0.14)
+                inset_y = min(3.0 * 2.835, sh * 0.14)
+                target_w = max(sw - (2.0 * inset_x), 10.0)
+                target_h = max(sh - (2.0 * inset_y), 10.0)
+
+                approx_char_w = 4.2
+                max_chars = max(6, int(target_w / approx_char_w))
+                lines = split_stamp_text_lines(stamp.text, max_chars)
+                if not lines:
+                    lines = [stamp.text]
+
+                font_sz = 7.5
+                line_spacing = 1.16
+                for l in lines:
+                    est_lw = len(l) * 4.2
+                    if est_lw > target_w:
+                        font_sz = min(font_sz, font_sz * target_w / max(est_lw, 1.0))
+
+                block_h = (len(lines) * font_sz) + (max(0, len(lines) - 1) * font_sz * (line_spacing - 1.0))
+                if block_h > target_h:
+                    font_sz = min(font_sz, font_sz * target_h / max(block_h, 1.0))
+
+                font_sz = max(4.0, min(8.0, font_sz))
+                line_h = font_sz * line_spacing
+                block_h = (len(lines) * font_sz) + (max(0, len(lines) - 1) * font_sz * (line_spacing - 1.0))
+                start_y = cy - (block_h / 2.0) + (font_sz * 0.78)
+
+                for idx, line in enumerate(lines):
+                    ly = start_y + (idx * line_h)
+                    parts.append(f'    <text class="stamp-text" style="font-size:{font_sz:.1f}px;" x="{cx:.2f}" y="{ly:.2f}">{html.escape(line)}</text>')
 
             # Stamp label below
             if stamp.label:

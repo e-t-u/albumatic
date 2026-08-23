@@ -119,3 +119,27 @@ def test_letter_paper_layout():
     assert layout.page_height_pt == 11.0 * 72.0
     assert len(layout.stamps) == 6
     assert layout.stamps[0].x_pt > layout.left_margin_pt
+
+
+def test_stamp_inner_text_splitting_and_fitting():
+    from albumatic.engine import split_stamp_text_lines
+    assert split_stamp_text_lines("5 kop. sininen", max_chars_per_line=8) == ["5 kop.", "sininen"]
+    assert split_stamp_text_lines("壹分银 (1 Candarin)", max_chars_per_line=8) == ["壹分银", "(1 Candarin)"]
+    assert split_stamp_text_lines("harmaa/ruusu", max_chars_per_line=8) == ["harmaa", "/ruusu"]
+    assert split_stamp_text_lines("10c", max_chars_per_line=8) == ["10c"]
+
+    config = PageConfig(
+        country="USA",
+        year="1934",
+        no="1",
+        template="AAA",
+        texts={"1_1": "1¢ green Yosemite", "1_2": "2¢ red orange", "1_3": "6¢ blue"},
+        labels={"1_1": "Yosemite", "1_2": "Grand Canyon", "1_3": "Crater Lake"}
+    )
+    layout = LayoutEngine.compute(config)
+    pdf_bytes = PDFRenderer.render(layout)
+    assert len(pdf_bytes) > 0
+    svg_str = SVGRenderer.render(layout)
+    assert "Yosemite" in svg_str
+    assert "Grand Canyon" in svg_str
+
