@@ -274,8 +274,9 @@ class PDFRenderer:
                 font_size = 8.0
                 try:
                     str_w = pdf.stringWidth(stamp.text, font_regular, font_size)
-                    if str_w > (stamp.width_pt - 4.0):
-                        font_size = max(5.0, font_size * (stamp.width_pt - 4.0) / max(str_w, 1.0))
+                    avail_w = max(stamp.width_pt - 4.0, 10.0)
+                    if str_w > avail_w:
+                        font_size = max(4.5, font_size * avail_w / str_w)
                 except Exception:
                     pass
                 pdf.setFont(font_regular, font_size)
@@ -287,18 +288,18 @@ class PDFRenderer:
 
             # Bottom label below mount
             if stamp.label:
-                font_size = 9.0
+                font_size = 8.5
                 try:
                     str_w = pdf.stringWidth(stamp.label, font_regular, font_size)
-                    max_allowed = max(stamp.width_pt + 18.0, 50.0)
-                    if str_w > max_allowed:
-                        font_size = max(5.5, font_size * max_allowed / max(str_w, 1.0))
+                    avail_w = max(stamp.width_pt + 6.0, 36.0)
+                    if str_w > avail_w:
+                        font_size = max(5.0, font_size * avail_w / str_w)
                 except Exception:
                     pass
                 pdf.setFont(font_regular, font_size)
                 pdf.drawCentredString(
                     stamp.x_pt + (stamp.width_pt / 2.0),
-                    stamp.y_pt - (12.0 * pt),
+                    stamp.y_pt - (11.0 * pt),
                     stamp.label,
                 )
 
@@ -401,21 +402,22 @@ class SVGRenderer:
             if stamp.text:
                 cx = sx + (sw / 2.0)
                 cy = sy + (sh / 2.0)
-                est_w = len(stamp.text) * 4.8
+                est_w = len(stamp.text) * 4.6
+                avail_w = max(sw - 4.0, 10.0)
                 font_sz = 8.0
-                if est_w > (sw - 4.0):
-                    font_sz = max(5.0, 8.0 * (sw - 4.0) / max(est_w, 1.0))
+                if est_w > avail_w:
+                    font_sz = max(4.5, 8.0 * avail_w / est_w)
                 parts.append(f'    <text class="stamp-text" style="font-size:{font_sz:.1f}px;" x="{cx:.2f}" y="{cy:.2f}">{html.escape(stamp.text)}</text>')
 
             # Stamp label below
             if stamp.label:
                 lx = sx + (sw / 2.0)
-                ly = sy + sh + 12.0  # 12pt below frame bottom
-                est_w = len(stamp.label) * 5.2
-                max_w = max(sw + 18.0, 50.0)
-                font_sz = 9.0
-                if est_w > max_w:
-                    font_sz = max(5.5, 9.0 * max_w / max(est_w, 1.0))
+                ly = sy + sh + 11.0
+                est_w = len(stamp.label) * 4.9
+                avail_w = max(sw + 6.0, 36.0)
+                font_sz = 8.5
+                if est_w > avail_w:
+                    font_sz = max(5.0, 8.5 * avail_w / est_w)
                 parts.append(f'    <text class="stamp-label" style="font-size:{font_sz:.1f}px;" x="{lx:.2f}" y="{ly:.2f}">{html.escape(stamp.label)}</text>')
 
             parts.append(f'  </g>')

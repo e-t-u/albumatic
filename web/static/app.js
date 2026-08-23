@@ -79,8 +79,8 @@ const PRESETS = {
       year: "1856",
       no: "1",
       template: "BB-BB",
-      texts: { "1_1": "5 kop. sininen", "1_2": "10 kop. punainen", "2_1": "5 kop. (pienihelminen)", "2_2": "10 kop. (isohelminen)" },
-      labels: { "1_1": "Pystyurapaperi (Wove)", "1_2": "Pystyurapaperi", "2_1": "Vaakasuora urapaperi", "2_2": "Valkoinen paperi" }
+      texts: { "1_1": "5 kop. sininen", "1_2": "10 kop. punainen", "2_1": "5 kop. pieni helmi", "2_2": "10 kop. iso helmi" },
+      labels: { "1_1": "Pystyura (Wove)", "1_2": "Pystyura", "2_1": "Vaakaura", "2_2": "Valkoinen paperi" }
     },
     {
       country: "Suomi — Finland",
@@ -88,8 +88,8 @@ const PRESETS = {
       year: "1860",
       no: "2",
       template: "BB-BB",
-      texts: { "1_1": "5 kop. sininen", "1_2": "10 kop. ruusunpunainen", "2_1": "5 kop. tummansininen", "2_2": "10 kop. karmiini" },
-      labels: { "1_1": "Hammaste I (Isoposkinen)", "1_2": "Hammaste I", "2_1": "Paperi uurteeton", "2_2": "Ohut paperi" }
+      texts: { "1_1": "5 kop. sininen", "1_2": "10 kop. ruusu", "2_1": "5 kop. tumma sini", "2_2": "10 kop. karmiini" },
+      labels: { "1_1": "Hammaste I", "1_2": "Hammaste I", "2_1": "Uurteeton", "2_2": "Ohut paperi" }
     },
     {
       country: "Suomi — Finland",
@@ -97,8 +97,8 @@ const PRESETS = {
       year: "1866",
       no: "3",
       template: "BBB-BB",
-      texts: { "1_1": "5 p. ruskea", "1_2": "10 p. musta", "1_3": "20 p. sininen", "2_1": "40 p. ruusunpunainen", "2_2": "1 mk ruskea" },
-      labels: { "1_1": "Serpentine Roulette II", "1_2": "Vaalea lila paperi", "1_3": "Sininen paperi", "2_1": "Ruusu paperi", "2_2": "Keltanahkanen paperi" }
+      texts: { "1_1": "5 p. ruskea", "1_2": "10 p. musta", "1_3": "20 p. sininen", "2_1": "40 p. ruusu", "2_2": "1 mk ruskea" },
+      labels: { "1_1": "Hammaste II", "1_2": "Vaalea lila", "1_3": "Sininen", "2_1": "Ruusupaperi", "2_2": "Keltanahka" }
     },
     {
       country: "Suomi — Finland",
@@ -107,7 +107,7 @@ const PRESETS = {
       no: "4",
       template: "AAAA-AAA",
       texts: { "1_1": "2 p. harmaa", "1_2": "5 p. oranssi", "1_3": "8 p. vihreä", "1_4": "10 p. ruskea", "2_1": "20 p. sininen", "2_2": "32 p. karmiini", "2_3": "1 mk violetti" },
-      labels: { "1_1": "Hammaste 11", "1_2": "Hammaste 11", "1_3": "Hammaste 12½", "1_4": "Hammaste 12½", "2_1": "Hammaste 12½", "2_2": "Hammaste 12½", "2_3": "Hammaste 14" }
+      labels: { "1_1": "Hki 11", "1_2": "Hki 11", "1_3": "Hki 12½", "1_4": "Hki 12½", "2_1": "Hki 12½", "2_2": "Hki 12½", "2_3": "Hki 14" }
     },
     {
       country: "Suomi — Finland",
@@ -116,7 +116,7 @@ const PRESETS = {
       no: "5",
       template: "AAA-AAA",
       texts: { "1_1": "2 p. harmaa", "1_2": "5 p. vihreä", "1_3": "10 p. ruusu", "2_1": "20 p. oranssi", "2_2": "25 p. sininen", "2_3": "50 p. ruskea" },
-      labels: { "1_1": "Hammaste 12½", "1_2": "Hammaste 12½", "1_3": "Helsinki / Helsingfors", "2_1": "Tampere / Tammerfors", "2_2": "Turku / Åbo", "2_3": "Viipuri / Wiborg" }
+      labels: { "1_1": "12½ Hki", "1_2": "12½ Hki", "1_3": "Helsinki", "2_1": "Tampere", "2_2": "Turku / Åbo", "2_3": "Viipuri" }
     },
     {
       country: "Suomi — Finland",
@@ -124,8 +124,8 @@ const PRESETS = {
       year: "1885",
       no: "6",
       template: "BBB",
-      texts: { "1_1": "1 mk harmaa & ruusu", "1_2": "5 mk vihreä & ruusu", "1_3": "10 mk ruskea & ruusu" },
-      labels: { "1_1": "1 Markka (Hammaste 12½)", "1_2": "5 Markkaa (Hämeenlinna)", "1_3": "10 Markkaa (Kuopio)" }
+      texts: { "1_1": "1 mk harmaa/ruusu", "1_2": "5 mk vihreä/ruusu", "1_3": "10 mk ruskea/ruusu" },
+      labels: { "1_1": "1 Mk (Hki 12½)", "1_2": "5 Mk (Hämeenlinna)", "1_3": "10 Mk (Kuopio)" }
     },
     {
       country: "Suomi — Finland",
@@ -134,7 +134,7 @@ const PRESETS = {
       no: "7",
       template: "AAA-AAA",
       texts: { "1_1": "2 p. harmaa", "1_2": "5 p. vihreä", "1_3": "10 p. punainen", "2_1": "20 p. keltainen", "2_2": "25 p. sininen", "2_3": "50 p. ruskea" },
-      labels: { "1_1": "Hammaste 12½", "1_2": "Hammaste 12½", "1_3": "Östermyra & Ähtäri", "2_1": "Vaasa / Wasa", "2_2": "Oulu / Uleåborg", "2_3": "Pori / Björneborg" }
+      labels: { "1_1": "12½ Hki", "1_2": "12½ Hki", "1_3": "Östermyra", "2_1": "Vaasa / Wasa", "2_2": "Oulu / Uleåborg", "2_3": "Pori" }
     },
     {
       country: "Suomi — Finland",
@@ -143,7 +143,7 @@ const PRESETS = {
       no: "8",
       template: "BBB",
       texts: { "1_1": "1 mk harmaa", "1_2": "5 mk vihreä", "1_3": "10 mk ruskea" },
-      labels: { "1_1": "1 Markka (Helsingfors)", "1_2": "5 Markkaa (Åland — Mariehamn)", "1_3": "10 Markkaa (Saimaan höyrylaiva)" }
+      labels: { "1_1": "1 Mk (Helsingfors)", "1_2": "5 Mk (Mariehamn)", "1_3": "10 Mk (Saimaa)" }
     }
   ],
   "china_demo": [
@@ -154,8 +154,8 @@ const PRESETS = {
       no: "1",
       template: "XXX-XXX",
       custom_sizes: { "X": [35.0, 35.0] },
-      texts: { "1_1": "壹分银 (1 Candarin)", "1_2": "叁分银 (3 Candarins)", "1_3": "伍分银 (5 Candarins)", "2_1": "壹角 (10 Cents)", "2_2": "贰角 (20 Cents)", "2_3": "伍角 (50 Cents)" },
-      labels: { "1_1": "海关薄纸", "1_2": "阔边大龙", "1_3": "厚纸光芒", "2_1": "蟠龙加盖", "2_2": "红印花加贴", "2_3": "伦敦版" }
+      texts: { "1_1": "壹分银 (1 Candarin)", "1_2": "叁分银 (3 Candarins)", "1_3": "伍分银 (5 Candarins)", "2_1": "壹分 (1 Cent)", "2_2": "贰分 (2 Cents)", "2_3": "伍分 (5 Cents)" },
+      labels: { "1_1": "海关薄纸大龙", "1_2": "阔边大龙 (1882)", "1_3": "厚纸光芒 (1883)", "2_1": "蟠龙加盖 (1897)", "2_2": "伦敦版蟠龙", "2_3": "红印花加贴" }
     }
   ],
   "nepal_album": [
@@ -185,7 +185,7 @@ const PRESETS = {
       texts: {
         "1_1": "5 p. vihreä",
         "1_2": "10 p. punainen",
-        "2_1": "20 p. oranssi",
+        "2_1": "20 p. keltainen",
         "2_2": "1 mk harmaa",
         "3_1": "5 mk Åland",
         "3_2": "10 mk Häme"
@@ -201,21 +201,51 @@ const PRESETS = {
     },
     {
       country: "Россия — CCCP",
-      area: "Стандартный выпуск (1923)",
+      area: "1923 Первый стандартный выпуск (Золотой стандарт)",
       year: "1923",
       no: "2",
-      template: "BBB-CCC",
-      texts: { "1_1": "1 коп.", "1_2": "2 коп.", "1_3": "5 коп." },
-      labels: { "1_1": "Москва", "1_2": "Петроград", "1_3": "Киев" }
+      template: "BBB-BBB",
+      texts: {
+        "1_1": "1 коп. оранж.",
+        "1_2": "2 коп. зелен.",
+        "1_3": "3 коп. красн.",
+        "2_1": "5 коп. синий",
+        "2_2": "10 коп. коричн.",
+        "2_3": "1 руб. кармин"
+      },
+      labels: {
+        "1_1": "Рабочий (Москва)",
+        "1_2": "Крестьянин",
+        "1_3": "Красноармеец",
+        "2_1": "Рабочий (Одесса)",
+        "2_2": "Крестьянин (Киев)",
+        "2_3": "Красноармеец"
+      }
     },
     {
       country: "Ελλάς — Greece",
-      area: "Ερμής (Hermes Heads)",
+      area: "1861 Μεγάλη Κεφαλή Ερμού (Hermes Heads)",
       year: "1861",
       no: "3",
-      template: "AAA-AAA",
-      texts: { "1_1": "1 λεπτόν", "1_2": "2 λεπτά", "1_3": "5 λεπτά" },
-      labels: { "1_1": "Αθήναι", "1_2": "Πειραιεύς", "1_3": "Πάτραι" }
+      template: "AAA-AAAA",
+      texts: {
+        "1_1": "1 λ. καφέ",
+        "1_2": "2 λ. μπιστρ",
+        "1_3": "5 λ. πράσινο",
+        "2_1": "10 λ. πορτοκ.",
+        "2_2": "20 λ. μπλε",
+        "2_3": "40 λ. ιώδες",
+        "2_4": "80 λ. καρμίνιο"
+      },
+      labels: {
+        "1_1": "Παρίσι (1861)",
+        "1_2": "Αθήναι 1η",
+        "1_3": "Πειραιεύς",
+        "2_1": "Πάτραι",
+        "2_2": "Ερμούπολις",
+        "2_3": "Ναύπλιον",
+        "2_4": "Κέρκυρα"
+      }
     },
     {
       country: "中国 — China",
@@ -224,17 +254,45 @@ const PRESETS = {
       no: "4",
       template: "XXX-XXX",
       custom_sizes: { "X": [35.0, 35.0] },
-      texts: { "1_1": "壹分银 (1 Candarin)", "1_2": "叁分银 (3 Candarins)", "1_3": "伍分银 (5 Candarins)", "2_1": "壹角 (10 Cents)", "2_2": "贰角 (20 Cents)", "2_3": "伍角 (50 Cents)" },
-      labels: { "1_1": "海关薄纸", "1_2": "阔边大龙", "1_3": "厚纸光芒", "2_1": "蟠龙加盖", "2_2": "红印花加贴", "2_3": "伦敦版" }
+      texts: {
+        "1_1": "壹分银 (1 Candarin)",
+        "1_2": "叁分银 (3 Candarins)",
+        "1_3": "伍分银 (5 Candarins)",
+        "2_1": "壹分 (1 Cent)",
+        "2_2": "贰分 (2 Cents)",
+        "2_3": "伍分 (5 Cents)"
+      },
+      labels: {
+        "1_1": "海关薄纸大龙",
+        "1_2": "阔边大龙 (1882)",
+        "1_3": "厚纸光芒 (1883)",
+        "2_1": "蟠龙加盖 (1897)",
+        "2_2": "伦敦版蟠龙",
+        "2_3": "红印花加贴"
+      }
     },
     {
       country: "مصر — Egypt",
-      area: "البريد المصري — Egyptian Postal Issue (1866)",
+      area: "1866 الإصدار البريدي الأول — First Postal Issue",
       year: "1866",
       no: "5",
-      template: "BBB-CCC",
-      texts: { "1_1": "١٠ بارات", "1_2": "٢٠ بارة", "1_3": "١ قرش", "2_1": "٢ قرشان", "2_2": "٥ قروش" },
-      labels: { "1_1": "القاهرة", "1_2": "الإسكندرية", "1_3": "بورسعيد", "2_1": "السويس", "2_2": "طنطا" }
+      template: "BBB-BBB",
+      texts: {
+        "1_1": "١٠ بارات (بني)",
+        "1_2": "٢٠ بارة (أزرق)",
+        "1_3": "١ قرش (وردي)",
+        "2_1": "٢ قرشان (أصفر)",
+        "2_2": "٥ قروش (أخضر)",
+        "2_3": "١٠ قروش (رمادي)"
+      },
+      labels: {
+        "1_1": "القاهرة (طبعة جنوة)",
+        "1_2": "الإسكندرية",
+        "1_3": "بورسعيد",
+        "2_1": "السويس",
+        "2_2": "طنطا",
+        "2_3": "المنصورة"
+      }
     }
   ]
 };
@@ -242,17 +300,17 @@ const PRESETS = {
 // Batch Sample Templates
 const BATCH_SAMPLES = {
   "finland_batch": [
-    "1856 | 1 | 1856 Soikiomalli — First Oval Issue (Portostämpel) | BB-BB | t:1_1=5 kop. sininen,1_2=10 kop. punainen,2_1=5 kop. (pienihelminen),2_2=10 kop. (isohelminen) | l:1_1=Pystyurapaperi (Wove),1_2=Pystyurapaperi,2_1=Vaakasuora urapaperi,2_2=Valkoinen paperi",
-    "1860 | 2 | 1860 Vaakunamalli — Serpentine Roulette I | BB-BB | t:1_1=5 kop. sininen,1_2=10 kop. ruusunpunainen,2_1=5 kop. tummansininen,2_2=10 kop. karmiini | l:1_1=Hammaste I (Isoposkinen),1_2=Hammaste I,2_1=Paperi uurteeton,2_2=Ohut paperi",
-    "1866 | 3 | 1866 Vaakunamalli — Penni- ja markka-arvot (Hammaste II) | BBB-BB | t:1_1=5 p. ruskea,1_2=10 p. musta,1_3=20 p. sininen,2_1=40 p. ruusunpunainen,2_2=1 mk ruskea | l:1_1=Serpentine Roulette II,1_2=Vaalea lila paperi,1_3=Sininen paperi,2_1=Ruusu paperi,2_2=Keltanahkanen paperi",
-    "1875 | 4 | 1875–1882 Helsingin painos — Vaakunakuviot | AAAA-AAA | t:1_1=2 p. harmaa,1_2=5 p. oranssi,1_3=8 p. vihreä,1_4=10 p. ruskea,2_1=20 p. sininen,2_2=32 p. karmiini,2_3=1 mk violetti | l:1_1=Hammaste 11,1_2=Hammaste 11,1_3=Hammaste 12½,1_4=Hammaste 12½,2_1=Hammaste 12½,2_2=Hammaste 12½,2_3=Hammaste 14",
-    "1885 | 5 | 1885 Vaakunamalli — Yksiväriset penniarvot | AAA-AAA | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. ruusu,2_1=20 p. oranssi,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=Hammaste 12½,1_2=Hammaste 12½,1_3=Helsinki / Helsingfors,2_1=Tampere / Tammerfors,2_2=Turku / Åbo,2_3=Viipuri / Wiborg",
-    "1885 | 6 | 1885 Vaakunamalli — Kaksiväriset markka-arvot | BBB | t:1_1=1 mk harmaa & ruusu,1_2=5 mk vihreä & ruusu,1_3=10 mk ruskea & ruusu | l:1_1=1 Markka (Hammaste 12½),1_2=5 Markkaa (Hämeenlinna),1_3=10 Markkaa (Kuopio)",
-    "1889 | 7 | 1889 Vaakunamalli — Penniarvot (Uusi kaiverrus) | AAA-AAA | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. punainen,2_1=20 p. keltainen,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=Hammaste 12½,1_2=Hammaste 12½,1_3=Östermyra & Ähtäri,2_1=Vaasa / Wasa,2_2=Oulu / Uleåborg,2_3=Pori / Björneborg",
-    "1889 | 8 | 1889 Vaakunamalli — Markka-arvot & Åland | BBB | t:1_1=1 mk harmaa,1_2=5 mk vihreä,1_3=10 mk ruskea | l:1_1=1 Markka (Helsingfors),1_2=5 Markkaa (Åland — Mariehamn),1_3=10 Markkaa (Saimaan höyrylaiva)"
+    "1856 | 1 | 1856 Soikiomalli — First Oval Issue (Portostämpel) | BB-BB | t:1_1=5 kop. sininen,1_2=10 kop. punainen,2_1=5 kop. pieni helmi,2_2=10 kop. iso helmi | l:1_1=Pystyura (Wove),1_2=Pystyura,2_1=Vaakaura,2_2=Valkoinen paperi",
+    "1860 | 2 | 1860 Vaakunamalli — Serpentine Roulette I | BB-BB | t:1_1=5 kop. sininen,1_2=10 kop. ruusu,2_1=5 kop. tumma sini,2_2=10 kop. karmiini | l:1_1=Hammaste I,1_2=Hammaste I,2_1=Uurteeton,2_2=Ohut paperi",
+    "1866 | 3 | 1866 Vaakunamalli — Penni- ja markka-arvot (Hammaste II) | BBB-BB | t:1_1=5 p. ruskea,1_2=10 p. musta,1_3=20 p. sininen,2_1=40 p. ruusu,2_2=1 mk ruskea | l:1_1=Hammaste II,1_2=Vaalea lila,1_3=Sininen,2_1=Ruusupaperi,2_2=Keltanahka",
+    "1875 | 4 | 1875–1882 Helsingin painos — Vaakunakuviot | AAAA-AAA | t:1_1=2 p. harmaa,1_2=5 p. oranssi,1_3=8 p. vihreä,1_4=10 p. ruskea,2_1=20 p. sininen,2_2=32 p. karmiini,2_3=1 mk violetti | l:1_1=Hki 11,1_2=Hki 11,1_3=Hki 12½,1_4=Hki 12½,2_1=Hki 12½,2_2=Hki 12½,2_3=Hki 14",
+    "1885 | 5 | 1885 Vaakunamalli — Yksiväriset penniarvot | AAA-AAA | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. ruusu,2_1=20 p. oranssi,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=12½ Hki,1_2=12½ Hki,1_3=Helsinki,2_1=Tampere,2_2=Turku / Åbo,2_3=Viipuri",
+    "1885 | 6 | 1885 Vaakunamalli — Kaksiväriset markka-arvot | BBB | t:1_1=1 mk harmaa/ruusu,1_2=5 mk vihreä/ruusu,1_3=10 mk ruskea/ruusu | l:1_1=1 Mk (Hki 12½),1_2=5 Mk (Hämeenlinna),1_3=10 Mk (Kuopio)",
+    "1889 | 7 | 1889 Vaakunamalli — Penniarvot (Uusi kaiverrus) | AAA-AAA | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. punainen,2_1=20 p. keltainen,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=12½ Hki,1_2=12½ Hki,1_3=Östermyra,2_1=Vaasa / Wasa,2_2=Oulu / Uleåborg,2_3=Pori",
+    "1889 | 8 | 1889 Vaakunamalli — Markka-arvot & Åland | BBB | t:1_1=1 mk harmaa,1_2=5 mk vihreä,1_3=10 mk ruskea | l:1_1=1 Mk (Helsingfors),1_2=5 Mk (Mariehamn),1_3=10 Mk (Saimaa)"
   ].join("\n"),
 
-  "china_batch": "1878 | 1 | 大清邮政 — Large Dragon (1878) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银,1_3=伍分银,2_1=壹角,2_2=贰角,2_3=伍角 | l:1_1=海关薄纸,1_2=阔边大龙,1_3=厚纸光芒,2_1=蟠龙加盖,2_2=红印花,2_3=伦敦版 | s:X=35,35",
+  "china_batch": "1878 | 1 | 大清邮政 — Large Dragon (1878) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银 (3 Candarins),1_3=伍分银 (5 Candarins),2_1=壹分 (1 Cent),2_2=贰分 (2 Cents),2_3=伍分 (5 Cents) | l:1_1=海关薄纸大龙,1_2=阔边大龙 (1882),1_3=厚纸光芒 (1883),2_1=蟠龙加盖 (1897),2_2=伦敦版蟠龙,2_3=红印花加贴 | s:X=35,35",
 
   "30_catalog": [
     "AA-BB-CC", "cc-ddd-a", "XXXX-XXXX", "AAAA-BBBB", "ee-fff-gg",
@@ -282,11 +340,11 @@ const BATCH_SAMPLES = {
   ].join("\n"),
 
   "unicode_batch": [
-    "1889 | 1 | 1889 Vaakunamalli — Vapensköld & Cliché brût (½ Mk) | BB-BB-BB | t:1_1=5 p. vihreä,1_2=10 p. punainen,2_1=20 p. oranssi,2_2=1 mk harmaa,3_1=5 mk Åland,3_2=10 mk Häme | l:1_1=Helsinki (Åbo),1_2=Tammerfors,2_1=Viipuri,2_2=Mariehamn (Åland),3_1=Östermyra & Ähtäri,3_2=Saimaan höyrylaiva",
-    "1923 | 2 | Стандартный выпуск (1923) | BBB-CCC | t:1_1=1 коп.,1_2=2 коп.,1_3=5 коп. | l:1_1=Москва,1_2=Петроград,1_3=Киев",
-    "1861 | 3 | Ερμής (Hermes Heads) | AAA-AAA | t:1_1=1 λεπτόν,1_2=2 λεπτά,1_3=5 λεπτά | l:1_1=Αθήναι,1_2=Πειραιεύς,1_3=Πάτραι",
-    "1878 | 4 | 大清邮政 — Large Dragon (1878) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银,1_3=伍分银,2_1=壹角,2_2=贰角,2_3=伍角 | l:1_1=海关薄纸,1_2=阔边大龙,1_3=厚纸光芒,2_1=蟠龙加盖,2_2=红印花,2_3=伦敦版 | s:X=35,35",
-    "1866 | 5 | البريد المصري — Postal Issue (1866) | BBB-CCC | t:1_1=١٠ بارات,1_2=٢٠ بارة,1_3=١ قرش,2_1=٢ قرشان,2_2=٥ قروش | l:1_1=القاهرة,1_2=الإسكندرية,1_3=بورسعيد,2_1=السويس,2_2=طنطا"
+    "1889 | 1 | 1889 Vaakunamalli — Vapensköld & Cliché brût (½ Mk) | BB-BB-BB | t:1_1=5 p. vihreä,1_2=10 p. punainen,2_1=20 p. keltainen,2_2=1 mk harmaa,3_1=5 mk Åland,3_2=10 mk Häme | l:1_1=Helsinki (Åbo),1_2=Tammerfors,2_1=Viipuri (Wiborg),2_2=Mariehamn (Åland),3_1=Östermyra & Ähtäri,3_2=Saimaan höyrylaiva",
+    "1923 | 2 | 1923 Первый стандартный выпуск (Золотой стандарт) | BBB-BBB | t:1_1=1 коп. оранж.,1_2=2 коп. зелен.,1_3=3 коп. красн.,2_1=5 коп. синий,2_2=10 коп. коричн.,2_3=1 руб. кармин | l:1_1=Рабочий (Москва),1_2=Крестьянин,1_3=Красноармеец,2_1=Рабочий (Одесса),2_2=Крестьянин (Киев),2_3=Красноармеец",
+    "1861 | 3 | 1861 Μεγάλη Κεφαλή Ερμού (Hermes Heads) | AAA-AAAA | t:1_1=1 λ. καφέ,1_2=2 λ. μπιστρ,1_3=5 λ. πράσινο,2_1=10 λ. πορτοκ.,2_2=20 λ. μπλε,2_3=40 λ. ιώδες,2_4=80 λ. καρμίνιο | l:1_1=Παρίσι (1861),1_2=Αθήναι 1η,1_3=Πειραιεύς,2_1=Πάτραι,2_2=Ερμούπολις,2_3=Ναύπλιον,2_4=Κέρκυρα",
+    "1878 | 4 | 大清邮政 — Large Dragon & Coiling Dragon (1878-1898) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银 (3 Candarins),1_3=伍分银 (5 Candarins),2_1=壹分 (1 Cent),2_2=贰分 (2 Cents),2_3=伍分 (5 Cents) | l:1_1=海关薄纸大龙,1_2=阔边大龙 (1882),1_3=厚纸光芒 (1883),2_1=蟠龙加盖 (1897),2_2=伦敦版蟠龙,2_3=红印花加贴 | s:X=35,35",
+    "1866 | 5 | 1866 الإصدار البريدي الأول — First Postal Issue | BBB-BBB | t:1_1=١٠ بارات (بني),1_2=٢٠ بارة (أزرق),1_3=١ قرش (وردي),2_1=٢ قرشان (أصفر),2_2=٥ قروش (أخضر),2_3=١٠ قروش (رمادي) | l:1_1=القاهرة (طبعة جنوة),1_2=الإسكندرية,1_3=بورسعيد,2_1=السويس,2_2=طنطا,2_3=المنصورة"
   ].join("\n")
 };
 
