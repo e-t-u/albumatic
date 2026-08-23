@@ -177,26 +177,26 @@ const PRESETS = {
   ],
   "unicode_demo": [
     {
-      country: "Suomi — Finland (Åland & Häme)",
+      country: "Suomi — Finland",
       area: "1889 Vaakunamalli — Vapensköld & Cliché brût (½ Mk)",
       year: "1889",
       no: "1",
-      template: "AA-BB-CC",
+      template: "BB-BB-BB",
       texts: {
-        "1_1": "5 penniä (vihreä)",
-        "1_2": "10 penniä (punainen)",
-        "2_1": "20 penniä (oranssi)",
-        "2_2": "1 markka (harmaa)",
-        "3_1": "5 markkaa (vihreä)",
-        "3_2": "10 markkaa (ruskea)"
+        "1_1": "5 p. vihreä",
+        "1_2": "10 p. punainen",
+        "2_1": "20 p. oranssi",
+        "2_2": "1 mk harmaa",
+        "3_1": "5 mk Åland",
+        "3_2": "10 mk Häme"
       },
       labels: {
-        "1_1": "Helsinki / Helsingfors (Åbo)",
-        "1_2": "Tampere / Tammerfors (Örebro-cliché)",
-        "2_1": "Viipuri / Wiborg (Hämeenlinna)",
-        "2_2": "Ahvenanmaa — Åland (Mariehamn)",
-        "3_1": "Östermyra & Ähtäri erikoispainos",
-        "3_2": "Pohjois-Inkeri & Saimaan höyrylaiva"
+        "1_1": "Helsinki (Åbo)",
+        "1_2": "Tammerfors",
+        "2_1": "Viipuri (Wiborg)",
+        "2_2": "Mariehamn (Åland)",
+        "3_1": "Östermyra & Ähtäri",
+        "3_2": "Saimaan höyrylaiva"
       }
     },
     {
@@ -282,7 +282,7 @@ const BATCH_SAMPLES = {
   ].join("\n"),
 
   "unicode_batch": [
-    "1889 | 1 | 1889 Vaakunamalli — Vapensköld & Cliché brût (½ Mk) | AA-BB-CC | t:1_1=5 penniä (vihreä),1_2=10 penniä,2_1=20 penniä,2_2=1 markka,3_1=5 markkaa,3_2=10 markkaa | l:1_1=Helsinki (Åbo),1_2=Tampere (Örebro-cliché),2_1=Hämeenlinna,2_2=Åland (Mariehamn),3_1=Östermyra & Ähtäri,3_2=Saimaan höyrylaiva",
+    "1889 | 1 | 1889 Vaakunamalli — Vapensköld & Cliché brût (½ Mk) | BB-BB-BB | t:1_1=5 p. vihreä,1_2=10 p. punainen,2_1=20 p. oranssi,2_2=1 mk harmaa,3_1=5 mk Åland,3_2=10 mk Häme | l:1_1=Helsinki (Åbo),1_2=Tammerfors,2_1=Viipuri,2_2=Mariehamn (Åland),3_1=Östermyra & Ähtäri,3_2=Saimaan höyrylaiva",
     "1923 | 2 | Стандартный выпуск (1923) | BBB-CCC | t:1_1=1 коп.,1_2=2 коп.,1_3=5 коп. | l:1_1=Москва,1_2=Петроград,1_3=Киев",
     "1861 | 3 | Ερμής (Hermes Heads) | AAA-AAA | t:1_1=1 λεπτόν,1_2=2 λεπτά,1_3=5 λεπτά | l:1_1=Αθήναι,1_2=Πειραιεύς,1_3=Πάτραι",
     "1878 | 4 | 大清邮政 — Large Dragon (1878) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银,1_3=伍分银,2_1=壹角,2_2=贰角,2_3=伍角 | l:1_1=海关薄纸,1_2=阔边大龙,1_3=厚纸光芒,2_1=蟠龙加盖,2_2=红印花,2_3=伦敦版 | s:X=35,35",
@@ -669,10 +669,7 @@ function renderFilmstrip() {
     const pageTitle = page.area ? `${page.year || ''} ${page.area}` : (page.country || `Page ${idx + 1}`);
     tab.innerHTML = `<span>#${page.no || (idx + 1)}</span> <small style="max-width:110px; overflow:hidden; text-overflow:ellipsis; display:inline-block; vertical-align:bottom;">${pageTitle}</small>`;
     tab.addEventListener("click", () => {
-      currentPageIndex = idx;
-      renderFilmstrip();
-      syncUIFromCurrentPage();
-      updatePreview();
+      goToPage(idx);
     });
     strip.appendChild(tab);
   });
@@ -694,17 +691,20 @@ function renderFilmstrip() {
 
   // Ensure the active page tab is smoothly scrolled into the visible filmstrip viewport
   const activeTab = strip.querySelector(".page-tab.active");
-  if (activeTab) {
-    activeTab.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "nearest"
-    });
+  if (activeTab && typeof activeTab.scrollIntoView === "function") {
+    try {
+      activeTab.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest"
+      });
+    } catch (e) {}
   }
 }
 
 function goToPage(targetIndex) {
   if (targetIndex < 0 || targetIndex >= albumState.pages.length) return;
+  clearTimeout(debounceTimer);
   currentPageIndex = targetIndex;
   renderFilmstrip();
   syncUIFromCurrentPage();
@@ -862,12 +862,18 @@ function setZoom(val) {
 
 function syncUIFromCurrentPage() {
   const p = getCurrentPage();
-  for (const [key, val] of Object.entries(p)) {
+  const allFields = [
+    "country", "area", "year", "no", "logotext", "rightfooter",
+    "pagewidth", "pageheight", "topmargin", "bottommargin",
+    "leftmargin", "rightmargin", "maxxdistance", "maxydistance", "placeholders"
+  ];
+  allFields.forEach(key => {
     const el = document.getElementById(key);
     if (el) {
-      el.value = val === null ? "" : val;
+      el.value = (p[key] !== undefined && p[key] !== null) ? p[key] : "";
     }
-  }
+  });
+
   // Sync unit labels in custom size drawer
   document.querySelectorAll(".unit-label").forEach(el => {
     el.textContent = p.unit || "mm";
@@ -1139,11 +1145,14 @@ function getCleanPagePayload(p) {
   return payload;
 }
 
+let currentPreviewRequestId = 0;
+
 async function updatePreview() {
   const previewBox = document.getElementById("preview-content");
   const paper = document.getElementById("preview-paper");
   if (!previewBox) return;
 
+  const requestId = ++currentPreviewRequestId;
   const p = getCurrentPage();
   const payload = getCleanPagePayload(p);
   
@@ -1157,6 +1166,9 @@ async function updatePreview() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
+    if (requestId !== currentPreviewRequestId) {
+      return; // Stale response, ignore
+    }
     if (res.ok) {
       const svgText = await res.text();
       previewBox.innerHTML = svgText;
@@ -1172,14 +1184,16 @@ async function updatePreview() {
       `;
     }
   } catch (err) {
-    console.error("Error fetching preview:", err);
-    previewBox.innerHTML = `
-      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; padding:2rem; text-align:center; color:#d93025; background:#fff8f7;">
-        <div style="font-size:1.5rem; margin-bottom:0.5rem;">⚠️</div>
-        <div style="font-weight:700; font-size:0.9rem; margin-bottom:0.35rem;">Network / Server Connection Error</div>
-        <div style="font-size:0.75rem; color:#555; max-width:400px;">${err.message || err}</div>
-      </div>
-    `;
+    if (requestId === currentPreviewRequestId) {
+      console.error("Error fetching preview:", err);
+      previewBox.innerHTML = `
+        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; padding:2rem; text-align:center; color:#d93025; background:#fff8f7;">
+          <div style="font-size:1.5rem; margin-bottom:0.5rem;">⚠️</div>
+          <div style="font-weight:700; font-size:0.9rem; margin-bottom:0.35rem;">Network / Server Connection Error</div>
+          <div style="font-size:0.75rem; color:#555; max-width:400px;">${err.message || err}</div>
+        </div>
+      `;
+    }
   }
 }
 

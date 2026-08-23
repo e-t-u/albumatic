@@ -271,16 +271,31 @@ class PDFRenderer:
 
             # Center text inside mount
             if stamp.text:
-                pdf.setFont(font_regular, 8)
+                font_size = 8.0
+                try:
+                    str_w = pdf.stringWidth(stamp.text, font_regular, font_size)
+                    if str_w > (stamp.width_pt - 4.0):
+                        font_size = max(5.0, font_size * (stamp.width_pt - 4.0) / max(str_w, 1.0))
+                except Exception:
+                    pass
+                pdf.setFont(font_regular, font_size)
                 pdf.drawCentredString(
                     stamp.x_pt + (stamp.width_pt / 2.0),
-                    stamp.y_pt + (stamp.height_pt / 2.0) - (4.0 * pt),
+                    stamp.y_pt + (stamp.height_pt / 2.0) - (font_size * 0.35),
                     stamp.text,
                 )
 
             # Bottom label below mount
             if stamp.label:
-                pdf.setFont(font_regular, 9)
+                font_size = 9.0
+                try:
+                    str_w = pdf.stringWidth(stamp.label, font_regular, font_size)
+                    max_allowed = max(stamp.width_pt + 18.0, 50.0)
+                    if str_w > max_allowed:
+                        font_size = max(5.5, font_size * max_allowed / max(str_w, 1.0))
+                except Exception:
+                    pass
+                pdf.setFont(font_regular, font_size)
                 pdf.drawCentredString(
                     stamp.x_pt + (stamp.width_pt / 2.0),
                     stamp.y_pt - (12.0 * pt),
@@ -334,7 +349,7 @@ class SVGRenderer:
             return h - pdf_y
 
         parts = [
-            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:.2f} {h:.2f}" width="100%" height="100%" style="background:#ffffff;">',
+            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:.2f} {h:.2f}" width="100%" height="100%" style="background:#ffffff; display:block;">',
             '  <defs>',
             '    <style>',
             '      .border { fill: none; stroke: #222222; stroke-width: 0.8; }',
@@ -342,8 +357,8 @@ class SVGRenderer:
             '      .header1 { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 34px; font-weight: bold; text-anchor: middle; fill: #111111; }',
             '      .header2 { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 18px; text-anchor: middle; fill: #333333; }',
             '      .footer { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 11px; fill: #555555; }',
-            '      .stamp-text { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 8px; text-anchor: middle; dominant-baseline: middle; fill: #555555; }',
-            '      .stamp-label { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 9px; text-anchor: middle; fill: #222222; }',
+            '      .stamp-text { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; fill: #555555; }',
+            '      .stamp-label { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; text-anchor: middle; fill: #222222; }',
             '    </style>',
             '  </defs>',
         ]
@@ -386,13 +401,22 @@ class SVGRenderer:
             if stamp.text:
                 cx = sx + (sw / 2.0)
                 cy = sy + (sh / 2.0)
-                parts.append(f'    <text class="stamp-text" x="{cx:.2f}" y="{cy:.2f}">{html.escape(stamp.text)}</text>')
+                est_w = len(stamp.text) * 4.8
+                font_sz = 8.0
+                if est_w > (sw - 4.0):
+                    font_sz = max(5.0, 8.0 * (sw - 4.0) / max(est_w, 1.0))
+                parts.append(f'    <text class="stamp-text" style="font-size:{font_sz:.1f}px;" x="{cx:.2f}" y="{cy:.2f}">{html.escape(stamp.text)}</text>')
 
             # Stamp label below
             if stamp.label:
                 lx = sx + (sw / 2.0)
                 ly = sy + sh + 12.0  # 12pt below frame bottom
-                parts.append(f'    <text class="stamp-label" x="{lx:.2f}" y="{ly:.2f}">{html.escape(stamp.label)}</text>')
+                est_w = len(stamp.label) * 5.2
+                max_w = max(sw + 18.0, 50.0)
+                font_sz = 9.0
+                if est_w > max_w:
+                    font_sz = max(5.5, 9.0 * max_w / max(est_w, 1.0))
+                parts.append(f'    <text class="stamp-label" style="font-size:{font_sz:.1f}px;" x="{lx:.2f}" y="{ly:.2f}">{html.escape(stamp.label)}</text>')
 
             parts.append(f'  </g>')
 

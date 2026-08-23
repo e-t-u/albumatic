@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a73e8"/>
+      <stop offset="100%" stop-color="#0d47a1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Stamp Outer Perforations Background -->
+  <rect x="4" y="4" width="40" height="40" rx="4" fill="url(#bgGrad)" filter="url(#shadow)"/>
+
+  <!-- Perforation notches -->
+  <circle cx="4" cy="12" r="2.2" fill="#202124"/>
+  <circle cx="4" cy="20" r="2.2" fill="#202124"/>
+  <circle cx="4" cy="28" r="2.2" fill="#202124"/>
+  <circle cx="4" cy="36" r="2.2" fill="#202124"/>
+
+  <circle cx="44" cy="12" r="2.2" fill="#202124"/>
+  <circle cx="44" cy="20" r="2.2" fill="#202124"/>
+  <circle cx="44" cy="28" r="2.2" fill="#202124"/>
+  <circle cx="44" cy="36" r="2.2" fill="#202124"/>
+
+  <circle cx="12" cy="4" r="2.2" fill="#202124"/>
+  <circle cx="20" cy="4" r="2.2" fill="#202124"/>
+  <circle cx="28" cy="4" r="2.2" fill="#202124"/>
+  <circle cx="36" cy="4" r="2.2" fill="#202124"/>
+
+  <circle cx="12" cy="44" r="2.2" fill="#202124"/>
+  <circle cx="20" cy="44" r="2.2" fill="#202124"/>
+  <circle cx="28" cy="44" r="2.2" fill="#202124"/>
+  <circle cx="36" cy="44" r="2.2" fill="#202124"/>
+
+  <!-- Stamp Inner Margins -->
+  <rect x="8.5" y="8.5" width="31" height="31" rx="2" fill="#ffffff" stroke="#e8eaed" stroke-width="0.5"/>
+  <rect x="11.5" y="11.5" width="25" height="25" fill="none" stroke="#1a73e8" stroke-dasharray="2,1.5" stroke-width="0.75"/>
+
+  <!-- Philatelic Icon: Elegant Stylized Letter A with Postmark Arc -->
+  <path d="M24 14.5 L31 31 L27.5 31 L25.8 26.5 L22.2 26.5 L20.5 31 L17 31 Z M24 19 L23 23.5 L25 23.5 Z" fill="#1a73e8"/>
+  <path d="M12 28 C18 34, 30 34, 36 28" fill="none" stroke="#ea4335" stroke-width="1.2" stroke-linecap="round" opacity="0.85"/>
+  <circle cx="24" cy="14" r="1.5" fill="#fbbc04"/>
+</svg>
