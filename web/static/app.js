@@ -965,6 +965,62 @@ function deleteCustomSize(code) {
   }
 }
 
+function renderRowBuilder() {
+  const container = document.getElementById("rows-container");
+  if (!container) return;
+  container.innerHTML = "";
+
+  const p = getCurrentPage();
+  const lines = p.template ? p.template.split("-") : [];
+
+  lines.forEach((line, rIdx) => {
+    const rowNum = rIdx + 1;
+    const rowCard = document.createElement("div");
+    rowCard.className = "row-card";
+
+    const header = document.createElement("div");
+    header.className = "row-header";
+    header.innerHTML = `
+      <span style="font-weight:600; font-size:0.8rem;">Row ${rowNum} (${line.length} stamps)</span>
+      <div style="display:flex; gap:0.25rem;">
+        <button type="button" class="btn btn-outline btn-sm" onclick="addStampToRow(${rIdx})">+ Stamp</button>
+        <button type="button" class="btn btn-danger btn-sm" onclick="removeRow(${rIdx})">Delete</button>
+      </div>
+    `;
+    rowCard.appendChild(header);
+
+    const stampsList = document.createElement("div");
+    stampsList.className = "stamps-list";
+
+    for (let cIdx = 0; cIdx < line.length; cIdx++) {
+      const colNum = cIdx + 1;
+      const char = line[cIdx];
+      const coordKey = `${rowNum}_${colNum}`;
+      const dimLabel = formatMountSizeShort(char);
+
+      const chip = document.createElement("div");
+      chip.className = "stamp-chip";
+
+      chip.innerHTML = `
+        <div class="stamp-chip-header">
+          <span>#${colNum}</span>
+          <select style="font-weight:bold; font-size:0.75rem; color:var(--primary);" onchange="changeStampCode(${rIdx}, ${cIdx}, this.value)">
+            ${renderSizeOptions(char)}
+          </select>
+          <button type="button" class="btn btn-danger btn-sm" style="padding:0 3px; font-size:0.75rem;" onclick="removeStamp(${rIdx}, ${cIdx})">×</button>
+        </div>
+        <div style="font-size:0.65rem; color:var(--text-muted); text-align:center;">${dimLabel}</div>
+        <input type="text" placeholder="Text (e.g. 10c, ½A)" value="${(p.texts && p.texts[coordKey]) || ''}" oninput="updateStampText('${coordKey}', this.value)" />
+        <input type="text" placeholder="Label (e.g. Paris 1870)" value="${(p.labels && p.labels[coordKey]) || ''}" oninput="updateStampLabel('${coordKey}', this.value)" />
+      `;
+      stampsList.appendChild(chip);
+    }
+
+    rowCard.appendChild(stampsList);
+    container.appendChild(rowCard);
+  });
+}
+
 function renderSizeOptions(selectedChar) {
   let opts = "";
   const portrait = [];
