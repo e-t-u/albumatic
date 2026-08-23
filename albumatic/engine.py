@@ -318,38 +318,39 @@ class PDFRenderer:
 
             # Center text inside physical stamp zone (under stamp, well inside transparent mount borders)
             if stamp.text:
-                inset_x = min(3.0 * mm, stamp.width_pt * 0.14)
-                inset_y = min(3.0 * mm, stamp.height_pt * 0.14)
+                inset_x = min(3.5 * mm, stamp.width_pt * 0.16)
+                inset_y = min(3.5 * mm, stamp.height_pt * 0.16)
                 target_w = max(stamp.width_pt - (2.0 * inset_x), 10.0)
                 target_h = max(stamp.height_pt - (2.0 * inset_y), 10.0)
 
-                approx_char_w = 4.2
-                max_chars = max(6, int(target_w / approx_char_w))
+                approx_char_w = 4.0
+                max_chars = max(5, int(target_w / approx_char_w))
                 lines = split_stamp_text_lines(stamp.text, max_chars)
                 if not lines:
                     lines = [stamp.text]
 
-                font_size = 7.5
-                line_spacing = 1.16
+                font_size = 7.0
+                line_spacing = 1.18
                 for l in lines:
                     try:
                         lw = pdf.stringWidth(l, font_regular, font_size)
-                        if lw > target_w:
-                            font_size = min(font_size, font_size * target_w / max(lw, 1.0))
+                        est_w = sum(font_size * 1.0 if ord(ch) > 0x2E80 else (font_size * 0.65 if ch.isupper() or ch.isdigit() or ch in '@#%&/-' else font_size * 0.54) for ch in l)
+                        effective_w = max(lw * 0.65 if lw > est_w * 1.4 else lw, est_w)
+                        if effective_w > target_w:
+                            font_size = min(font_size, font_size * target_w / max(effective_w, 1.0))
                     except Exception:
                         pass
 
-                block_h = (len(lines) * font_size) + (max(0, len(lines) - 1) * font_size * (line_spacing - 1.0))
-                if block_h > target_h:
-                    font_size = min(font_size, font_size * target_h / max(block_h, 1.0))
+                total_lines_h = (len(lines) * font_size) + (max(0, len(lines) - 1) * font_size * (line_spacing - 1.0))
+                if total_lines_h > target_h:
+                    font_size = min(font_size, font_size * target_h / max(total_lines_h, 1.0))
 
-                font_size = max(4.0, min(8.0, font_size))
+                font_size = max(4.0, min(7.5, font_size))
                 line_h = font_size * line_spacing
-                block_h = (len(lines) * font_size) + (max(0, len(lines) - 1) * font_size * (line_spacing - 1.0))
 
                 pdf.setFont(font_regular, font_size)
                 cy = stamp.y_pt + (stamp.height_pt / 2.0)
-                start_y = cy + (block_h / 2.0) - (font_size * 0.78)
+                start_y = (cy + ((len(lines) - 1) * line_h / 2.0)) - (font_size * 0.30)
 
                 for idx, line in enumerate(lines):
                     ly = start_y - (idx * line_h)
@@ -475,32 +476,32 @@ class SVGRenderer:
             if stamp.text:
                 cx = sx + (sw / 2.0)
                 cy = sy + (sh / 2.0)
-                inset_x = min(3.0 * 2.835, sw * 0.14)
-                inset_y = min(3.0 * 2.835, sh * 0.14)
+                inset_x = min(3.5 * 2.835, sw * 0.16)
+                inset_y = min(3.5 * 2.835, sh * 0.16)
                 target_w = max(sw - (2.0 * inset_x), 10.0)
                 target_h = max(sh - (2.0 * inset_y), 10.0)
 
-                approx_char_w = 4.2
-                max_chars = max(6, int(target_w / approx_char_w))
+                approx_char_w = 4.0
+                max_chars = max(5, int(target_w / approx_char_w))
                 lines = split_stamp_text_lines(stamp.text, max_chars)
                 if not lines:
                     lines = [stamp.text]
 
-                font_sz = 7.5
-                line_spacing = 1.16
+                font_sz = 7.0
+                line_spacing = 1.18
                 for l in lines:
-                    est_lw = len(l) * 4.2
+                    est_lw = sum(font_sz * 1.0 if ord(ch) > 0x2E80 else (font_sz * 0.65 if ch.isupper() or ch.isdigit() or ch in '@#%&/-' else font_sz * 0.54) for ch in l)
                     if est_lw > target_w:
                         font_sz = min(font_sz, font_sz * target_w / max(est_lw, 1.0))
 
-                block_h = (len(lines) * font_sz) + (max(0, len(lines) - 1) * font_sz * (line_spacing - 1.0))
-                if block_h > target_h:
-                    font_sz = min(font_sz, font_sz * target_h / max(block_h, 1.0))
+                total_lines_h = (len(lines) * font_sz) + (max(0, len(lines) - 1) * font_sz * (line_spacing - 1.0))
+                if total_lines_h > target_h:
+                    font_sz = min(font_sz, font_sz * target_h / max(total_lines_h, 1.0))
 
-                font_sz = max(4.0, min(8.0, font_sz))
+                font_sz = max(4.0, min(7.5, font_sz))
                 line_h = font_sz * line_spacing
-                block_h = (len(lines) * font_sz) + (max(0, len(lines) - 1) * font_sz * (line_spacing - 1.0))
-                start_y = cy - (block_h / 2.0) + (font_sz * 0.78)
+                block_h = (len(lines) - 1) * line_h
+                start_y = cy - (block_h / 2.0)
 
                 for idx, line in enumerate(lines):
                     ly = start_y + (idx * line_h)
