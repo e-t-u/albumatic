@@ -15,19 +15,21 @@ _FONTS_INITIALIZED = False
 def _find_system_fonts() -> Tuple[Optional[str], Optional[str]]:
     """Locate full-coverage Unicode TrueType fonts on the host system."""
     regular_candidates = [
-        # Linux high-coverage CJK, Arabic & International TrueType fonts
+        # Linux standard TrueType fonts (clean vector PDF typography & unicode support)
+        "/usr/share/fonts/liberation-sans-fonts/LiberationSans-Regular.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+        "/usr/share/fonts/gnu-free/FreeSans.ttf",
+        "/usr/share/fonts/truetype/freefont/FreeSans.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "/usr/share/fonts/dejavu-sans-fonts/DejaVuSans.ttf",
+        "/usr/share/fonts/google-noto/NotoSans-Regular.ttf",
+        "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf",
+        "/usr/share/fonts/open-sans/OpenSans-Regular.ttf",
+        "/usr/share/fonts/adwaita-sans-fonts/AdwaitaSans-Regular.ttf",
         "/usr/share/fonts/google-droid-sans-fonts/DroidSansFallbackFull.ttf",
         "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf",
         "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
         "/usr/share/fonts/google-noto/NotoSansCJK-Regular.ttc",
-        "/usr/share/fonts/liberation-sans-fonts/LiberationSans-Regular.ttf",
-        "/usr/share/fonts/gnu-free/FreeSans.ttf",
-        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-        "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
-        "/usr/share/fonts/truetype/freefont/FreeSans.ttf",
-        "/usr/share/fonts/google-noto/NotoSans-Regular.ttf",
-        "/usr/share/fonts/open-sans/OpenSans-Regular.ttf",
-        "/usr/share/fonts/adwaita-sans-fonts/AdwaitaSans-Regular.ttf",
         # macOS paths
         "/System/Library/Fonts/Supplemental/Arial.ttf",
         "/Library/Fonts/Arial.ttf",
