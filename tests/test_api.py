@@ -33,17 +33,18 @@ def test_render_pdf_post():
 
 def test_render_album_pdf_post():
     payload = {
-        "country": "Nepal",
+        "country": "Suomi — Finland",
         "pages": [
-            {"template": "XXX-XXX", "no": "1", "area": "Page 1", "year": "1881"},
-            {"template": "dd-dd", "no": "2", "area": "Page 2", "year": "1907"},
-            {"template": "AAAA-EEEE", "no": "3", "area": "Page 3", "year": "1954"},
+            {"template": "XXX-XXX", "no": "1", "area": "1856 Soikio — Wove", "year": "1856"},
+            {"template": "dd-dd", "no": "2", "area": "1860 Hammaste — I", "year": "1860"},
+            {"template": "AAAA-EEEE", "no": "3", "area": "1889 Vaakuna", "year": "1889"},
         ]
     }
     response = client.post("/api/v1/render/album/pdf", json=payload)
     assert response.status_code == 200
     assert response.headers["content-type"] == "application/pdf"
     assert response.content.startswith(b"%PDF")
+    assert "filename*=UTF-8''" in response.headers["content-disposition"]
 
 
 def test_batch_parse_and_serialize():

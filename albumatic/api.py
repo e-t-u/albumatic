@@ -2,6 +2,8 @@
 
 import os
 import html
+import re
+import urllib.parse
 from typing import Any, Dict, List, Optional
 from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.responses import HTMLResponse, Response
@@ -25,6 +27,16 @@ STATIC_DIR = os.path.join(WEB_DIR, "static")
 LEGACY_STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 
+def make_content_disposition(filename: str, disposition: str = "attachment") -> str:
+    """Generates an RFC 6266 / RFC 5987 compliant Content-Disposition header with UTF-8 filename*."""
+    clean_name = re.sub(r'[/\\?%*:|"<>]+', '_', filename).strip()
+    ascii_name = clean_name.encode("ascii", "ignore").decode("ascii").strip()
+    if not ascii_name:
+        ascii_name = "album.pdf" if filename.endswith(".pdf") else "page.pdf"
+    encoded_name = urllib.parse.quote(clean_name, encoding="utf-8")
+    return f'{disposition}; filename="{ascii_name}"; filename*=UTF-8\'\'{encoded_name}'
+
+
 @app.get("/health", summary="Health check endpoint")
 def health_check() -> Dict[str, str]:
     """Returns service health status."""
@@ -43,11 +55,11 @@ def render_pdf_post(config: PageConfig) -> Response:
     try:
         layout = LayoutEngine.compute(config)
         pdf_bytes = PDFRenderer.render(layout)
-        filename = f"{config.country or 'page'}_{config.year or ''}_{config.no or ''}.pdf".replace("/", "_")
+        filename = f"{config.country or 'page'}_{config.year or ''}_{config.no or ''}.pdf"
         return Response(
             content=pdf_bytes,
             media_type="application/pdf",
-            headers={"Content-Disposition": f'inline; filename="{filename}"'},
+            headers={"Content-Disposition": make_content_disposition(filename, "inline")},
         )
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"PDF rendering error: {str(e)}")
@@ -58,11 +70,11 @@ def render_album_pdf_post(album: AlbumConfig) -> Response:
     """Renders a multi-page album configuration into a single combined vector PDF document."""
     try:
         pdf_bytes = PDFRenderer.render_album(album)
-        filename = f"{album.country or 'Album'}_Complete.pdf".replace("/", "_")
+        filename = f"{album.country or 'Album'}_Complete.pdf"
         return Response(
             content=pdf_bytes,
             media_type="application/pdf",
-            headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+            headers={"Content-Disposition": make_content_disposition(filename, "attachment")},
         )
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Album PDF rendering error: {str(e)}")
@@ -132,7 +144,7 @@ def render_legacy_pdf(full_path: str, request: Request) -> Response:
         return Response(
             content=pdf_bytes,
             media_type="application/pdf",
-            headers={"Content-Disposition": f'inline; filename="{filename}"'},
+            headers={"Content-Disposition": make_content_disposition(filename, "inline")},
         )
     except Exception as e:
         return HTMLResponse(content=f"<h3>Error rendering PDF</h3><p>{html.escape(str(e))}</p>", status_code=400)

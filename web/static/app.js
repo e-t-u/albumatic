@@ -1389,70 +1389,96 @@ async function updatePreview() {
 }
 
 async function downloadSinglePdf(page) {
-  const res = await fetch("/api/v1/render/pdf", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(getCleanPagePayload(page))
-  });
-  if (res.ok) {
-    const blob = await res.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${page.country || "page"}_${page.year || ""}_${page.no || ""}.pdf`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+  try {
+    const res = await fetch("/api/v1/render/pdf", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(getCleanPagePayload(page))
+    });
+    if (res.ok) {
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const safeCountry = (page.country || "page").replace(/[\\/:*?"<>|]/g, "_");
+      const safeArea = (page.area || "").replace(/[\\/:*?"<>|]/g, "_");
+      a.download = `${safeCountry}_${page.year || ""}_${page.no || "1"}${safeArea ? '_' + safeArea : ''}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+    } else {
+      const err = await res.text();
+      alert("Failed to render page PDF: " + err);
+    }
+  } catch (err) {
+    alert("Network error rendering PDF: " + err.message);
   }
 }
 
 async function downloadFullAlbumPdf() {
-  const albumPayload = {
-    country: albumState.country || "Album",
-    area: albumState.area || "",
-    year: albumState.year || "",
-    unit: albumState.unit || "mm",
-    pagewidth: albumState.pagewidth || 210,
-    pageheight: albumState.pageheight || 297,
-    pages: albumState.pages.map(p => getCleanPagePayload(p))
-  };
+  try {
+    const albumPayload = {
+      country: albumState.country || "Album",
+      area: albumState.area || "",
+      year: albumState.year || "",
+      unit: albumState.unit || "mm",
+      pagewidth: albumState.pagewidth || 210,
+      pageheight: albumState.pageheight || 297,
+      pages: albumState.pages.map(p => getCleanPagePayload(p))
+    };
 
-  const res = await fetch("/api/v1/render/album/pdf", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(albumPayload)
-  });
-  if (res.ok) {
-    const blob = await res.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${albumState.country || "Album"}_Complete_${albumState.pages.length}pages.pdf`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-  } else {
-    alert("Failed to render album PDF: " + (await res.text()));
+    const res = await fetch("/api/v1/render/album/pdf", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(albumPayload)
+    });
+    if (res.ok) {
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const safeCountry = (albumState.country || "Album").replace(/[\\/:*?"<>|]/g, "_");
+      a.download = `${safeCountry}_Complete_${albumState.pages.length}pages.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+    } else {
+      const err = await res.text();
+      alert("Failed to render album PDF: " + err);
+    }
+  } catch (err) {
+    alert("Network error rendering album PDF: " + err.message);
   }
 }
 
 async function downloadSvg() {
-  const p = getCurrentPage();
-  const res = await fetch("/api/v1/render/svg", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(getCleanPagePayload(p))
-  });
-  if (res.ok) {
-    const svgText = await res.text();
-    const blob = new Blob([svgText], { type: "image/svg+xml" });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${p.country || "page"}_${p.year || ""}.svg`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+  try {
+    const p = getCurrentPage();
+    const res = await fetch("/api/v1/render/svg", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(getCleanPagePayload(p))
+    });
+    if (res.ok) {
+      const svgText = await res.text();
+      const blob = new Blob([svgText], { type: "image/svg+xml" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const safeCountry = (p.country || "page").replace(/[\\/:*?"<>|]/g, "_");
+      a.download = `${safeCountry}_${p.year || ""}_${p.no || "1"}.svg`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+    } else {
+      const err = await res.text();
+      alert("Failed to export SVG: " + err);
+    }
+  } catch (err) {
+    alert("Network error exporting SVG: " + err.message);
   }
 }
 
