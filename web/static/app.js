@@ -183,6 +183,19 @@ const PRESETS = {
         "2_1": "20 p//orange", "2_2": "25 p//blue",
         "3_1": "1 mk//gray/pink", "3_2": "5 mk//green/pink", "3_3": "10 mk//brown/pink"
       }
+    },
+    {
+      country: "Suomi — Finland",
+      area: "1891 Russian Pattern (Venäläismalli)",
+      year: "1891",
+      no: "7",
+      template: "DDD-DDD-DDDD-LLL",
+      texts: {
+        "1_1": "1 kop//orange", "1_2": "2 kop//green", "1_3": "3 kop//rose",
+        "2_1": "4 kop//carmine/rose", "2_2": "7 kop//blue", "2_3": "10 kop//dark blue",
+        "3_1": "14 kop//rose/blue", "3_2": "20 kop//blue/carmine", "3_3": "35 kop//violet/green", "3_4": "50 kop//green/violet",
+        "4_1": "1 rbl//brown/orange", "4_2": "3.50 rbl//black/yellow", "4_3": "7 rbl//black/orange"
+      }
     }
   ],
   "nepal_album": [
@@ -334,7 +347,8 @@ const BATCH_SAMPLES = {
     "1866 | 3 | 1866 Currency Penni and Markka (Perf. II) | LL-LL-L | t:1_1=5 p//brown,1_2=10 p//black,2_1=20 p//blue,2_2=40 p//rose,3_1=1 mk//brown",
     "1875 | 4 | 1875–1882 Value in all Corners | D-DDDD-DDDD | t:1_1=32 p//carmine,2_1=2 p//gray,2_2=5 p//orange,2_3=8 p//green,2_4=10 p//olive brown,3_1=20 p//ultramarine,3_2=25 p//carmine,3_3=32 p//pink,3_4=1 mk//violet | l:1_1=Copenhagen print//14x13½,2_1=Helsinki print,2_2=Helsinki print,2_3=Helsinki print,2_4=Helsinki print,3_1=Helsinki print,3_2=Helsinki print,3_3=Helsinki print//Perf. 11,3_4=Helsinki print",
     "1885 | 5 | 1885 New Colors | DD-DD-DDD | t:1_1=5 p//green,1_2=10 p//rose,2_1=20 p//orange,2_2=25 p//blue,3_1=1 mk//gray/pink,3_2=5 mk//green/pink,3_3=10 mk//brown/pink",
-    "1889 | 6 | 1889 Value Only in Upper Corners | DDD-DD-DDD | t:1_1=2 p//gray,1_2=5 p//green,1_3=10 p//pink,2_1=20 p//orange,2_2=25 p//blue,3_1=1 mk//gray/pink,3_2=5 mk//green/pink,3_3=10 mk//brown/pink"
+    "1889 | 6 | 1889 Value Only in Upper Corners | DDD-DD-DDD | t:1_1=2 p//gray,1_2=5 p//green,1_3=10 p//pink,2_1=20 p//orange,2_2=25 p//blue,3_1=1 mk//gray/pink,3_2=5 mk//green/pink,3_3=10 mk//brown/pink",
+    "1891 | 7 | 1891 Russian Pattern (Venäläismalli) | DDD-DDD-DDDD-LLL | t:1_1=1 kop//orange,1_2=2 kop//green,1_3=3 kop//rose,2_1=4 kop//carmine/rose,2_2=7 kop//blue,2_3=10 kop//dark blue,3_1=14 kop//rose/blue,3_2=20 kop//blue/carmine,3_3=35 kop//violet/green,3_4=50 kop//green/violet,4_1=1 rbl//brown/orange,4_2=3.50 rbl//black/yellow,4_3=7 rbl//black/orange"
   ].join("\n"),
 
   "30_catalog": [

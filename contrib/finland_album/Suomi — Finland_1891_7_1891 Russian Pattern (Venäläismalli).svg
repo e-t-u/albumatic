@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595.28 841.89" width="100%" height="100%" style="background:#ffffff; display:block;">
+  <defs>
+    <style>
+      .border { fill: none; stroke: #222222; stroke-width: 0.8; }
+      .stamp-frame { fill: #fdfdfd; stroke: #333333; stroke-width: 0.5; }
+      .header1 { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 34px; font-weight: bold; text-anchor: middle; fill: #111111; }
+      .header2 { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 18px; text-anchor: middle; fill: #333333; }
+      .footer { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 11px; fill: #555555; }
+      .stamp-text { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; fill: #555555; }
+      .stamp-label { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; text-anchor: middle; fill: #222222; }
+    </style>
+  </defs>
+  <rect class="border" x="42.52" y="34.02" width="510.24" height="756.85" />
+  <text class="footer" x="42.52" y="805.87">Albumatic</text>
+  <text class="footer" x="552.76" y="805.87" text-anchor="end">1891/7</text>
+  <text class="header1" x="297.64" y="104.88">Suomi — Finland</text>
+  <text class="header2" x="297.64" y="133.23">1891 Russian Pattern (Venäläismalli)</text>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="163.70" y="202.96" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="194.17" y="235.68">1 kop</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="194.17" y="243.94">orange</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="267.17" y="202.96" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="235.68">2 kop</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="243.94">green</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="370.63" y="202.96" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="401.10" y="235.68">3 kop</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="401.10" y="243.94">rose</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="163.70" y="346.39" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:6.3px;" x="194.17" y="379.53">4 kop</text>
+    <text class="stamp-text" style="font-size:6.3px;" x="194.17" y="386.95">carmine/rose</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="267.17" y="346.39" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="379.11">7 kop</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="387.37">blue</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="370.63" y="346.39" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="401.10" y="379.11">10 kop</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="401.10" y="387.37">dark blue</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="111.97" y="489.83" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="142.44" y="522.55">14 kop</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="142.44" y="530.81">rose/blue</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="215.43" y="489.83" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:6.3px;" x="245.91" y="522.97">20 kop</text>
+    <text class="stamp-text" style="font-size:6.3px;" x="245.91" y="530.39">blue/carmine</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="318.90" y="489.83" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:6.3px;" x="349.37" y="522.97">35 kop</text>
+    <text class="stamp-text" style="font-size:6.3px;" x="349.37" y="530.39">violet/green</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="422.36" y="489.83" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:6.3px;" x="452.83" y="522.97">50 kop</text>
+    <text class="stamp-text" style="font-size:6.3px;" x="452.83" y="530.39">green/violet</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="144.57" y="633.26" width="73.70" height="87.87" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="181.42" y="673.07">1 rbl</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="181.42" y="681.33">brown/orange</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="260.79" y="633.26" width="73.70" height="87.87" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="673.07">3.50 rbl</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="681.33">black/yellow</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="377.01" y="633.26" width="73.70" height="87.87" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="413.86" y="673.07">7 rbl</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="413.86" y="681.33">black/orange</text>
+  </g>
+</svg>
