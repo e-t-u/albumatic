@@ -17,7 +17,7 @@ a.attrpush()
 a["year"] = "1856"
 a["no"] = "1"
 a["area"] = "1856 Soikiomalli — First Oval Issue (Portostämpel)"
-a["template"] = "LL-LL"
+a["template"] = "ee-ee"
 a["t_1_1"] = "5 kop. sininen"
 a["t_1_2"] = "10 kop. punainen"
 a["t_2_1"] = "5 kop. pieni helmi"
