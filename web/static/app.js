@@ -301,13 +301,39 @@ const TO_MM = { "mm": 1.0, "in": 25.4, "pt": 25.4 / 72.0, "pica": 25.4 / 6.0 };
 
 // Initialize
 document.addEventListener("DOMContentLoaded", async () => {
-  await fetchSizes();
-  setupEventListeners();
-  renderFilmstrip();
-  syncUIFromCurrentPage();
-  renderCatalogModal();
-  await updatePreview();
-  setTimeout(fitToScreen, 60);
+  try {
+    await fetchSizes();
+  } catch (e) {
+    console.warn("fetchSizes failed", e);
+  }
+  try {
+    setupEventListeners();
+  } catch (e) {
+    console.error("setupEventListeners error", e);
+  }
+  try {
+    renderFilmstrip();
+  } catch (e) {
+    console.error("renderFilmstrip error", e);
+  }
+  try {
+    syncUIFromCurrentPage();
+  } catch (e) {
+    console.error("syncUIFromCurrentPage error", e);
+  }
+  try {
+    renderCatalogModal();
+  } catch (e) {
+    console.error("renderCatalogModal error", e);
+  }
+  try {
+    await updatePreview();
+  } catch (e) {
+    console.error("updatePreview error", e);
+  }
+  try {
+    setTimeout(fitToScreen, 80);
+  } catch (e) {}
 });
 
 async function fetchSizes() {
@@ -1135,10 +1161,25 @@ async function updatePreview() {
       const svgText = await res.text();
       previewBox.innerHTML = svgText;
     } else {
-      console.error("Preview render failed", await res.text());
+      const errText = await res.text();
+      console.error("Preview render failed", errText);
+      previewBox.innerHTML = `
+        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; padding:2rem; text-align:center; color:#d93025; background:#fff8f7;">
+          <div style="font-size:1.5rem; margin-bottom:0.5rem;">⚠️</div>
+          <div style="font-weight:700; font-size:0.9rem; margin-bottom:0.35rem;">Preview Render Error (${res.status})</div>
+          <div style="font-size:0.75rem; color:#555; max-width:400px; word-break:break-word; font-family:monospace; background:#fff; padding:0.5rem; border:1px solid #fce8e6; border-radius:4px;">${errText}</div>
+        </div>
+      `;
     }
   } catch (err) {
     console.error("Error fetching preview:", err);
+    previewBox.innerHTML = `
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; padding:2rem; text-align:center; color:#d93025; background:#fff8f7;">
+        <div style="font-size:1.5rem; margin-bottom:0.5rem;">⚠️</div>
+        <div style="font-weight:700; font-size:0.9rem; margin-bottom:0.35rem;">Network / Server Connection Error</div>
+        <div style="font-size:0.75rem; color:#555; max-width:400px;">${err.message || err}</div>
+      </div>
+    `;
   }
 }
 
