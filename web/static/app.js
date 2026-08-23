@@ -156,8 +156,8 @@ const PRESETS = {
       },
       labels: {
         "1_1": "Copenhagen print//14x13½",
-        "2_2": "Hki", "2_3": "Hki", "2_4": "Hki",
-        "3_1": "Hki", "3_2": "Hki", "3_3": "Hki//Perf. 11", "3_4": "Hki"
+        "2_1": "Helsinki print", "2_2": "Helsinki print", "2_3": "Helsinki print", "2_4": "Helsinki print",
+        "3_1": "Helsinki print", "3_2": "Helsinki print", "3_3": "Helsinki print//Perf. 11", "3_4": "Helsinki print"
       }
     },
     {
@@ -332,7 +332,7 @@ const BATCH_SAMPLES = {
     "1856 | 1 | 1856 Oval Issue | ee-e | t:1_1=5 kop,1_2=10 kop,2_1=5 kop | l:1_1=Small Pearl,2_1=Large Pearl",
     "1860 | 2 | 1860 Large perforation, Currency Kop | LL-LL | t:1_1=5 kop//blue,1_2=10 kop//rose,2_1=5 kop//dark blue,2_2=10 kop//carmine | l:1_1=Perf. I,1_2=Perf. I,2_1=Perf. II,2_2=Perf. II",
     "1866 | 3 | 1866 Currency Penni and Markka (Perf. II) | LL-LL-L | t:1_1=5 p//brown,1_2=10 p//black,2_1=20 p//blue,2_2=40 p//rose,3_1=1 mk//brown",
-    "1875 | 4 | 1875–1882 Value in all Corners | D-DDDD-DDDD | t:1_1=32 p//carmine,2_1=2 p//gray,2_2=5 p//orange,2_3=8 p//green,2_4=10 p//olive brown,3_1=20 p//ultramarine,3_2=25 p//carmine,3_3=32 p//pink,3_4=1 mk//violet | l:1_1=Copenhagen print//14x13½,2_2=Hki,2_3=Hki,2_4=Hki,3_1=Hki,3_2=Hki,3_3=Hki//Perf. 11,3_4=Hki",
+    "1875 | 4 | 1875–1882 Value in all Corners | D-DDDD-DDDD | t:1_1=32 p//carmine,2_1=2 p//gray,2_2=5 p//orange,2_3=8 p//green,2_4=10 p//olive brown,3_1=20 p//ultramarine,3_2=25 p//carmine,3_3=32 p//pink,3_4=1 mk//violet | l:1_1=Copenhagen print//14x13½,2_1=Helsinki print,2_2=Helsinki print,2_3=Helsinki print,2_4=Helsinki print,3_1=Helsinki print,3_2=Helsinki print,3_3=Helsinki print//Perf. 11,3_4=Helsinki print",
     "1885 | 5 | 1885 New Colors | DD-DD-DDD | t:1_1=5 p//green,1_2=10 p//rose,2_1=20 p//orange,2_2=25 p//blue,3_1=1 mk//gray/pink,3_2=5 mk//green/pink,3_3=10 mk//brown/pink",
     "1889 | 6 | 1889 Value Only in Upper Corners | DDD-DD-DDD | t:1_1=2 p//gray,1_2=5 p//green,1_3=10 p//pink,2_1=20 p//orange,2_2=25 p//blue,3_1=1 mk//gray/pink,3_2=5 mk//green/pink,3_3=10 mk//brown/pink"
   ].join("\n"),

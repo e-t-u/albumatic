@@ -140,7 +140,7 @@ curl -s -X POST "http://localhost:8000/api/v1/render/album/pdf" \
     "country": "Suomi — Finland",
     "pages": [
       {
-        "area": "1856 Soikiomalli — Oval Issue",
+        "area": "1856 Oval Issue",
         "year": "1856",
         "no": "1",
         "template": "ee-e",
@@ -148,12 +148,12 @@ curl -s -X POST "http://localhost:8000/api/v1/render/album/pdf" \
         "labels": {"1_1": "Small Pearl", "2_1": "Large Pearl"}
       },
       {
-        "area": "1860 Vaakunamalli — Serpentine Roulette I",
+        "area": "1860 Large perforation, Currency Kop",
         "year": "1860",
         "no": "2",
         "template": "LL-LL",
-        "texts": {"1_1": "5 kop. sininen", "1_2": "10 kop. ruusu"},
-        "labels": {"1_1": "Hammaste I", "1_2": "Hammaste I"}
+        "texts": {"1_1": "5 kop//blue", "1_2": "10 kop//rose", "2_1": "5 kop//dark blue", "2_2": "10 kop//carmine"},
+        "labels": {"1_1": "Perf. I", "1_2": "Perf. I", "2_1": "Perf. II", "2_2": "Perf. II"}
       }
     ]
   }' -o "Finland_Classic_Album.pdf"

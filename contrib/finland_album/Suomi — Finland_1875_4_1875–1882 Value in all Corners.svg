@@ -26,48 +26,49 @@
     <rect class="stamp-frame" x="111.97" y="425.20" width="60.94" height="73.70" rx="1" />
     <text class="stamp-text" style="font-size:7.0px;" x="142.44" y="457.92">2 p</text>
     <text class="stamp-text" style="font-size:7.0px;" x="142.44" y="466.18">gray</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="142.44" y="509.40">Helsinki print</text>
   </g>
   <g class="stamp-group">
     <rect class="stamp-frame" x="215.43" y="425.20" width="60.94" height="73.70" rx="1" />
     <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="457.92">5 p</text>
     <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="466.18">orange</text>
-    <text class="stamp-label" style="font-size:8.5px;" x="245.91" y="509.40">Hki</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="245.91" y="509.40">Helsinki print</text>
   </g>
   <g class="stamp-group">
     <rect class="stamp-frame" x="318.90" y="425.20" width="60.94" height="73.70" rx="1" />
     <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="457.92">8 p</text>
     <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="466.18">green</text>
-    <text class="stamp-label" style="font-size:8.5px;" x="349.37" y="509.40">Hki</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="349.37" y="509.40">Helsinki print</text>
   </g>
   <g class="stamp-group">
     <rect class="stamp-frame" x="422.36" y="425.20" width="60.94" height="73.70" rx="1" />
     <text class="stamp-text" style="font-size:7.0px;" x="452.83" y="457.93">10 p</text>
     <text class="stamp-text" style="font-size:7.0px;" x="452.83" y="466.16">olive brown</text>
-    <text class="stamp-label" style="font-size:8.5px;" x="452.83" y="509.40">Hki</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="452.83" y="509.40">Helsinki print</text>
   </g>
   <g class="stamp-group">
     <rect class="stamp-frame" x="111.97" y="569.76" width="60.94" height="73.70" rx="1" />
     <text class="stamp-text" style="font-size:7.0px;" x="142.44" y="602.50">20 p</text>
     <text class="stamp-text" style="font-size:7.0px;" x="142.44" y="610.73">ultramarine</text>
-    <text class="stamp-label" style="font-size:8.5px;" x="142.44" y="653.96">Hki</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="142.44" y="653.96">Helsinki print</text>
   </g>
   <g class="stamp-group">
     <rect class="stamp-frame" x="215.43" y="569.76" width="60.94" height="73.70" rx="1" />
     <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="602.48">25 p</text>
     <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="610.74">carmine</text>
-    <text class="stamp-label" style="font-size:8.5px;" x="245.91" y="653.96">Hki</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="245.91" y="653.96">Helsinki print</text>
   </g>
   <g class="stamp-group">
     <rect class="stamp-frame" x="318.90" y="569.76" width="60.94" height="73.70" rx="1" />
     <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="602.48">32 p</text>
     <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="610.74">pink</text>
-    <text class="stamp-label" style="font-size:8.5px;" x="349.37" y="653.96">Hki</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="349.37" y="653.96">Helsinki print</text>
     <text class="stamp-label" style="font-size:8.5px;" x="349.37" y="663.74">Perf. 11</text>
   </g>
   <g class="stamp-group">
     <rect class="stamp-frame" x="422.36" y="569.76" width="60.94" height="73.70" rx="1" />
     <text class="stamp-text" style="font-size:7.0px;" x="452.83" y="602.48">1 mk</text>
     <text class="stamp-text" style="font-size:7.0px;" x="452.83" y="610.74">violet</text>
-    <text class="stamp-label" style="font-size:8.5px;" x="452.83" y="653.96">Hki</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="452.83" y="653.96">Helsinki print</text>
   </g>
 </svg>
