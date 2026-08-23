@@ -190,18 +190,6 @@ const PRESETS = {
       labels: { "1_1": "1 Mk (Helsingfors)", "1_2": "5 Mk (Mariehamn)", "1_3": "10 Mk (Saimaa)" }
     }
   ],
-  "china_demo": [
-    {
-      country: "中国 — China",
-      area: "大清邮政 — Large Dragon & Coiling Dragon (1878-1898)",
-      year: "1878",
-      no: "1",
-      template: "XXX-XXX",
-      custom_sizes: { "X": [35.0, 35.0] },
-      texts: { "1_1": "壹分银 (1 Candarin)", "1_2": "叁分银 (3 Candarins)", "1_3": "伍分银 (5 Candarins)", "2_1": "壹分 (1 Cent)", "2_2": "贰分 (2 Cents)", "2_3": "伍分 (5 Cents)" },
-      labels: { "1_1": "海关薄纸大龙", "1_2": "阔边大龙 (1882)", "1_3": "厚纸光芒 (1883)", "2_1": "蟠龙加盖 (1897)", "2_2": "伦敦版蟠龙", "2_3": "红印花加贴" }
-    }
-  ],
   "nepal_album": [
     { country: "Nepal", year: "1881", no: "1", area: "1881 Crossed Knives, European paper", template: "XXX-X-XXX-X", texts: {"1_1":"blue","1_2":"lila","1_3":"green","2_1":"blue","3_1":"blue","3_2":"lila","3_3":"green","4_1":"blue"}, labels: {"1_1":"pin perf. 1A","1_2":"2A","1_3":"4A","2_1":"Recut 1899 1A","3_1":"no perf. 1A","3_2":"2A","3_3":"4A","4_1":"Recut 1899 1A"} },
     { country: "Nepal", year: "1881", no: "2", area: "1881 Crossed Knives, Good Local paper", template: "XXX-XXX", texts: {"1_1":"blue","1_2":"blue","1_3":"green","2_1":"blue","2_2":"blue","2_3":"green"}, labels: {"1_1":"thin 1A","1_2":"2A","1_3":"4A","2_1":"thick 1A","2_2":"2A","2_3":"4A"} },
@@ -355,8 +343,6 @@ const BATCH_SAMPLES = {
     "1889 | 7 | 1889 Vaakunamalli — Penniarvot (Uusi kaiverrus) | DDD-DDD | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. punainen,2_1=20 p. keltainen,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=12½ Hki,1_2=12½ Hki,1_3=Östermyra,2_1=Vaasa / Wasa,2_2=Oulu / Uleåborg,2_3=Pori",
     "1889 | 8 | 1889 Vaakunamalli — Markka-arvot & Åland | GGG | t:1_1=1 mk harmaa,1_2=5 mk vihreä,1_3=10 mk ruskea | l:1_1=1 Mk (Helsingfors),1_2=5 Mk (Mariehamn),1_3=10 Mk (Saimaa)"
   ].join("\n"),
-
-  "china_batch": "1878 | 1 | 大清邮政 — Large Dragon (1878) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银 (3 Candarins),1_3=伍分银 (5 Candarins),2_1=壹分 (1 Cent),2_2=贰分 (2 Cents),2_3=伍分 (5 Cents) | l:1_1=海关薄纸大龙,1_2=阔边大龙 (1882),1_3=厚纸光芒 (1883),2_1=蟠龙加盖 (1897),2_2=伦敦版蟠龙,2_3=红印花加贴 | s:X=35,35",
 
   "30_catalog": [
     "AA-BB-CC", "cc-ddd-a", "XXXX-XXXX", "AAAA-BBBB", "ee-fff-gg",
