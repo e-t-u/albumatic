@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595.28 841.89" width="100%" height="100%" style="background:#ffffff; display:block;">
+  <defs>
+    <style>
+      .border { fill: none; stroke: #222222; stroke-width: 0.8; }
+      .stamp-frame { fill: #fdfdfd; stroke: #333333; stroke-width: 0.5; }
+      .header1 { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 34px; font-weight: bold; text-anchor: middle; fill: #111111; }
+      .header2 { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 18px; text-anchor: middle; fill: #333333; }
+      .footer { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 11px; fill: #555555; }
+      .stamp-text { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; fill: #555555; }
+      .stamp-label { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; text-anchor: middle; fill: #222222; }
+    </style>
+  </defs>
+  <rect class="border" x="42.52" y="34.02" width="510.24" height="756.85" />
+  <text class="footer" x="42.52" y="805.87">Albumatic</text>
+  <text class="footer" x="552.76" y="805.87" text-anchor="end">1875/4</text>
+  <text class="header1" x="297.64" y="104.88">Suomi — Finland</text>
+  <text class="header2" x="297.64" y="133.23">1875–1882 Helsingin painos</text>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="267.17" y="280.63" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="313.35">32 p</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="321.61">carmine</text>
+    <text class="stamp-label" style="font-size:7.9px;" x="297.64" y="364.83">Copenhagen print</text>
+    <text class="stamp-label" style="font-size:7.9px;" x="297.64" y="373.89">14x13½</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="111.97" y="425.20" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="142.44" y="457.92">2 p</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="142.44" y="466.18">gray</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="215.43" y="425.20" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="457.92">5 p</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="466.18">orange</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="245.91" y="509.40">Hki</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="318.90" y="425.20" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="457.92">8 p</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="466.18">green</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="349.37" y="509.40">Hki</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="422.36" y="425.20" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="452.83" y="457.93">10 p</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="452.83" y="466.16">olive brown</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="452.83" y="509.40">Hki</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="111.97" y="569.76" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="142.44" y="602.50">20 p</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="142.44" y="610.73">ultramarine</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="142.44" y="653.96">Hki</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="215.43" y="569.76" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="602.48">25 p</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="245.91" y="610.74">carmine</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="245.91" y="653.96">Hki</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="318.90" y="569.76" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="602.48">32 p</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="349.37" y="610.74">pink</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="349.37" y="653.96">Hki</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="349.37" y="663.74">Perf. 11</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="422.36" y="569.76" width="60.94" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="452.83" y="602.48">1 mk</text>
+    <text class="stamp-text" style="font-size:7.0px;" x="452.83" y="610.74">violet</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="452.83" y="653.96">Hki</text>
+  </g>
+</svg>

@@ -29,133 +29,92 @@ a.attrpop()
 # Page 2: 1860 Isoposkihampaiset
 a.attrpush()
 a["year"] = "1860"
-a["no"] = "1"
+a["no"] = "2"
 a["area"] = "1860 Vaakunamalli — Serpentine Roulette I"
 a["template"] = "LL-LL"
-a["t_1_1"] = "5 kop. sininen"
-a["t_1_2"] = "10 kop. ruusu"
-a["t_2_1"] = "5 kop. tumma sini"
-a["t_2_2"] = "10 kop. karmiini"
-a["l_1_1"] = "Hammaste I"
-a["l_1_2"] = "Hammaste I"
-a["l_2_1"] = "Uurteeton"
-a["l_2_2"] = "Ohut paperi"
+a["t_1_1"] = "5 kop//blue"
+a["t_1_2"] = "10 kop//rose"
+a["t_2_1"] = "5 kop//dark blue"
+a["t_2_2"] = "10 kop//carmine"
+a["l_1_1"] = "Perf. I"
+a["l_1_2"] = "Perf. I"
+a["l_2_1"] = "Perf. II"
+a["l_2_2"] = "Perf. II"
 a.writefile("finland_1860.pdf")
 a.attrpop()
 
 # Page 3: 1866 Penni- ja markka-arvot
 a.attrpush()
 a["year"] = "1866"
-a["no"] = "1"
-a["area"] = "1866 Vaakunamalli — Penni- ja markka-arvot (Hammaste II)"
-a["template"] = "LLL-LL"
-a["t_1_1"] = "5 p. ruskea"
-a["t_1_2"] = "10 p. musta"
-a["t_1_3"] = "20 p. sininen"
-a["t_2_1"] = "40 p. ruusu"
-a["t_2_2"] = "1 mk ruskea"
-a["l_1_1"] = "Hammaste II"
-a["l_1_2"] = "Vaalea lila"
-a["l_1_3"] = "Sininen"
-a["l_2_1"] = "Ruusupaperi"
-a["l_2_2"] = "Keltanahka"
+a["no"] = "3"
+a["area"] = "1866 Currency Penni and Markka (Perf. II)"
+a["template"] = "LL-LL-L"
+a["t_1_1"] = "5 p//brown"
+a["t_1_2"] = "10 p//black"
+a["t_2_1"] = "20 p//blue"
+a["t_2_2"] = "40 p//rose"
+a["t_3_1"] = "1 mk//brown"
 a.writefile("finland_1866.pdf")
 a.attrpop()
 
 # Page 4: 1875 Helsingin painos
 a.attrpush()
 a["year"] = "1875"
-a["no"] = "1"
-a["area"] = "1875–1882 Helsingin painos — Vaakunakuviot"
-a["template"] = "DDDD-DDD"
-a["t_1_1"] = "2 p. harmaa"
-a["t_1_2"] = "5 p. oranssi"
-a["t_1_3"] = "8 p. vihreä"
-a["t_1_4"] = "10 p. ruskea"
-a["t_2_1"] = "20 p. sininen"
-a["t_2_2"] = "32 p. karmiini"
-a["t_2_3"] = "1 mk violetti"
-a["l_1_1"] = "Hki 11"
-a["l_1_2"] = "Hki 11"
-a["l_1_3"] = "Hki 12½"
-a["l_1_4"] = "Hki 12½"
-a["l_2_1"] = "Hki 12½"
-a["l_2_2"] = "Hki 12½"
-a["l_2_3"] = "Hki 14"
+a["no"] = "4"
+a["area"] = "1875–1882 Helsingin painos"
+a["template"] = "D-DDDD-DDDD"
+a["t_1_1"] = "32 p//carmine"
+a["t_2_1"] = "2 p//gray"
+a["t_2_2"] = "5 p//orange"
+a["t_2_3"] = "8 p//green"
+a["t_2_4"] = "10 p//olive brown"
+a["t_3_1"] = "20 p//ultramarine"
+a["t_3_2"] = "25 p//carmine"
+a["t_3_3"] = "32 p//pink"
+a["t_3_4"] = "1 mk//violet"
+a["l_1_1"] = "Copenhagen print//14x13½"
+a["l_2_2"] = "Hki"
+a["l_2_3"] = "Hki"
+a["l_2_4"] = "Hki"
+a["l_3_1"] = "Hki"
+a["l_3_2"] = "Hki"
+a["l_3_3"] = "Hki//Perf. 11"
+a["l_3_4"] = "Hki"
 a.writefile("finland_1875.pdf")
 a.attrpop()
 
-# Page 5: 1885 Penniarvot
+# Page 5: 1885 New Colors
 a.attrpush()
 a["year"] = "1885"
-a["no"] = "1"
-a["area"] = "1885 Vaakunamalli — Yksiväriset penniarvot"
-a["template"] = "DDD-DDD"
-a["t_1_1"] = "2 p. harmaa"
-a["t_1_2"] = "5 p. vihreä"
-a["t_1_3"] = "10 p. ruusu"
-a["t_2_1"] = "20 p. oranssi"
-a["t_2_2"] = "25 p. sininen"
-a["t_2_3"] = "50 p. ruskea"
-a["l_1_1"] = "12½ Hki"
-a["l_1_2"] = "12½ Hki"
-a["l_1_3"] = "Helsinki"
-a["l_2_1"] = "Tampere"
-a["l_2_2"] = "Turku / Åbo"
-a["l_2_3"] = "Viipuri"
-a.writefile("finland_1885_penni.pdf")
+a["no"] = "5"
+a["area"] = "1885 New Colors"
+a["template"] = "DDDD-GGG"
+a["t_1_1"] = "5 p//green"
+a["t_1_2"] = "10 p//rose"
+a["t_1_3"] = "20 p//orange"
+a["t_1_4"] = "25 p//blue"
+a["t_2_1"] = "1 mk//gray/pink"
+a["t_2_2"] = "5 mk//green/pink"
+a["t_2_3"] = "10 mk//brown/pink"
+a.writefile("finland_1885.pdf")
 a.attrpop()
 
-# Page 6: 1885 Markka-arvot
-a.attrpush()
-a["year"] = "1885"
-a["no"] = "2"
-a["area"] = "1885 Vaakunamalli — Kaksiväriset markka-arvot"
-a["template"] = "GGG"
-a["t_1_1"] = "1 mk harmaa/ruusu"
-a["t_1_2"] = "5 mk vihreä/ruusu"
-a["t_1_3"] = "10 mk ruskea/ruusu"
-a["l_1_1"] = "1 Mk (Hki 12½)"
-a["l_1_2"] = "5 Mk (Hämeenlinna)"
-a["l_1_3"] = "10 Mk (Kuopio)"
-a.writefile("finland_1885_markka.pdf")
-a.attrpop()
-
-# Page 7: 1889 Penniarvot
+# Page 6: 1889 Value Only in Upper Corners
 a.attrpush()
 a["year"] = "1889"
-a["no"] = "1"
-a["area"] = "1889 Vaakunamalli — Penniarvot (Uusi kaiverrus)"
-a["template"] = "DDD-DDD"
-a["t_1_1"] = "2 p. harmaa"
-a["t_1_2"] = "5 p. vihreä"
-a["t_1_3"] = "10 p. punainen"
-a["t_2_1"] = "20 p. keltainen"
-a["t_2_2"] = "25 p. sininen"
-a["t_2_3"] = "50 p. ruskea"
-a["l_1_1"] = "12½ Hki"
-a["l_1_2"] = "12½ Hki"
-a["l_1_3"] = "Östermyra"
-a["l_2_1"] = "Vaasa / Wasa"
-a["l_2_2"] = "Oulu / Uleåborg"
-a["l_2_3"] = "Pori"
-a.writefile("finland_1889_penni.pdf")
-a.attrpop()
-
-# Page 8: 1889 Markka-arvot & Åland
-a.attrpush()
-a["year"] = "1889"
-a["no"] = "2"
-a["area"] = "1889 Vaakunamalli — Markka-arvot & Åland"
-a["template"] = "GGG"
-a["t_1_1"] = "1 mk harmaa"
-a["t_1_2"] = "5 mk vihreä"
-a["t_1_3"] = "10 mk ruskea"
-a["l_1_1"] = "1 Mk (Helsingfors)"
-a["l_1_2"] = "5 Mk (Mariehamn)"
-a["l_1_3"] = "10 Mk (Saimaa)"
-a.writefile("finland_1889_markka.pdf")
+a["no"] = "6"
+a["area"] = "1889 Value Only in Upper Corners"
+a["template"] = "DDD-DD-GGG"
+a["t_1_1"] = "2 p//gray"
+a["t_1_2"] = "5 p//green"
+a["t_1_3"] = "10 p//pink"
+a["t_2_1"] = "20 p//orange"
+a["t_2_2"] = "25 p//blue"
+a["t_3_1"] = "1 mk//gray/pink"
+a["t_3_2"] = "5 mk//green/pink"
+a["t_3_3"] = "10 mk//brown/pink"
+a.writefile("finland_1889.pdf")
 a.attrpop()
 
 a.attrpop()
-print("Generated 8 album pages for Finland 1856-1889.")
+print("Generated 6 album pages for Finland 1856-1889.")

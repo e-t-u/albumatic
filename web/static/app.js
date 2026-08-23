@@ -124,7 +124,7 @@ const PRESETS = {
       no: "1",
       template: "ee-e",
       texts: { "1_1": "5 kop", "1_2": "10 kop", "2_1": "5 kop" },
-      labels: { "1_1": "Small Pearl", "1_2": "", "2_1": "Large Pearl" }
+      labels: { "1_1": "Small Pearl", "2_1": "Large Pearl" }
     },
     {
       country: "Suomi — Finland",
@@ -132,62 +132,56 @@ const PRESETS = {
       year: "1860",
       no: "2",
       template: "LL-LL",
-      texts: { "1_1": "5 kop. sininen", "1_2": "10 kop. ruusu", "2_1": "5 kop. tumma sini", "2_2": "10 kop. karmiini" },
-      labels: { "1_1": "Hammaste I", "1_2": "Hammaste I", "2_1": "Uurteeton", "2_2": "Ohut paperi" }
+      texts: { "1_1": "5 kop//blue", "1_2": "10 kop//rose", "2_1": "5 kop//dark blue", "2_2": "10 kop//carmine" },
+      labels: { "1_1": "Perf. I", "1_2": "Perf. I", "2_1": "Perf. II", "2_2": "Perf. II" }
     },
     {
       country: "Suomi — Finland",
-      area: "1866 Vaakunamalli — Penni- ja markka-arvot (Hammaste II)",
+      area: "1866 Currency Penni and Markka (Perf. II)",
       year: "1866",
       no: "3",
-      template: "LLL-LL",
-      texts: { "1_1": "5 p. ruskea", "1_2": "10 p. musta", "1_3": "20 p. sininen", "2_1": "40 p. ruusu", "2_2": "1 mk ruskea" },
-      labels: { "1_1": "Hammaste II", "1_2": "Vaalea lila", "1_3": "Sininen", "2_1": "Ruusupaperi", "2_2": "Keltanahka" }
+      template: "LL-LL-L",
+      texts: { "1_1": "5 p//brown", "1_2": "10 p//black", "2_1": "20 p//blue", "2_2": "40 p//rose", "3_1": "1 mk//brown" }
     },
     {
       country: "Suomi — Finland",
-      area: "1875–1882 Helsingin painos — Vaakunakuviot",
+      area: "1875–1882 Helsingin painos",
       year: "1875",
       no: "4",
-      template: "DDDD-DDD",
-      texts: { "1_1": "2 p. harmaa", "1_2": "5 p. oranssi", "1_3": "8 p. vihreä", "1_4": "10 p. ruskea", "2_1": "20 p. sininen", "2_2": "32 p. karmiini", "2_3": "1 mk violetti" },
-      labels: { "1_1": "Hki 11", "1_2": "Hki 11", "1_3": "Hki 12½", "1_4": "Hki 12½", "2_1": "Hki 12½", "2_2": "Hki 12½", "2_3": "Hki 14" }
+      template: "D-DDDD-DDDD",
+      texts: {
+        "1_1": "32 p//carmine",
+        "2_1": "2 p//gray", "2_2": "5 p//orange", "2_3": "8 p//green", "2_4": "10 p//olive brown",
+        "3_1": "20 p//ultramarine", "3_2": "25 p//carmine", "3_3": "32 p//pink", "3_4": "1 mk//violet"
+      },
+      labels: {
+        "1_1": "Copenhagen print//14x13½",
+        "2_2": "Hki", "2_3": "Hki", "2_4": "Hki",
+        "3_1": "Hki", "3_2": "Hki", "3_3": "Hki//Perf. 11", "3_4": "Hki"
+      }
     },
     {
       country: "Suomi — Finland",
-      area: "1885 Vaakunamalli — Yksiväriset penniarvot",
+      area: "1885 New Colors",
       year: "1885",
       no: "5",
-      template: "DDD-DDD",
-      texts: { "1_1": "2 p. harmaa", "1_2": "5 p. vihreä", "1_3": "10 p. ruusu", "2_1": "20 p. oranssi", "2_2": "25 p. sininen", "2_3": "50 p. ruskea" },
-      labels: { "1_1": "12½ Hki", "1_2": "12½ Hki", "1_3": "Helsinki", "2_1": "Tampere", "2_2": "Turku / Åbo", "2_3": "Viipuri" }
+      template: "DDDD-GGG",
+      texts: {
+        "1_1": "5 p//green", "1_2": "10 p//rose", "1_3": "20 p//orange", "1_4": "25 p//blue",
+        "2_1": "1 mk//gray/pink", "2_2": "5 mk//green/pink", "2_3": "10 mk//brown/pink"
+      }
     },
     {
       country: "Suomi — Finland",
-      area: "1885 Vaakunamalli — Kaksiväriset markka-arvot",
-      year: "1885",
+      area: "1889 Value Only in Upper Corners",
+      year: "1889",
       no: "6",
-      template: "GGG",
-      texts: { "1_1": "1 mk harmaa/ruusu", "1_2": "5 mk vihreä/ruusu", "1_3": "10 mk ruskea/ruusu" },
-      labels: { "1_1": "1 Mk (Hki 12½)", "1_2": "5 Mk (Hämeenlinna)", "1_3": "10 Mk (Kuopio)" }
-    },
-    {
-      country: "Suomi — Finland",
-      area: "1889 Vaakunamalli — Penniarvot (Uusi kaiverrus)",
-      year: "1889",
-      no: "7",
-      template: "DDD-DDD",
-      texts: { "1_1": "2 p. harmaa", "1_2": "5 p. vihreä", "1_3": "10 p. punainen", "2_1": "20 p. keltainen", "2_2": "25 p. sininen", "2_3": "50 p. ruskea" },
-      labels: { "1_1": "12½ Hki", "1_2": "12½ Hki", "1_3": "Östermyra", "2_1": "Vaasa / Wasa", "2_2": "Oulu / Uleåborg", "2_3": "Pori" }
-    },
-    {
-      country: "Suomi — Finland",
-      area: "1889 Vaakunamalli — Markka-arvot & Åland",
-      year: "1889",
-      no: "8",
-      template: "GGG",
-      texts: { "1_1": "1 mk harmaa", "1_2": "5 mk vihreä", "1_3": "10 mk ruskea" },
-      labels: { "1_1": "1 Mk (Helsingfors)", "1_2": "5 Mk (Mariehamn)", "1_3": "10 Mk (Saimaa)" }
+      template: "DDD-DD-GGG",
+      texts: {
+        "1_1": "2 p//gray", "1_2": "5 p//green", "1_3": "10 p//pink",
+        "2_1": "20 p//orange", "2_2": "25 p//blue",
+        "3_1": "1 mk//gray/pink", "3_2": "5 mk//green/pink", "3_3": "10 mk//brown/pink"
+      }
     }
   ],
   "nepal_album": [
@@ -335,13 +329,11 @@ const BATCH_SAMPLES = {
 
   "finland_batch": [
     "1856 | 1 | 1856 Soikiomalli — Oval Issue | ee-e | t:1_1=5 kop,1_2=10 kop,2_1=5 kop | l:1_1=Small Pearl,2_1=Large Pearl",
-    "1860 | 2 | 1860 Vaakunamalli — Serpentine Roulette I | LL-LL | t:1_1=5 kop. sininen,1_2=10 kop. ruusu,2_1=5 kop. tumma sini,2_2=10 kop. karmiini | l:1_1=Hammaste I,1_2=Hammaste I,2_1=Uurteeton,2_2=Ohut paperi",
-    "1866 | 3 | 1866 Vaakunamalli — Penni- ja markka-arvot (Hammaste II) | LLL-LL | t:1_1=5 p. ruskea,1_2=10 p. musta,1_3=20 p. sininen,2_1=40 p. ruusu,2_2=1 mk ruskea | l:1_1=Hammaste II,1_2=Vaalea lila,1_3=Sininen,2_1=Ruusupaperi,2_2=Keltanahka",
-    "1875 | 4 | 1875–1882 Helsingin painos — Vaakunakuviot | DDDD-DDD | t:1_1=2 p. harmaa,1_2=5 p. oranssi,1_3=8 p. vihreä,1_4=10 p. ruskea,2_1=20 p. sininen,2_2=32 p. karmiini,2_3=1 mk violetti | l:1_1=Hki 11,1_2=Hki 11,1_3=Hki 12½,1_4=Hki 12½,2_1=Hki 12½,2_2=Hki 12½,2_3=Hki 14",
-    "1885 | 5 | 1885 Vaakunamalli — Yksiväriset penniarvot | DDD-DDD | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. ruusu,2_1=20 p. oranssi,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=12½ Hki,1_2=12½ Hki,1_3=Helsinki,2_1=Tampere,2_2=Turku / Åbo,2_3=Viipuri",
-    "1885 | 6 | 1885 Vaakunamalli — Kaksiväriset markka-arvot | GGG | t:1_1=1 mk harmaa/ruusu,1_2=5 mk vihreä/ruusu,1_3=10 mk ruskea/ruusu | l:1_1=1 Mk (Hki 12½),1_2=5 Mk (Hämeenlinna),1_3=10 Mk (Kuopio)",
-    "1889 | 7 | 1889 Vaakunamalli — Penniarvot (Uusi kaiverrus) | DDD-DDD | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. punainen,2_1=20 p. keltainen,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=12½ Hki,1_2=12½ Hki,1_3=Östermyra,2_1=Vaasa / Wasa,2_2=Oulu / Uleåborg,2_3=Pori",
-    "1889 | 8 | 1889 Vaakunamalli — Markka-arvot & Åland | GGG | t:1_1=1 mk harmaa,1_2=5 mk vihreä,1_3=10 mk ruskea | l:1_1=1 Mk (Helsingfors),1_2=5 Mk (Mariehamn),1_3=10 Mk (Saimaa)"
+    "1860 | 2 | 1860 Vaakunamalli — Serpentine Roulette I | LL-LL | t:1_1=5 kop//blue,1_2=10 kop//rose,2_1=5 kop//dark blue,2_2=10 kop//carmine | l:1_1=Perf. I,1_2=Perf. I,2_1=Perf. II,2_2=Perf. II",
+    "1866 | 3 | 1866 Currency Penni and Markka (Perf. II) | LL-LL-L | t:1_1=5 p//brown,1_2=10 p//black,2_1=20 p//blue,2_2=40 p//rose,3_1=1 mk//brown",
+    "1875 | 4 | 1875–1882 Helsingin painos | D-DDDD-DDDD | t:1_1=32 p//carmine,2_1=2 p//gray,2_2=5 p//orange,2_3=8 p//green,2_4=10 p//olive brown,3_1=20 p//ultramarine,3_2=25 p//carmine,3_3=32 p//pink,3_4=1 mk//violet | l:1_1=Copenhagen print//14x13½,2_2=Hki,2_3=Hki,2_4=Hki,3_1=Hki,3_2=Hki,3_3=Hki//Perf. 11,3_4=Hki",
+    "1885 | 5 | 1885 New Colors | DDDD-GGG | t:1_1=5 p//green,1_2=10 p//rose,1_3=20 p//orange,1_4=25 p//blue,2_1=1 mk//gray/pink,2_2=5 mk//green/pink,2_3=10 mk//brown/pink",
+    "1889 | 6 | 1889 Value Only in Upper Corners | DDD-DD-GGG | t:1_1=2 p//gray,1_2=5 p//green,1_3=10 p//pink,2_1=20 p//orange,2_2=25 p//blue,3_1=1 mk//gray/pink,3_2=5 mk//green/pink,3_3=10 mk//brown/pink"
   ].join("\n"),
 
   "30_catalog": [

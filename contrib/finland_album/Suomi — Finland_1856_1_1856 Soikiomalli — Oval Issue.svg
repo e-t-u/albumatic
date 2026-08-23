@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595.28 841.89" width="100%" height="100%" style="background:#ffffff; display:block;">
+  <defs>
+    <style>
+      .border { fill: none; stroke: #222222; stroke-width: 0.8; }
+      .stamp-frame { fill: #fdfdfd; stroke: #333333; stroke-width: 0.5; }
+      .header1 { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 34px; font-weight: bold; text-anchor: middle; fill: #111111; }
+      .header2 { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 18px; text-anchor: middle; fill: #333333; }
+      .footer { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; font-size: 11px; fill: #555555; }
+      .stamp-text { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; fill: #555555; }
+      .stamp-label { font-family: "Liberation Sans", "DejaVu Sans", "Helvetica", Arial, sans-serif; text-anchor: middle; fill: #222222; }
+    </style>
+  </defs>
+  <rect class="border" x="42.52" y="34.02" width="510.24" height="756.85" />
+  <text class="footer" x="42.52" y="805.87">Albumatic</text>
+  <text class="footer" x="552.76" y="805.87" text-anchor="end">1856/1</text>
+  <text class="header1" x="297.64" y="104.88">Suomi — Finland</text>
+  <text class="header2" x="297.64" y="133.23">1856 Soikiomalli — Oval Issue</text>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="188.50" y="352.91" width="87.87" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="232.44" y="389.76">5 kop</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="232.44" y="437.11">Small Pearl</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="318.90" y="352.91" width="87.87" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="362.83" y="389.76">10 kop</text>
+  </g>
+  <g class="stamp-group">
+    <rect class="stamp-frame" x="253.70" y="497.48" width="87.87" height="73.70" rx="1" />
+    <text class="stamp-text" style="font-size:7.0px;" x="297.64" y="534.33">5 kop</text>
+    <text class="stamp-label" style="font-size:8.5px;" x="297.64" y="581.68">Large Pearl</text>
+  </g>
+</svg>
