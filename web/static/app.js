@@ -72,6 +72,80 @@ const PRESETS = {
       labels: {}
     }
   ],
+  "finland_album": [
+    {
+      country: "Suomi — Finland",
+      area: "1856 Soikiomalli — First Oval Issue (Portostämpel)",
+      year: "1856",
+      no: "1",
+      template: "BB-BB",
+      texts: { "1_1": "5 kop. sininen", "1_2": "10 kop. punainen", "2_1": "5 kop. (pienihelminen)", "2_2": "10 kop. (isohelminen)" },
+      labels: { "1_1": "Pystyurapaperi (Wove)", "1_2": "Pystyurapaperi", "2_1": "Vaakasuora urapaperi", "2_2": "Valkoinen paperi" }
+    },
+    {
+      country: "Suomi — Finland",
+      area: "1860 Vaakunamalli — Serpentine Roulette I",
+      year: "1860",
+      no: "2",
+      template: "BB-BB",
+      texts: { "1_1": "5 kop. sininen", "1_2": "10 kop. ruusunpunainen", "2_1": "5 kop. tummansininen", "2_2": "10 kop. karmiini" },
+      labels: { "1_1": "Hammaste I (Isoposkinen)", "1_2": "Hammaste I", "2_1": "Paperi uurteeton", "2_2": "Ohut paperi" }
+    },
+    {
+      country: "Suomi — Finland",
+      area: "1866 Vaakunamalli — Penni- ja markka-arvot (Hammaste II)",
+      year: "1866",
+      no: "3",
+      template: "BBB-BB",
+      texts: { "1_1": "5 p. ruskea", "1_2": "10 p. musta", "1_3": "20 p. sininen", "2_1": "40 p. ruusunpunainen", "2_2": "1 mk ruskea" },
+      labels: { "1_1": "Serpentine Roulette II", "1_2": "Vaalea lila paperi", "1_3": "Sininen paperi", "2_1": "Ruusu paperi", "2_2": "Keltanahkanen paperi" }
+    },
+    {
+      country: "Suomi — Finland",
+      area: "1875–1882 Helsingin painos — Vaakunakuviot",
+      year: "1875",
+      no: "4",
+      template: "AAAA-AAA",
+      texts: { "1_1": "2 p. harmaa", "1_2": "5 p. oranssi", "1_3": "8 p. vihreä", "1_4": "10 p. ruskea", "2_1": "20 p. sininen", "2_2": "32 p. karmiini", "2_3": "1 mk violetti" },
+      labels: { "1_1": "Hammaste 11", "1_2": "Hammaste 11", "1_3": "Hammaste 12½", "1_4": "Hammaste 12½", "2_1": "Hammaste 12½", "2_2": "Hammaste 12½", "2_3": "Hammaste 14" }
+    },
+    {
+      country: "Suomi — Finland",
+      area: "1885 Vaakunamalli — Yksiväriset penniarvot",
+      year: "1885",
+      no: "5",
+      template: "AAA-AAA",
+      texts: { "1_1": "2 p. harmaa", "1_2": "5 p. vihreä", "1_3": "10 p. ruusu", "2_1": "20 p. oranssi", "2_2": "25 p. sininen", "2_3": "50 p. ruskea" },
+      labels: { "1_1": "Hammaste 12½", "1_2": "Hammaste 12½", "1_3": "Helsinki / Helsingfors", "2_1": "Tampere / Tammerfors", "2_2": "Turku / Åbo", "2_3": "Viipuri / Wiborg" }
+    },
+    {
+      country: "Suomi — Finland",
+      area: "1885 Vaakunamalli — Kaksiväriset markka-arvot",
+      year: "1885",
+      no: "6",
+      template: "BBB",
+      texts: { "1_1": "1 mk harmaa & ruusu", "1_2": "5 mk vihreä & ruusu", "1_3": "10 mk ruskea & ruusu" },
+      labels: { "1_1": "1 Markka (Hammaste 12½)", "1_2": "5 Markkaa (Hämeenlinna)", "1_3": "10 Markkaa (Kuopio)" }
+    },
+    {
+      country: "Suomi — Finland",
+      area: "1889 Vaakunamalli — Penniarvot (Uusi kaiverrus)",
+      year: "1889",
+      no: "7",
+      template: "AAA-AAA",
+      texts: { "1_1": "2 p. harmaa", "1_2": "5 p. vihreä", "1_3": "10 p. punainen", "2_1": "20 p. keltainen", "2_2": "25 p. sininen", "2_3": "50 p. ruskea" },
+      labels: { "1_1": "Hammaste 12½", "1_2": "Hammaste 12½", "1_3": "Östermyra & Ähtäri", "2_1": "Vaasa / Wasa", "2_2": "Oulu / Uleåborg", "2_3": "Pori / Björneborg" }
+    },
+    {
+      country: "Suomi — Finland",
+      area: "1889 Vaakunamalli — Markka-arvot & Åland",
+      year: "1889",
+      no: "8",
+      template: "BBB",
+      texts: { "1_1": "1 mk harmaa", "1_2": "5 mk vihreä", "1_3": "10 mk ruskea" },
+      labels: { "1_1": "1 Markka (Helsingfors)", "1_2": "5 Markkaa (Åland — Mariehamn)", "1_3": "10 Markkaa (Saimaan höyrylaiva)" }
+    }
+  ],
   "china_demo": [
     {
       country: "中国 — China",
@@ -167,6 +241,17 @@ const PRESETS = {
 
 // Batch Sample Templates
 const BATCH_SAMPLES = {
+  "finland_batch": [
+    "1856 | 1 | 1856 Soikiomalli — First Oval Issue (Portostämpel) | BB-BB | t:1_1=5 kop. sininen,1_2=10 kop. punainen,2_1=5 kop. (pienihelminen),2_2=10 kop. (isohelminen) | l:1_1=Pystyurapaperi (Wove),1_2=Pystyurapaperi,2_1=Vaakasuora urapaperi,2_2=Valkoinen paperi",
+    "1860 | 2 | 1860 Vaakunamalli — Serpentine Roulette I | BB-BB | t:1_1=5 kop. sininen,1_2=10 kop. ruusunpunainen,2_1=5 kop. tummansininen,2_2=10 kop. karmiini | l:1_1=Hammaste I (Isoposkinen),1_2=Hammaste I,2_1=Paperi uurteeton,2_2=Ohut paperi",
+    "1866 | 3 | 1866 Vaakunamalli — Penni- ja markka-arvot (Hammaste II) | BBB-BB | t:1_1=5 p. ruskea,1_2=10 p. musta,1_3=20 p. sininen,2_1=40 p. ruusunpunainen,2_2=1 mk ruskea | l:1_1=Serpentine Roulette II,1_2=Vaalea lila paperi,1_3=Sininen paperi,2_1=Ruusu paperi,2_2=Keltanahkanen paperi",
+    "1875 | 4 | 1875–1882 Helsingin painos — Vaakunakuviot | AAAA-AAA | t:1_1=2 p. harmaa,1_2=5 p. oranssi,1_3=8 p. vihreä,1_4=10 p. ruskea,2_1=20 p. sininen,2_2=32 p. karmiini,2_3=1 mk violetti | l:1_1=Hammaste 11,1_2=Hammaste 11,1_3=Hammaste 12½,1_4=Hammaste 12½,2_1=Hammaste 12½,2_2=Hammaste 12½,2_3=Hammaste 14",
+    "1885 | 5 | 1885 Vaakunamalli — Yksiväriset penniarvot | AAA-AAA | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. ruusu,2_1=20 p. oranssi,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=Hammaste 12½,1_2=Hammaste 12½,1_3=Helsinki / Helsingfors,2_1=Tampere / Tammerfors,2_2=Turku / Åbo,2_3=Viipuri / Wiborg",
+    "1885 | 6 | 1885 Vaakunamalli — Kaksiväriset markka-arvot | BBB | t:1_1=1 mk harmaa & ruusu,1_2=5 mk vihreä & ruusu,1_3=10 mk ruskea & ruusu | l:1_1=1 Markka (Hammaste 12½),1_2=5 Markkaa (Hämeenlinna),1_3=10 Markkaa (Kuopio)",
+    "1889 | 7 | 1889 Vaakunamalli — Penniarvot (Uusi kaiverrus) | AAA-AAA | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. punainen,2_1=20 p. keltainen,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=Hammaste 12½,1_2=Hammaste 12½,1_3=Östermyra & Ähtäri,2_1=Vaasa / Wasa,2_2=Oulu / Uleåborg,2_3=Pori / Björneborg",
+    "1889 | 8 | 1889 Vaakunamalli — Markka-arvot & Åland | BBB | t:1_1=1 mk harmaa,1_2=5 mk vihreä,1_3=10 mk ruskea | l:1_1=1 Markka (Helsingfors),1_2=5 Markkaa (Åland — Mariehamn),1_3=10 Markkaa (Saimaan höyrylaiva)"
+  ].join("\n"),
+
   "china_batch": "1878 | 1 | 大清邮政 — Large Dragon (1878) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银,1_3=伍分银,2_1=壹角,2_2=贰角,2_3=伍角 | l:1_1=海关薄纸,1_2=阔边大龙,1_3=厚纸光芒,2_1=蟠龙加盖,2_2=红印花,2_3=伦敦版 | s:X=35,35",
 
   "30_catalog": [
