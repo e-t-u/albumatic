@@ -42,43 +42,43 @@ class StampItem(BaseModel):
 class PageConfig(BaseModel):
     """Declarative configuration model for a single album page."""
     # Metadata and Headers
-    country: str = Field(default="COUNTRY", description="Header 1 title (e.g. 'USA', 'Nepal')")
-    area: str = Field(default="Area", description="Header 2 subtitle (e.g. 'Definitives', 'Airmail')")
-    year: str = Field(default="YYYY", description="Right footer year")
-    no: str = Field(default="#", description="Right footer page number")
+    country: str = Field(default="COUNTRY", max_length=200, description="Header 1 title (e.g. 'USA', 'Nepal')")
+    area: str = Field(default="Area", max_length=300, description="Header 2 subtitle (e.g. 'Definitives', 'Airmail')")
+    year: str = Field(default="YYYY", max_length=100, description="Right footer year")
+    no: str = Field(default="#", max_length=50, description="Right footer page number")
     
     # Custom Headers / Footers overrides
-    header1: Optional[str] = Field(None, description="Override for Header 1 (defaults to country)")
-    header2: Optional[str] = Field(None, description="Override for Header 2 (defaults to area)")
-    leftfooter: Optional[str] = Field(None, description="Left footer logo text (defaults to logotext/Albumatic)")
-    rightfooter: Optional[str] = Field(None, description="Right footer text (defaults to 'year/no')")
-    logotext: str = Field(default="Albumatic", description="Default logo text for left footer")
+    header1: Optional[str] = Field(None, max_length=200, description="Override for Header 1 (defaults to country)")
+    header2: Optional[str] = Field(None, max_length=300, description="Override for Header 2 (defaults to area)")
+    leftfooter: Optional[str] = Field(None, max_length=200, description="Left footer logo text (defaults to logotext/Albumatic)")
+    rightfooter: Optional[str] = Field(None, max_length=200, description="Right footer text (defaults to 'year/no')")
+    logotext: str = Field(default="Albumatic", max_length=100, description="Default logo text for left footer")
     
     # Template and Structured Rows
-    template: str = Field(default="X", description="Dash-separated row template string (e.g. 'ABBA-hh-BBB')")
+    template: str = Field(default="X", max_length=500, description="Dash-separated row template string (e.g. 'ABBA-hh-BBB')")
     rows: Optional[List[List[StampItem]]] = Field(None, description="Explicit structured rows with individual stamp overrides")
     
     # Per-stamp coordinates mappings (1-indexed row_col, e.g. {"1_1": "Blue", "1_2": "Red"})
     texts: Dict[str, str] = Field(default_factory=dict, description="Inner stamp texts mapped by 'row_col'")
     labels: Dict[str, str] = Field(default_factory=dict, description="Below stamp labels mapped by 'row_col'")
-    placeholders: Optional[str] = Field(None, description="Placeholder mode: 'texts', 'labels', or 'both'")
+    placeholders: Optional[str] = Field(None, max_length=50, description="Placeholder mode: 'texts', 'labels', or 'both'")
 
     # Unit & Page Dimensions
     unit: Unit = Field(default=Unit.MM, description="Measurement unit for dimensions")
-    pagewidth: float = Field(default=210.0, description="Page width in current units (default A4 = 210mm)")
-    pageheight: float = Field(default=297.0, description="Page height in current units (default A4 = 297mm)")
+    pagewidth: float = Field(default=210.0, ge=0.5, le=5000.0, description="Page width in current units (default A4 = 210mm)")
+    pageheight: float = Field(default=297.0, ge=0.5, le=5000.0, description="Page height in current units (default A4 = 297mm)")
 
     # Margins and Header Positions
-    topmargin: float = Field(default=12.0, description="Top margin border distance")
-    bottommargin: float = Field(default=18.0, description="Bottom margin border distance")
-    leftmargin: float = Field(default=15.0, description="Left margin border distance")
-    rightmargin: float = Field(default=15.0, description="Right margin border distance")
-    header1pos: float = Field(default=25.0, description="Header 1 distance from top border")
-    header2pos: float = Field(default=35.0, description="Header 2 distance from top border")
+    topmargin: float = Field(default=12.0, ge=0.0, le=500.0, description="Top margin border distance")
+    bottommargin: float = Field(default=18.0, ge=0.0, le=500.0, description="Bottom margin border distance")
+    leftmargin: float = Field(default=15.0, ge=0.0, le=500.0, description="Left margin border distance")
+    rightmargin: float = Field(default=15.0, ge=0.0, le=500.0, description="Right margin border distance")
+    header1pos: float = Field(default=25.0, ge=0.0, le=500.0, description="Header 1 distance from top border")
+    header2pos: float = Field(default=35.0, ge=0.0, le=500.0, description="Header 2 distance from top border")
 
     # Spacing Bounds
-    maxxdistance: float = Field(default=15.0, description="Maximum horizontal distance between stamps")
-    maxydistance: float = Field(default=25.0, description="Maximum vertical distance between stamp rows")
+    maxxdistance: float = Field(default=15.0, ge=0.0, le=500.0, description="Maximum horizontal distance between stamps")
+    maxydistance: float = Field(default=25.0, ge=0.0, le=500.0, description="Maximum vertical distance between stamp rows")
 
     # Custom Size Overrides: letter -> (width_mm, height_mm)
     custom_sizes: Dict[str, Tuple[float, float]] = Field(default_factory=dict, description="Custom mount sizes override")
@@ -111,26 +111,26 @@ class PageConfig(BaseModel):
 
 class AlbumConfig(BaseModel):
     """Configuration model for a full multi-page album with inherited defaults."""
-    country: str = Field(default="COUNTRY", description="Default Country / Header 1 for all pages")
-    area: Optional[str] = Field(default="Area", description="Default Area / Header 2 for all pages")
-    year: Optional[str] = Field(default="YYYY", description="Default Year")
-    logotext: str = Field(default="Albumatic", description="Default footer logo text")
+    country: str = Field(default="COUNTRY", max_length=200, description="Default Country / Header 1 for all pages")
+    area: Optional[str] = Field(default="Area", max_length=300, description="Default Area / Header 2 for all pages")
+    year: Optional[str] = Field(default="YYYY", max_length=100, description="Default Year")
+    logotext: str = Field(default="Albumatic", max_length=100, description="Default footer logo text")
     
     # Common Geometry Defaults
     unit: Unit = Field(default=Unit.MM, description="Measurement unit")
-    pagewidth: float = Field(default=210.0, description="Page width in current units")
-    pageheight: float = Field(default=297.0, description="Page height in current units")
-    topmargin: float = Field(default=12.0, description="Top margin")
-    bottommargin: float = Field(default=18.0, description="Bottom margin")
-    leftmargin: float = Field(default=15.0, description="Left margin")
-    rightmargin: float = Field(default=15.0, description="Right margin")
-    header1pos: float = Field(default=25.0, description="Header 1 position")
-    header2pos: float = Field(default=35.0, description="Header 2 position")
-    maxxdistance: float = Field(default=15.0, description="Max X distance")
-    maxydistance: float = Field(default=25.0, description="Max Y distance")
+    pagewidth: float = Field(default=210.0, ge=0.5, le=5000.0, description="Page width in current units")
+    pageheight: float = Field(default=297.0, ge=0.5, le=5000.0, description="Page height in current units")
+    topmargin: float = Field(default=12.0, ge=0.0, le=500.0, description="Top margin")
+    bottommargin: float = Field(default=18.0, ge=0.0, le=500.0, description="Bottom margin")
+    leftmargin: float = Field(default=15.0, ge=0.0, le=500.0, description="Left margin")
+    rightmargin: float = Field(default=15.0, ge=0.0, le=500.0, description="Right margin")
+    header1pos: float = Field(default=25.0, ge=0.0, le=500.0, description="Header 1 position")
+    header2pos: float = Field(default=35.0, ge=0.0, le=500.0, description="Header 2 position")
+    maxxdistance: float = Field(default=15.0, ge=0.0, le=500.0, description="Max X distance")
+    maxydistance: float = Field(default=25.0, ge=0.0, le=500.0, description="Max Y distance")
 
-    # List of album pages
-    pages: List[PageConfig] = Field(default_factory=list, description="Pages belonging to this album")
+    # List of album pages (capped at 200 pages per request to prevent DoS)
+    pages: List[PageConfig] = Field(default_factory=list, max_length=200, description="Pages belonging to this album")
 
     def resolve_pages(self) -> List[PageConfig]:
         """Resolves child pages, propagating album-level defaults where child values are default/empty."""

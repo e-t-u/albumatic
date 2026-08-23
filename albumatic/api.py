@@ -20,6 +20,14 @@ app = FastAPI(
     version="6.0.0",
 )
 
+@app.middleware("http")
+async def add_security_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "SAMEORIGIN"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    return response
+
 # Base directory paths
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WEB_DIR = os.path.join(BASE_DIR, "web")
@@ -29,7 +37,8 @@ LEGACY_STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 def make_content_disposition(filename: str, disposition: str = "attachment") -> str:
     """Generates an RFC 6266 / RFC 5987 compliant Content-Disposition header with UTF-8 filename*."""
-    clean_name = re.sub(r'[/\\?%*:|"<>]+', '_', filename).strip()
+    # Sanitize control characters (CR, LF, NUL) to prevent header injection
+    clean_name = re.sub(r'[\r\n\0/\\?%*:|"<>]+', '_', filename).strip()
     ascii_name = clean_name.encode("ascii", "ignore").decode("ascii").strip()
     if not ascii_name:
         ascii_name = "album.pdf" if filename.endswith(".pdf") else "page.pdf"
