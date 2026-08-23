@@ -97,6 +97,97 @@ albumatic render --url "/pdf/USA/Definitives/2009/1/ABBA-hh-BBB?t_1_1=Blue&l_1_1
 
 ---
 
+## Antigravity Skill & AI Integration
+
+Albumatic includes an automated **Antigravity Skill** (`skills/albumatic/`) that allows AI agents to design, generate, and download print-ready stamp albums directly from natural language prompts.
+
+### What It Supports:
+- **Whole-Album Combined PDF**: Generate 1 to 50+ page complete stamp albums in a single PDF document.
+- **Individual Inkscape-Ready SVGs**: Export clean vector SVG files for every page in an album so you can open and edit them in **Inkscape**.
+- **Physical Stamp Safe Insets**: Placeholder texts automatically wrap across lines and stay safely inside the physical stamp area without touching clear mount margins.
+- **Full International Unicode**: Cyrillic, Greek, Arabic, Chinese, Devanagari, European diacritics, and philatelic symbols (`½A`, `№`, `★`, `€`).
+
+### Running the Skill Helper Script:
+```bash
+# Generate both multi-page PDF and individual Inkscape SVGs from batch text
+python3 skills/albumatic/scripts/render_album.py \
+  --country "Suomi — Finland" \
+  --batch "1856 | 1 | 1856 Soikiomalli | LL-LL | t:1_1=5 kop. sininen,1_2=10 kop. punainen | l:1_1=Pystyura,1_2=Pystyura
+1860 | 2 | 1860 Roulette I | LL-LL | t:1_1=5 kop. sininen,1_2=10 kop. ruusu | l:1_1=Hammaste I,1_2=Hammaste I" \
+  --format both \
+  --outdir ./my_finland_album
+
+# Generate SVG only for Inkscape editing
+python3 skills/albumatic/scripts/render_album.py \
+  --country "China" \
+  --template "XXX-XXX" \
+  --format svg \
+  --outdir ./svg_exports
+```
+
+---
+
+## REST API & cURL Examples
+
+When running the Albumatic server (`albumatic serve` or container):
+
+### 1. Download Combined Full-Album PDF:
+```bash
+curl -s -X POST "http://localhost:8000/api/v1/render/album/pdf" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "country": "Suomi — Finland",
+    "pages": [
+      {
+        "area": "1856 Soikiomalli — First Oval Issue",
+        "year": "1856",
+        "no": "1",
+        "template": "LL-LL",
+        "texts": {"1_1": "5 kop. sininen", "1_2": "10 kop. punainen"},
+        "labels": {"1_1": "Pystyura (Wove)", "1_2": "Pystyura"}
+      },
+      {
+        "area": "1860 Vaakunamalli — Serpentine Roulette I",
+        "year": "1860",
+        "no": "2",
+        "template": "LL-LL",
+        "texts": {"1_1": "5 kop. sininen", "1_2": "10 kop. ruusu"},
+        "labels": {"1_1": "Hammaste I", "1_2": "Hammaste I"}
+      }
+    ]
+  }' -o "Finland_Classic_Album.pdf"
+```
+
+### 2. Download Single Page PDF:
+```bash
+curl -s -X POST "http://localhost:8000/api/v1/render/pdf" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "country": "United States",
+    "area": "1934 National Parks Issue (Scott 740–749)",
+    "year": "1934",
+    "no": "1",
+    "template": "AAA-dddd-ddd",
+    "texts": {"1_1": "1¢ green", "1_2": "2¢ red orange", "1_3": "6¢ blue"},
+    "labels": {"1_1": "Yosemite (El Capitan)", "1_2": "Grand Canyon", "1_3": "Crater Lake"}
+  }' -o "USA_1934_National_Parks.pdf"
+```
+
+### 3. Download Vector SVG (for Inkscape):
+```bash
+curl -s -X POST "http://localhost:8000/api/v1/render/svg" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "country": "United States",
+    "area": "1934 National Parks Issue",
+    "year": "1934",
+    "no": "1",
+    "template": "AAA-dddd-ddd"
+  }' -o "USA_1934_National_Parks.svg"
+```
+
+---
+
 ## Python Client SDK
 
 ```python
@@ -112,6 +203,16 @@ a["l_1_1"] = "pin perf. 1A"
 # Renders either via HTTP API or in-process local vector engine
 a.writefile("nepal_1881.pdf")
 ```
+
+---
+
+## Keyboard Shortcuts in Web Designer
+
+- **`ArrowLeft` / `PageUp`**: Go to previous page.
+- **`ArrowRight` / `PageDown`**: Go to next page.
+- **`Home` / `End`**: Jump to first / last page.
+- **`Alt + ArrowLeft` / `Alt + ArrowRight`**: Navigate pages even while focusing an input.
+- **`Ctrl + MouseWheel`**: Zoom in/out on real-time preview paper.
 
 ---
 
