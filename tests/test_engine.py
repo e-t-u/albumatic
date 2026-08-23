@@ -25,15 +25,15 @@ def test_layout_computation_basic():
 
 
 def test_unicode_pdf_and_svg_rendering():
-    """Verify full international Unicode character support in PDF and SVG including Chinese & Arabic."""
+    """Verify full international Unicode character support in PDF and SVG including Chinese, Arabic & Nordic ÅÄÖ."""
     config = PageConfig(
-        country="中国 & مصر (China & Egypt)",
-        area="大清邮政 / البريد المصري — Cliché brût (½A) €100 ★",
-        year="1878",
+        country="Suomi — Finland (Åland & Häme)",
+        area="1889 Vaakuna & 大清邮政 / البريد المصري — Cliché brût (½ Mk) €100 ★",
+        year="1889",
         no="1",
         template="AA-BB",
-        texts={"1_1": "壹分银", "1_2": "١ قرش"},
-        labels={"1_1": "海关薄纸", "1_2": "القاهرة"},
+        texts={"1_1": "5 penniä (vihreä)", "1_2": "١ قرش / 壹分银"},
+        labels={"1_1": "Östermyra & Ähtäri (Åbo)", "1_2": "Saimaan höyrylaiva & القاهرة"},
     )
     layout = LayoutEngine.compute(config)
 
@@ -45,14 +45,16 @@ def test_unicode_pdf_and_svg_rendering():
 
     # 2. Test SVG vector generation
     svg_str = SVGRenderer.render(layout)
-    assert isinstance(svg_str, str)
-    assert "中国" in svg_str
-    assert "مصر" in svg_str
+    assert "Åland" in svg_str
+    assert "Häme" in svg_str
+    assert "Östermyra" in svg_str
+    assert "Ähtäri" in svg_str
+    assert "penniä" in svg_str
+    assert "vihreä" in svg_str
+    assert "höyrylaiva" in svg_str
     assert "大清邮政" in svg_str
     assert "البريد المصري" in svg_str
-    assert "壹分银" in svg_str
-    assert "١ قرش" in svg_str
-    assert "海关薄纸" in svg_str
+    assert "cliché" in svg_str.lower()
     assert "القاهرة" in svg_str
 
 

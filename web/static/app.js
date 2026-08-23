@@ -91,13 +91,27 @@ const PRESETS = {
   ],
   "unicode_demo": [
     {
-      country: "Suomi — Finland",
-      area: "Frimärken & Cliché brût (½ Mk)",
+      country: "Suomi — Finland (Åland & Häme)",
+      area: "1889 Vaakunamalli — Vapensköld & Cliché brût (½ Mk)",
       year: "1889",
       no: "1",
       template: "AA-BB-CC",
-      texts: { "1_1": "10 penniä", "1_2": "20 penniä", "2_1": "1 markka", "2_2": "2 markkaa" },
-      labels: { "1_1": "Helsinki 1889", "1_2": "Tampere cliché", "2_1": "Wiborg brût", "2_2": "Turku Åbo" }
+      texts: {
+        "1_1": "5 penniä (vihreä)",
+        "1_2": "10 penniä (punainen)",
+        "2_1": "20 penniä (oranssi)",
+        "2_2": "1 markka (harmaa)",
+        "3_1": "5 markkaa (vihreä)",
+        "3_2": "10 markkaa (ruskea)"
+      },
+      labels: {
+        "1_1": "Helsinki / Helsingfors (Åbo)",
+        "1_2": "Tampere / Tammerfors (Örebro-cliché)",
+        "2_1": "Viipuri / Wiborg (Hämeenlinna)",
+        "2_2": "Ahvenanmaa — Åland (Mariehamn)",
+        "3_1": "Östermyra & Ähtäri erikoispainos",
+        "3_2": "Pohjois-Inkeri & Saimaan höyrylaiva"
+      }
     },
     {
       country: "Россия — CCCP",
@@ -168,7 +182,7 @@ const BATCH_SAMPLES = {
   ].join("\n"),
 
   "unicode_batch": [
-    "1889 | 1 | Frimärken & Cliché brût (½ Mk) | AA-BB-CC | t:1_1=10 penniä,1_2=20 penniä,2_1=1 markka,2_2=2 markkaa | l:1_1=Helsinki 1889,1_2=Tampere cliché,2_1=Wiborg brût,2_2=Turku Åbo",
+    "1889 | 1 | 1889 Vaakunamalli — Vapensköld & Cliché brût (½ Mk) | AA-BB-CC | t:1_1=5 penniä (vihreä),1_2=10 penniä,2_1=20 penniä,2_2=1 markka,3_1=5 markkaa,3_2=10 markkaa | l:1_1=Helsinki (Åbo),1_2=Tampere (Örebro-cliché),2_1=Hämeenlinna,2_2=Åland (Mariehamn),3_1=Östermyra & Ähtäri,3_2=Saimaan höyrylaiva",
     "1923 | 2 | Стандартный выпуск (1923) | BBB-CCC | t:1_1=1 коп.,1_2=2 коп.,1_3=5 коп. | l:1_1=Москва,1_2=Петроград,1_3=Киев",
     "1861 | 3 | Ερμής (Hermes Heads) | AAA-AAA | t:1_1=1 λεπτόν,1_2=2 λεπτά,1_3=5 λεπτά | l:1_1=Αθήναι,1_2=Πειραιεύς,1_3=Πάτραι",
     "1878 | 4 | 大清邮政 — Large Dragon (1878) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银,1_3=伍分银,2_1=壹角,2_2=贰角,2_3=伍角 | l:1_1=海关薄纸,1_2=阔边大龙,1_3=厚纸光芒,2_1=蟠龙加盖,2_2=红印花,2_3=伦敦版",
