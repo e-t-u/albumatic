@@ -20,8 +20,18 @@ def split_stamp_text_lines(text: str, max_chars_per_line: int = 10) -> List[str]
     """Splits stamp placeholder text into 1 to 3 balanced lines to fit under physical stamp."""
     if not text:
         return []
-    if "\n" in text:
-        return [l.strip() for l in text.split("\n") if l.strip()]
+    
+    # Normalize manual line break separators: \n, \\n, <br>, or /n
+    normalized = (
+        text.replace("\\n", "\n")
+        .replace("<br/>", "\n")
+        .replace("<br>", "\n")
+        .replace(" /n ", "\n")
+        .replace(" /n", "\n")
+        .replace("/n ", "\n")
+    )
+    if "\n" in normalized:
+        return [l.strip() for l in normalized.split("\n") if l.strip()]
     
     text = text.strip()
     if len(text) <= max_chars_per_line:

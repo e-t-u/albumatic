@@ -127,6 +127,10 @@ def test_stamp_inner_text_splitting_and_fitting():
     assert split_stamp_text_lines("壹分银 (1 Candarin)", max_chars_per_line=8) == ["壹分银", "(1 Candarin)"]
     assert split_stamp_text_lines("harmaa/ruusu", max_chars_per_line=8) == ["harmaa", "/ruusu"]
     assert split_stamp_text_lines("10c", max_chars_per_line=8) == ["10c"]
+    assert split_stamp_text_lines("1 mk\\nharmaa/ruusu") == ["1 mk", "harmaa/ruusu"]
+    assert split_stamp_text_lines("1 mk /n harmaa/ruusu") == ["1 mk", "harmaa/ruusu"]
+    assert split_stamp_text_lines("1 mk<br>harmaa/ruusu") == ["1 mk", "harmaa/ruusu"]
+    assert split_stamp_text_lines("1 mk\nharmaa/ruusu") == ["1 mk", "harmaa/ruusu"]
 
     config = PageConfig(
         country="USA",
