@@ -22,11 +22,11 @@ const albumState = {
   maxydistance: 25,
   pages: [
     {
-      country: "USA",
-      area: "Definitives",
-      year: "2009",
+      country: "United States",
+      area: "1934 National Parks Issue (Scott 740–749)",
+      year: "1934",
       no: "1",
-      template: "ABBA-hh-BBB",
+      template: "AAA-dddd-ddd",
       logotext: "Albumatic",
       rightfooter: null,
       unit: "mm",
@@ -41,8 +41,30 @@ const albumState = {
       maxxdistance: 15,
       maxydistance: 25,
       placeholders: "none",
-      texts: {},
-      labels: {},
+      texts: {
+        "1_1": "1¢ green",
+        "1_2": "2¢ red orange",
+        "1_3": "6¢ blue",
+        "2_1": "3¢ purple",
+        "2_2": "4¢ brown",
+        "2_3": "5¢ blue",
+        "2_4": "7¢ black",
+        "3_1": "8¢ gray green",
+        "3_2": "9¢ pink",
+        "3_3": "10¢ slate gray"
+      },
+      labels: {
+        "1_1": "Yosemite (El Capitan)",
+        "1_2": "Grand Canyon",
+        "1_3": "Crater Lake",
+        "2_1": "Mt. Rainier",
+        "2_2": "Mesa Verde",
+        "2_3": "Yellowstone",
+        "2_4": "Acadia",
+        "3_1": "Zion (White Throne)",
+        "3_2": "Glacier National Park",
+        "3_3": "Great Smoky Mts"
+      },
       custom_sizes: {}
     }
   ]
@@ -63,13 +85,35 @@ function getCurrentPage() {
 const PRESETS = {
   "default": [
     {
-      country: "USA",
-      area: "Definitives",
-      year: "2009",
+      country: "United States",
+      area: "1934 National Parks Issue (Scott 740–749)",
+      year: "1934",
       no: "1",
-      template: "ABBA-hh-BBB",
-      texts: {},
-      labels: {}
+      template: "AAA-dddd-ddd",
+      texts: {
+        "1_1": "1¢ green",
+        "1_2": "2¢ red orange",
+        "1_3": "6¢ blue",
+        "2_1": "3¢ purple",
+        "2_2": "4¢ brown",
+        "2_3": "5¢ blue",
+        "2_4": "7¢ black",
+        "3_1": "8¢ gray green",
+        "3_2": "9¢ pink",
+        "3_3": "10¢ slate gray"
+      },
+      labels: {
+        "1_1": "Yosemite (El Capitan)",
+        "1_2": "Grand Canyon",
+        "1_3": "Crater Lake",
+        "2_1": "Mt. Rainier",
+        "2_2": "Mesa Verde",
+        "2_3": "Yellowstone",
+        "2_4": "Acadia",
+        "3_1": "Zion (White Throne)",
+        "3_2": "Glacier National Park",
+        "3_3": "Great Smoky Mts"
+      }
     }
   ],
   "finland_album": [
@@ -299,6 +343,8 @@ const PRESETS = {
 
 // Batch Sample Templates
 const BATCH_SAMPLES = {
+  "usa_parks_batch": "1934 | 1 | 1934 National Parks Issue (Scott 740–749) | AAA-dddd-ddd | t:1_1=1¢ green,1_2=2¢ red orange,1_3=6¢ blue,2_1=3¢ purple,2_2=4¢ brown,2_3=5¢ blue,2_4=7¢ black,3_1=8¢ gray green,3_2=9¢ pink,3_3=10¢ slate gray | l:1_1=Yosemite (El Capitan),1_2=Grand Canyon,1_3=Crater Lake,2_1=Mt. Rainier,2_2=Mesa Verde,2_3=Yellowstone,2_4=Acadia,3_1=Zion (White Throne),3_2=Glacier National Park,3_3=Great Smoky Mts",
+
   "finland_batch": [
     "1856 | 1 | 1856 Soikiomalli — First Oval Issue (Portostämpel) | BB-BB | t:1_1=5 kop. sininen,1_2=10 kop. punainen,2_1=5 kop. pieni helmi,2_2=10 kop. iso helmi | l:1_1=Pystyura (Wove),1_2=Pystyura,2_1=Vaakaura,2_2=Valkoinen paperi",
     "1860 | 2 | 1860 Vaakunamalli — Serpentine Roulette I | BB-BB | t:1_1=5 kop. sininen,1_2=10 kop. ruusu,2_1=5 kop. tumma sini,2_2=10 kop. karmiini | l:1_1=Hammaste I,1_2=Hammaste I,2_1=Uurteeton,2_2=Ohut paperi",
