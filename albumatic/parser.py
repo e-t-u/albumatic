@@ -8,23 +8,37 @@ from .models import PageConfig, Unit
 def parse_legacy_path_and_query(path: str, query_params: Dict[str, Any]) -> PageConfig:
     """Parse legacy URL path and query parameters into a PageConfig model.
     
-    Path format: /pdf/<country>/<area>/<year>/<no>/<template>[/<filename.pdf>]
+    Path formats supported:
+    - /pdf/<country>/<area>/<year>/<no>/<template>[/<filename.pdf>]
+    - /pdf/<template>[/<filename.pdf>]
+    - /pdf?template=...
     """
     config_dict: Dict[str, Any] = {}
     
     # Strip leading/trailing slashes and split path
     clean_path = path.strip("/")
-    parts = clean_path.split("/") if clean_path else []
+    raw_parts = clean_path.split("/") if clean_path else []
+    parts = [urllib.parse.unquote(p) for p in raw_parts if p]
 
     # If first component is 'pdf', process subsequent segments
     if parts and parts[0] == "pdf":
         parts = parts[1:]
 
+    # If trailing component is a filename ending in .pdf, remove or inspect it
+    if parts and parts[-1].endswith(".pdf") and len(parts) > 1:
+        parts.pop()
+    elif parts and parts[-1].endswith(".pdf") and len(parts) == 1:
+        parts[0] = parts[0][:-4]
+
     # Map positional URL path parameters
-    field_order = ["country", "area", "year", "no", "template"]
-    for i, val in enumerate(parts[:5]):
-        if val:
-            config_dict[field_order[i]] = urllib.parse.unquote(val)
+    if len(parts) == 1 and ("-" in parts[0] or parts[0].isalpha()):
+        # Single-parameter shorthand e.g. /pdf/ABBA-hh-BBB
+        config_dict["template"] = parts[0]
+    else:
+        field_order = ["country", "area", "year", "no", "template"]
+        for i, val in enumerate(parts[:5]):
+            if val and val != "-":
+                config_dict[field_order[i]] = val
 
     # Process query parameters
     texts: Dict[str, str] = {}
@@ -44,9 +58,9 @@ def parse_legacy_path_and_query(path: str, query_params: Dict[str, Any]) -> Page
             # Below label: l_row_col
             coord = k[2:]
             labels[coord] = urllib.parse.unquote(val_str)
-        elif k.startswith("size_"):
-            # Custom mount dimension override: size_X=100,50
-            code = k[5:]
+        elif k.startswith("size_") or k.startswith("s_"):
+            # Custom mount dimension override: size_X=100,50 or s_X=100,50
+            code = k[5:] if k.startswith("size_") else k[2:]
             try:
                 w_str, h_str = val_str.split(",")
                 custom_sizes[code] = (float(w_str), float(h_str))
@@ -66,6 +80,8 @@ def parse_legacy_path_and_query(path: str, query_params: Dict[str, Any]) -> Page
                 config_dict["unit"] = Unit(val_str.lower())
             except Exception:
                 pass
+        elif k in ("template", "country", "area", "year", "no", "header1", "header2", "leftfooter", "rightfooter", "logotext", "placeholders"):
+            config_dict[k] = val_str
         else:
             config_dict[k] = val_str
 
@@ -81,11 +97,11 @@ def parse_legacy_path_and_query(path: str, query_params: Dict[str, Any]) -> Page
 
 def serialize_to_url(config: PageConfig, base_url: str = "/pdf") -> str:
     """Serializes a PageConfig into a reproducible stateless URL."""
-    country = urllib.parse.quote(config.country or "")
-    area = urllib.parse.quote(config.area or "")
-    year = urllib.parse.quote(config.year or "")
-    no = urllib.parse.quote(config.no or "")
-    template = urllib.parse.quote(config.template or "")
+    country = urllib.parse.quote(config.country or "-", safe="")
+    area = urllib.parse.quote(config.area or "-", safe="")
+    year = urllib.parse.quote(config.year or "-", safe="")
+    no = urllib.parse.quote(config.no or "-", safe="")
+    template = urllib.parse.quote(config.template or "-", safe="")
 
     path = f"{base_url.rstrip('/')}/{country}/{area}/{year}/{no}/{template}"
     
@@ -115,7 +131,7 @@ def serialize_to_url(config: PageConfig, base_url: str = "/pdf") -> str:
     if config.maxydistance != 25.0:
         query_parts.append(f"maxydistance={config.maxydistance}")
     if config.logotext != "Albumatic":
-        query_parts.append(f"logotext={urllib.parse.quote(config.logotext)}")
+        query_parts.append(f"logotext={urllib.parse.quote(config.logotext, safe='')}")
     if config.placeholders and config.placeholders != "none":
         query_parts.append(f"placeholders={config.placeholders}")
 
@@ -125,9 +141,9 @@ def serialize_to_url(config: PageConfig, base_url: str = "/pdf") -> str:
 
     # Texts and labels
     for coord, txt in sorted(config.texts.items()):
-        query_parts.append(f"t_{coord}={urllib.parse.quote(txt)}")
+        query_parts.append(f"t_{coord}={urllib.parse.quote(txt, safe='')}")
     for coord, lbl in sorted(config.labels.items()):
-        query_parts.append(f"l_{coord}={urllib.parse.quote(lbl)}")
+        query_parts.append(f"l_{coord}={urllib.parse.quote(lbl, safe='')}")
 
     if query_parts:
         return f"{path}?{'&'.join(query_parts)}"
