@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albumatic — Visual Stamp Album Page Designer</title>
+  <link rel="stylesheet" href="/app-static/app.css">
+</head>
+<body>
+
+  <!-- Top App Header -->
+  <header class="app-header">
+    <div class="logo">
+      <span>📐 Albumatic</span>
+    </div>
+    <div class="header-actions">
+      <select id="preset-select" class="btn btn-outline btn-sm">
+        <option value="default">Preset: Single Page 3-Row Set</option>
+        <option value="nepal_album">Preset: Nepal Classic Album (15 Pages)</option>
+        <option value="unicode_demo">Preset: International Unicode Demo (3 Pages)</option>
+      </select>
+      <button id="btn-batch-modal" class="btn btn-outline btn-sm" title="Import or export album as multi-line text notation">📑 Batch Editor</button>
+      <button id="btn-help" class="btn btn-outline btn-sm">📖 Help & Guide</button>
+      <button id="btn-export-query" class="btn btn-outline btn-sm">🔗 Share / API</button>
+      <button id="btn-download-svg" class="btn btn-outline btn-sm">Export SVG</button>
+      <button id="btn-download-pdf" class="btn btn-outline btn-sm">Download Page PDF</button>
+      <button id="btn-download-album-pdf" class="btn btn-primary btn-sm">📥 Download Album PDF</button>
+    </div>
+  </header>
+
+  <!-- Main Split View Container -->
+  <div class="main-container">
+    
+    <!-- Left Sidebar Editor -->
+    <aside class="editor-pane">
+
+      <!-- Multi-Page Album Filmstrip -->
+      <div class="album-filmstrip-bar" style="background:#f8f9fa; border-bottom:1px solid var(--border); padding:0.4rem 0.75rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+          <span id="page-counter-label" style="font-size:0.75rem; font-weight:700; color:var(--text-muted);">Page 1 of 1</span>
+          <div style="display:flex; gap:0.25rem;">
+            <button id="btn-move-left" class="btn btn-outline btn-sm" style="padding:0.1rem 0.4rem;" title="Move Page Left">◀</button>
+            <button id="btn-move-right" class="btn btn-outline btn-sm" style="padding:0.1rem 0.4rem;" title="Move Page Right">▶</button>
+            <button id="btn-duplicate-page" class="btn btn-outline btn-sm" style="padding:0.1rem 0.4rem;" title="Duplicate Page">📋 Duplicate</button>
+            <button id="btn-delete-page" class="btn btn-danger btn-sm" style="padding:0.1rem 0.4rem;" title="Delete Page">🗑 Delete</button>
+            <button id="btn-add-page" class="btn btn-primary btn-sm" style="padding:0.1rem 0.5rem;" title="Add New Page">+ Add Page</button>
+          </div>
+        </div>
+        <div id="album-filmstrip" class="album-filmstrip"></div>
+      </div>
+
+      <div class="editor-content">
+
+        <!-- Stamp Layout & Row Builder Card (Primary / Emphasized Core Feature) -->
+        <section class="main-builder-card">
+          <div class="section-title">
+            <span>📐 Stamp Rows & Mounts (Core Layout)</span>
+            <button type="button" id="btn-add-row" class="btn btn-primary btn-sm">+ Add Row</button>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.85rem;">
+            <label for="template-input" style="font-weight: 600; color: var(--text);">Template Notation <span style="font-weight: normal; color: var(--text-muted);">(Letters = Mount Size, Dash = Row Break)</span></label>
+            <input type="text" id="template-input" class="template-hero-input" placeholder="e.g. ABBA-hh-BBB" />
+          </div>
+
+          <!-- Dynamic Rows List -->
+          <div id="rows-container" class="rows-container"></div>
+        </section>
+
+        <!-- Header & Page Meta Card -->
+        <section class="section-card">
+          <div class="section-title">
+            <span>Header & Identification</span>
+          </div>
+          <div class="form-grid">
+            <div class="form-group" style="grid-column: span 2;">
+              <label for="country">Country / Main Title (Header 1)</label>
+              <input type="text" id="country" placeholder="e.g. USA, Suomi — Finland, नेपाल" />
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+              <label for="area">Area / Subtitle (Header 2)</label>
+              <input type="text" id="area" placeholder="e.g. 1881 Crossed Knives, Cliché brût (½A)" />
+            </div>
+            <div class="form-group">
+              <label for="year">Year (Bottom Right)</label>
+              <input type="text" id="year" placeholder="e.g. 2009" />
+            </div>
+            <div class="form-group">
+              <label for="no">Page #</label>
+              <input type="text" id="no" placeholder="e.g. 1" />
+            </div>
+            <div class="form-group">
+              <label for="logotext">Left Footer</label>
+              <input type="text" id="logotext" placeholder="Albumatic" />
+            </div>
+            <div class="form-group">
+              <label for="placeholders">Placeholders</label>
+              <select id="placeholders">
+                <option value="none">None</option>
+                <option value="texts">Texts (Row,Col)</option>
+                <option value="labels">Labels (Row,Col)</option>
+                <option value="both">Both</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Album-Wide Paper Geometry & Margins (Global Settings) -->
+        <details class="section-card" id="album-geometry-card">
+          <summary class="section-title" style="cursor: pointer; user-select: none; margin-bottom: 0;">
+            <span>⚙️ Album-Wide Paper & Margins <small style="font-weight:normal; text-transform:none; color:var(--primary); font-size:0.75rem;">(All Pages)</small></span>
+            <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">Configure ▾</span>
+          </summary>
+          <div style="margin-top: 0.85rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:500;">Preset Format:</span>
+              <select id="paper-preset" class="btn btn-outline btn-sm" style="padding: 0.15rem 0.4rem;">
+                <option value="A4">A4 (210×297 mm)</option>
+                <option value="Letter_in">Letter (8.5×11 in)</option>
+                <option value="Letter_mm">Letter (215.9×279.4 mm)</option>
+                <option value="A3">A3 (297×420 mm)</option>
+              </select>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="unit">Unit</label>
+                <select id="unit">
+                  <option value="mm">mm</option>
+                  <option value="in">inch</option>
+                  <option value="pt">points</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="pagewidth">Page Width</label>
+                <input type="number" id="pagewidth" step="any" />
+              </div>
+              <div class="form-group">
+                <label for="pageheight">Page Height</label>
+                <input type="number" id="pageheight" step="any" />
+              </div>
+              <div class="form-group">
+                <label for="topmargin">Top Margin</label>
+                <input type="number" id="topmargin" step="any" />
+              </div>
+              <div class="form-group">
+                <label for="bottommargin">Bottom Margin</label>
+                <input type="number" id="bottommargin" step="any" />
+              </div>
+              <div class="form-group">
+                <label for="leftmargin">Left Margin</label>
+                <input type="number" id="leftmargin" step="any" />
+              </div>
+              <div class="form-group">
+                <label for="rightmargin">Right Margin</label>
+                <input type="number" id="rightmargin" step="any" />
+              </div>
+              <div class="form-group">
+                <label for="maxxdistance">Max X Spacing</label>
+                <input type="number" id="maxxdistance" step="any" />
+              </div>
+              <div class="form-group">
+                <label for="maxydistance">Max Y Spacing</label>
+                <input type="number" id="maxydistance" step="any" />
+              </div>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </aside>
+
+    <!-- Right Live Preview Pane -->
+    <main class="preview-pane">
+      <div class="preview-toolbar">
+        <span style="font-size: 0.8rem; font-weight: 500;">Real-time Preview</span>
+        <div class="zoom-controls">
+          <button type="button" class="btn-zoom" id="btn-zoom-out" title="Zoom Out">−</button>
+          <span class="zoom-label" id="zoom-level">100%</span>
+          <button type="button" class="btn-zoom" id="btn-zoom-in" title="Zoom In">+</button>
+          <button type="button" class="btn btn-outline btn-sm" id="btn-zoom-fit" style="color:white; border-color:rgba(255,255,255,0.3); padding:0.1rem 0.4rem; font-size:0.75rem;" title="Reset Zoom">Fit</button>
+        </div>
+      </div>
+      
+      <!-- Rendered SVG Paper -->
+      <div class="preview-wrapper">
+        <div class="preview-paper" id="preview-paper">
+          <div id="preview-content" style="width:100%; height:100%;">
+            <div style="display:flex; height:100%; align-items:center; justify-content:center; color:#888;">
+              Rendering preview...
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Batch Album Notation Modal -->
+  <div class="modal" id="batch-modal">
+    <div class="modal-content" style="width: 840px;">
+      <div class="modal-header">
+        <h3 style="font-size: 1.1rem;">📑 Batch Multi-Page Album Editor</h3>
+        <button id="btn-close-batch" class="btn btn-outline btn-sm">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+          <span style="font-size:0.85rem; color:var(--text-muted);">
+            Create multiple pages by typing/pasting templates (one per line, slash-separated, or pipe-delimited):
+          </span>
+          <select id="batch-sample-select" class="btn btn-outline btn-sm" style="font-size:0.75rem;">
+            <option value="">Insert Sample Batch Template...</option>
+            <option value="30_catalog">30-Page Standard Catalog (AA-BB-CC/cc-ddd-a/...)</option>
+            <option value="nepal_batch">Nepal 1881-1962 Album (15 Pages)</option>
+            <option value="unicode_batch">International Unicode Demo (3 Pages)</option>
+          </select>
+        </div>
+        
+        <textarea id="batch-text-area" rows="12" style="font-family:monospace; font-size:0.82rem; width:100%; height:260px; line-height:1.4; padding:0.6rem; border:1px solid var(--border); border-radius:4px;" placeholder="e.g.&#10;AA-BB-CC&#10;cc-ddd-a&#10;XXXX-XXXX-XX&#10;&#10;Or enriched format:&#10;1881 | 1 | European Paper | XXX-X-XXX-X | t:1_1=blue,1_2=red | l:1_1=1A,1_2=2A"></textarea>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+          <div style="display:flex; gap:0.4rem; align-items:center;">
+            <span id="batch-page-count" style="font-size:0.75rem; font-weight:600; color:var(--primary);">Detected: 0 pages</span>
+            <button id="btn-batch-copy" class="btn btn-outline btn-sm">📋 Copy</button>
+            <button id="btn-batch-download-txt" class="btn btn-outline btn-sm">📥 Save .txt</button>
+            <label class="btn btn-outline btn-sm" style="margin:0; cursor:pointer;">
+              📂 Load .txt
+              <input type="file" id="batch-file-input" accept=".txt,.album" style="display:none;" />
+            </label>
+          </div>
+          <div style="display:flex; gap:0.5rem;">
+            <button id="btn-export-batch-text" class="btn btn-outline btn-sm" title="Re-export active album to text">↻ Refresh from Album</button>
+            <button id="btn-apply-batch" class="btn btn-primary btn-sm">✓ Import & Load Into Album</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help & Mount Catalog Modal -->
+  <div class="modal" id="help-modal">
+    <div class="modal-content" style="width: 780px;">
+      <div class="modal-header">
+        <h3 style="font-size: 1.1rem;">📖 Albumatic Help & Mount Catalog</h3>
+        <button id="btn-close-help" class="btn btn-outline btn-sm">✕</button>
+      </div>
+      <div class="modal-body">
+        
+        <section>
+          <h4 style="margin-bottom:0.4rem; color:var(--primary);">1. How Template Notation Works</h4>
+          <p style="font-size:0.85rem; margin-bottom:0.5rem;">
+            A template like <code>ABBA-hh-BBB</code> defines rows separated by dashes (<code>-</code>). Each letter defines a stamp mount size:
+          </p>
+          <ul style="font-size:0.85rem; padding-left:1.2rem; margin-bottom:0.5rem;">
+            <li><strong>Uppercase letters (<code>A</code>–<code>Z</code>):</strong> Portrait or square stamp mounts (e.g. <code>A</code> = 20×24 mm / 0.79×0.94 in, <code>B</code> = 20×26 mm, <code>X</code> = 35×35 mm).</li>
+            <li><strong>Lowercase letters (<code>a</code>–<code>v</code>):</strong> Landscape stamp mounts (e.g. <code>a</code> = 24×21 mm / 0.94×0.83 in, <code>h</code> = 36×25 mm).</li>
+          </ul>
+        </section>
+
+        <section>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+            <h4 style="color:var(--primary);">2. Standard Mount Sizes Catalog (Hawid / Leuchtturm)</h4>
+            <input type="text" id="catalog-search" placeholder="Search size, mm, or inches..." style="font-size:0.75rem; width:220px;" />
+          </div>
+          <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.4rem;">
+            Click any size below to insert it into your active page:
+          </p>
+          <div id="catalog-grid" class="catalog-grid"></div>
+        </section>
+
+        <section>
+          <h4 style="margin-bottom:0.4rem; color:var(--primary);">3. Full International Unicode Support</h4>
+          <p style="font-size:0.85rem;">
+            Titles, inner texts, and labels support the complete UTF-8 Unicode character set:
+          </p>
+          <ul style="font-size:0.85rem; padding-left:1.2rem; margin-top:0.3rem;">
+            <li>European accents & diacritics: <code>cliché</code>, <code>brût</code>, <code>penniä</code>, <code>Frimärke</code>, <code>Åbo</code>, <code>Görlitz</code></li>
+            <li>Cyrillic & Slavic: <code>Россия</code>, <code>Москва</code>, <code>СССР</code>, <code>1 коп.</code></li>
+            <li>Greek: <code>Ελλάς</code>, <code>Ερμής</code>, <code>λεπτά</code></li>
+            <li>Devanagari / Asian scripts: <code>नेपाल</code>, <code>日本</code></li>
+            <li>Symbols & Fractions: <code>½A</code>, <code>¼d</code>, <code>№</code>, <code>★</code>, <code>€</code>, <code>£</code>, <code>¥</code></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Export & API Integration Modal -->
+  <div class="modal" id="export-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 1.1rem;">🔗 Stateless Query & API Export</h3>
+        <button id="btn-close-modal" class="btn btn-outline btn-sm">✕</button>
+      </div>
+      <div class="modal-body">
+        
+        <div>
+          <label style="font-weight:600; margin-bottom:0.25rem; display:block;">Active Page Stateless URL (No session or database needed):</label>
+          <pre><code id="code-url"></code></pre>
+          <button class="btn btn-outline btn-sm" style="margin-top:0.4rem;" onclick="copySnippet('code-url')">📋 Copy URL</button>
+        </div>
+
+        <div>
+          <label style="font-weight:600; margin-bottom:0.25rem; display:block;">Command Line (cURL / wget):</label>
+          <pre><code id="code-curl"></code></pre>
+          <button class="btn btn-outline btn-sm" style="margin-top:0.4rem;" onclick="copySnippet('code-curl')">📋 Copy cURL</button>
+        </div>
+
+        <div>
+          <label style="font-weight:600; margin-bottom:0.25rem; display:block;">REST API Page JSON Payload:</label>
+          <pre><code id="code-json"></code></pre>
+          <button class="btn btn-outline btn-sm" style="margin-top:0.4rem;" onclick="copySnippet('code-json')">📋 Copy JSON</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="/app-static/app.js"></script>
+</body>
+</html>
