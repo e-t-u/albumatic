@@ -488,6 +488,16 @@ function renderFilmstrip() {
   if (albumBtn) {
     albumBtn.textContent = `📥 Download Album PDF (${albumState.pages.length} pages)`;
   }
+
+  // Ensure the active page tab is smoothly scrolled into the visible filmstrip viewport
+  const activeTab = strip.querySelector(".page-tab.active");
+  if (activeTab) {
+    activeTab.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "nearest"
+    });
+  }
 }
 
 function goToPage(targetIndex) {

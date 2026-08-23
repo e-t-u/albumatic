@@ -81,6 +81,7 @@ header.app-header {
   gap: 0.4rem;
   overflow-x: auto;
   white-space: nowrap;
+  scroll-behavior: smooth;
 }
 
 .page-tab {
