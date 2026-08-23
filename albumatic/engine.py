@@ -1,6 +1,7 @@
 """Core layout calculation engine, PDF renderer, and SVG generator for Albumatic."""
 
 import io
+import re
 from dataclasses import dataclass
 from typing import List, Optional, Tuple, Union
 import html
@@ -21,15 +22,17 @@ def split_stamp_text_lines(text: str, max_chars_per_line: int = 10) -> List[str]
     if not text:
         return []
     
-    # Normalize manual line break separators: \n, \\n, <br>, or /n
-    normalized = (
-        text.replace("\\n", "\n")
-        .replace("<br/>", "\n")
-        .replace("<br>", "\n")
-        .replace(" /n ", "\n")
-        .replace(" /n", "\n")
-        .replace("/n ", "\n")
-    )
+    # Normalize all manual line break separators:
+    # 1. Newlines & escape sequences: \r\n, \r, \n, \\n, \N, \\N
+    # 2. HTML break tags: <br>, <br/>, <br />
+    # 3. Explicit /n or \n markers: /n, /N, \n, \N
+    # 4. Double slash: //
+    # 5. Pipe: |
+    normalized = text.replace("\r\n", "\n").replace("\r", "\n").replace("\\n", "\n").replace("\\N", "\n")
+    normalized = re.sub(r'<\s*br\s*/?>', '\n', normalized, flags=re.IGNORECASE)
+    normalized = re.sub(r'(?:(?<=\s)/n(?=\s)|(?<=\s)/n|/n(?=\s)|(?<=\w)/n(?=\w)|\\n)', '\n', normalized, flags=re.IGNORECASE)
+    normalized = re.sub(r'\s*//\s*', '\n', normalized)
+    normalized = re.sub(r'\s*\|\s*', '\n', normalized)
     if "\n" in normalized:
         return [l.strip() for l in normalized.split("\n") if l.strip()]
     
