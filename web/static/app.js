@@ -169,11 +169,11 @@ const PRESETS = {
     { country: "Nepal", year: "1907", no: "3", area: "Shiva, new year in bottom corners, 1935", template: "ddd-ddd", texts: {"1_1":"brown","1_2":"green","1_3":"red","2_1":"purple","2_2":"orange","2_3":"blue"}, labels: {"1_1":"2 P","1_2":"4 P","1_3":"8 P","2_1":"16 P","2_2":"24 P","2_3":"32 P"} },
     { country: "Nepal", year: "1907", no: "4", area: "Shiva, Local print, 1941", template: "ddd-ddd-e", texts: {"1_1":"brown","1_2":"green","1_3":"red","2_1":"purple","2_2":"orange","2_3":"blue","3_1":"orange"}, labels: {"1_1":"2 P","1_2":"4 P","1_3":"8 P","2_1":"16 P","2_2":"24 P","2_3":"32 P","3_1":"1 R"} },
     { country: "Nepal", year: "1949", no: "1", area: "1949 Definitive Issue", template: "AAAA-eEe-ef", texts: {"1_1":"brown","1_2":"green","1_3":"red","1_4":"orange","2_1":"blue","2_2":"lila","2_3":"red","3_1":"blue","3_2":"orange"}, labels: {"1_1":"2 P","1_2":"4 P","1_3":"6 P","1_4":"8 P","2_1":"20 P","2_2":"16 P","2_3":"24 P","3_1":"32 P","3_2":"1 R"} },
-    { country: "Nepal", year: "1954", no: "1", area: "1954 Map and Stupa", template: "AA-AAA-EEEE-EEE", texts: {}, labels: {} },
-    { country: "Nepal", year: "1954", no: "2", area: "1954B Landscape Set", template: "ee-eee-gggg-ggg", texts: {}, labels: {} },
-    { country: "Nepal", year: "1957", no: "1", area: "1957 King Mahendra", template: "AAAAA-EEE-EEEE", texts: {}, labels: {} },
-    { country: "Nepal", year: "1959", no: "1", area: "1959 First Parliament", template: "AaA-aAa-EEEE-EEEE", texts: {}, labels: {} },
-    { country: "Nepal", year: "1962", no: "1", area: "1962 Airmail and Commemoratives", template: "AAA-III-JJ", texts: {}, labels: {} }
+    { country: "Nepal", year: "1954", no: "1", area: "1954 Map and Stupa", template: "AA-AAA-EEEE-EEE", texts: {"1_1":"brown","1_2":"green","2_1":"red","2_2":"lila","2_3":"orange","3_1":"brown","3_2":"red","3_3":"brown","3_4":"blue","4_1":"red","4_2":"red","4_3":"orange"}, labels: {"1_1":"2 P","1_2":"4 P","2_1":"6 P","2_2":"8 P","2_3":"12 P","3_1":"16 P","3_2":"20 P","3_3":"24 P","3_4":"32 P","4_1":"50 P","4_2":"1 R","4_3":"2 R"} },
+    { country: "Nepal", year: "1954", no: "2", area: "1954B Landscape Set", template: "ee-eee-gggg-ggg", texts: {"1_1":"brown","1_2":"green","2_1":"red","2_2":"lila","2_3":"orange","3_1":"brown","3_2":"red","3_3":"brown","3_4":"blue","4_1":"red","4_2":"red","4_3":"orange"}, labels: {"1_1":"2 P","1_2":"4 P","2_1":"6 P","2_2":"8 P","2_3":"12 P","3_1":"16 P","3_2":"20 P","3_3":"24 P","3_4":"32 P","4_1":"50 P","4_2":"1 R","4_3":"2 R"} },
+    { country: "Nepal", year: "1957", no: "1", area: "1957 King Mahendra", template: "AAAAA-EEE-EEEE", texts: {"1_1":"brown","1_2":"green","1_3":"red","1_4":"lila","1_5":"orange","2_1":"brown","2_2":"red","2_3":"lila","3_1":"blue","3_2":"red","3_3":"red","3_4":"orange"}, labels: {"1_1":"2 P","1_2":"4 P","1_3":"6 P","1_4":"8 P","1_5":"12 P","2_1":"16 P","2_2":"20 P","2_3":"24 P","3_1":"32 P","3_2":"50 P","3_3":"1 R","3_4":"2 R"} },
+    { country: "Nepal", year: "1959", no: "1", area: "1959 First Parliament", template: "AaA-aAa-EEEE-EEEE", texts: {"1_1":"blue","1_2":"green","1_3":"red","2_1":"orange","2_2":"purple","2_3":"brown","3_1":"blue","3_2":"red","3_3":"green","3_4":"orange","4_1":"purple","4_2":"blue","4_3":"red","4_4":"green"}, labels: {"1_1":"1 P","1_2":"2 P","1_3":"4 P","2_1":"6 P","2_2":"8 P","2_3":"12 P","3_1":"16 P","3_2":"20 P","3_3":"24 P","3_4":"32 P","4_1":"50 P","4_2":"1 R","4_3":"2 R","4_4":"5 R"} },
+    { country: "Nepal", year: "1962", no: "1", area: "1962 Airmail and Commemoratives", template: "AAA-III-JJ", texts: {"1_1":"blue","1_2":"green","1_3":"red","2_1":"orange","2_2":"purple","2_3":"brown","3_1":"blue","3_2":"red"}, labels: {"1_1":"1 P","1_2":"2 P","1_3":"5 P","2_1":"10 P","2_2":"40 P","2_3":"75 P","3_1":"2 R","3_2":"5 R"} }
   ],
   "unicode_demo": [
     {
@@ -274,11 +274,11 @@ const BATCH_SAMPLES = {
     "1907 | 3 | Shiva, new year in bottom corners, 1935 | ddd-ddd | t:1_1=brown,1_2=green,1_3=red,2_1=purple,2_2=orange,2_3=blue | l:1_1=2 P,1_2=4 P,1_3=8 P,2_1=16 P,2_2=24 P,2_3=32 P",
     "1907 | 4 | Shiva, Local print, 1941 | ddd-ddd-e | t:1_1=brown,1_2=green,1_3=red,2_1=purple,2_2=orange,2_3=blue,3_1=orange | l:1_1=2 P,1_2=4 P,1_3=8 P,2_1=16 P,2_2=24 P,2_3=32 P,3_1=1 R",
     "1949 | 1 | 1949 Definitive Issue | AAAA-eEe-ef | t:1_1=brown,1_2=green,1_3=red,1_4=orange,2_1=blue,2_2=lila,2_3=red,3_1=blue,3_2=orange | l:1_1=2 P,1_2=4 P,1_3=6 P,1_4=8 P,2_1=20 P,2_2=16 P,2_3=24 P,3_1=32 P,3_2=1 R",
-    "1954 | 1 | 1954 Map and Stupa | AA-AAA-EEEE-EEE",
-    "1954 | 2 | 1954B Landscape Set | ee-eee-gggg-ggg",
-    "1957 | 1 | 1957 King Mahendra | AAAAA-EEE-EEEE",
-    "1959 | 1 | 1959 First Parliament | AaA-aAa-EEEE-EEEE",
-    "1962 | 1 | 1962 Airmail and Commemoratives | AAA-III-JJ"
+    "1954 | 1 | 1954 Map and Stupa | AA-AAA-EEEE-EEE | t:1_1=brown,1_2=green,2_1=red,2_2=lila,2_3=orange,3_1=brown,3_2=red,3_3=brown,3_4=blue,4_1=red,4_2=red,4_3=orange | l:1_1=2 P,1_2=4 P,2_1=6 P,2_2=8 P,2_3=12 P,3_1=16 P,3_2=20 P,3_3=24 P,3_4=32 P,4_1=50 P,4_2=1 R,4_3=2 R",
+    "1954 | 2 | 1954B Landscape Set | ee-eee-gggg-ggg | t:1_1=brown,1_2=green,2_1=red,2_2=lila,2_3=orange,3_1=brown,3_2=red,3_3=brown,3_4=blue,4_1=red,4_2=red,4_3=orange | l:1_1=2 P,1_2=4 P,2_1=6 P,2_2=8 P,2_3=12 P,3_1=16 P,3_2=20 P,3_3=24 P,3_4=32 P,4_1=50 P,4_2=1 R,4_3=2 R",
+    "1957 | 1 | 1957 King Mahendra | AAAAA-EEE-EEEE | t:1_1=brown,1_2=green,1_3=red,1_4=lila,1_5=orange,2_1=brown,2_2=red,2_3=lila,3_1=blue,3_2=red,3_3=red,3_4=orange | l:1_1=2 P,1_2=4 P,1_3=6 P,1_4=8 P,1_5=12 P,2_1=16 P,2_2=20 P,2_3=24 P,3_1=32 P,3_2=50 P,3_3=1 R,3_4=2 R",
+    "1959 | 1 | 1959 First Parliament | AaA-aAa-EEEE-EEEE | t:1_1=blue,1_2=green,1_3=red,2_1=orange,2_2=purple,2_3=brown,3_1=blue,3_2=red,3_3=green,3_4=orange,4_1=purple,4_2=blue,4_3=red,4_4=green | l:1_1=1 P,1_2=2 P,1_3=4 P,2_1=6 P,2_2=8 P,2_3=12 P,3_1=16 P,3_2=20 P,3_3=24 P,3_4=32 P,4_1=50 P,4_2=1 R,4_3=2 R,4_4=5 R",
+    "1962 | 1 | 1962 Airmail and Commemoratives | AAA-III-JJ | t:1_1=blue,1_2=green,1_3=red,2_1=orange,2_2=purple,2_3=brown,3_1=blue,3_2=red | l:1_1=1 P,1_2=2 P,1_3=5 P,2_1=10 P,2_2=40 P,2_3=75 P,3_1=2 R,3_2=5 R"
   ].join("\n"),
 
   "unicode_batch": [
