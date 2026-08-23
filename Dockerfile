@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-liberation \
     fonts-dejavu-core \
     fonts-freefont-ttf \
+    fonts-droid-fallback \
     fontconfig \
     curl \
     && fc-cache -f -v \

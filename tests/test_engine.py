@@ -25,15 +25,15 @@ def test_layout_computation_basic():
 
 
 def test_unicode_pdf_and_svg_rendering():
-    """Verify full international Unicode character support in PDF and SVG."""
+    """Verify full international Unicode character support in PDF and SVG including Chinese & Arabic."""
     config = PageConfig(
-        country="Россия & Ελλάδα",
-        area="Cliché brût (½A) — €100 ★",
-        year="1923",
+        country="中国 & مصر (China & Egypt)",
+        area="大清邮政 / البريد المصري — Cliché brût (½A) €100 ★",
+        year="1878",
         no="1",
         template="AA-BB",
-        texts={"1_1": "10 коп.", "1_2": "5 λεπτά"},
-        labels={"1_1": "Москва naïve", "1_2": "Αθήναι cliché"},
+        texts={"1_1": "壹分银", "1_2": "١ قرش"},
+        labels={"1_1": "海关薄纸", "1_2": "القاهرة"},
     )
     layout = LayoutEngine.compute(config)
 
@@ -46,10 +46,14 @@ def test_unicode_pdf_and_svg_rendering():
     # 2. Test SVG vector generation
     svg_str = SVGRenderer.render(layout)
     assert isinstance(svg_str, str)
-    assert "Россия" in svg_str
-    assert "Ελλάδα" in svg_str
-    assert "cliché" in svg_str
-    assert "10 коп." in svg_str
+    assert "中国" in svg_str
+    assert "مصر" in svg_str
+    assert "大清邮政" in svg_str
+    assert "البريد المصري" in svg_str
+    assert "壹分银" in svg_str
+    assert "١ قرش" in svg_str
+    assert "海关薄纸" in svg_str
+    assert "القاهرة" in svg_str
 
 
 def test_multi_page_album_rendering():
