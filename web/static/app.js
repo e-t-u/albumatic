@@ -472,7 +472,7 @@ function setupEventListeners() {
     presetSelect.addEventListener("change", (e) => {
       const pList = PRESETS[e.target.value];
       if (pList) {
-        albumState.pages = JSON.parse(JSON.stringify(pList));
+        albumState.pages = pList.map(p => normalizePage(p));
         currentPageIndex = 0;
         renderFilmstrip();
         syncUIFromCurrentPage();
@@ -1057,8 +1057,56 @@ function updatePreviewDebounced() {
   debounceTimer = setTimeout(updatePreview, 120);
 }
 
+function normalizePage(p) {
+  const defaults = {
+    country: albumState.country || "Suomi — Finland",
+    area: "",
+    year: albumState.year || "",
+    no: "1",
+    template: "AAA-AAA",
+    logotext: albumState.logotext || "Albumatic",
+    rightfooter: null,
+    unit: albumState.unit || "mm",
+    pagewidth: albumState.pagewidth || 210,
+    pageheight: albumState.pageheight || 297,
+    topmargin: albumState.topmargin !== undefined ? albumState.topmargin : 12,
+    bottommargin: albumState.bottommargin !== undefined ? albumState.bottommargin : 18,
+    leftmargin: albumState.leftmargin !== undefined ? albumState.leftmargin : 15,
+    rightmargin: albumState.rightmargin !== undefined ? albumState.rightmargin : 15,
+    header1pos: albumState.header1pos !== undefined ? albumState.header1pos : 25,
+    header2pos: albumState.header2pos !== undefined ? albumState.header2pos : 35,
+    maxxdistance: albumState.maxxdistance !== undefined ? albumState.maxxdistance : 15,
+    maxydistance: albumState.maxydistance !== undefined ? albumState.maxydistance : 25,
+    placeholders: "none",
+    texts: {},
+    labels: {},
+    custom_sizes: {}
+  };
+
+  const res = { ...defaults, ...p };
+
+  const numericKeys = [
+    "pagewidth", "pageheight", "topmargin", "bottommargin",
+    "leftmargin", "rightmargin", "header1pos", "header2pos",
+    "maxxdistance", "maxydistance"
+  ];
+  for (const k of numericKeys) {
+    if (res[k] === null || res[k] === undefined || isNaN(Number(res[k]))) {
+      res[k] = defaults[k];
+    } else {
+      res[k] = Number(res[k]);
+    }
+  }
+
+  if (!res.texts) res.texts = {};
+  if (!res.labels) res.labels = {};
+  if (!res.custom_sizes) res.custom_sizes = {};
+
+  return res;
+}
+
 function getCleanPagePayload(p) {
-  const payload = { ...p };
+  const payload = normalizePage(p);
   if (!payload.rightfooter || !payload.rightfooter.trim()) {
     delete payload.rightfooter;
   }
@@ -1071,15 +1119,17 @@ async function updatePreview() {
   if (!previewBox) return;
 
   const p = getCurrentPage();
-  if (paper && p.pagewidth > 0 && p.pageheight > 0) {
-    paper.style.aspectRatio = `${p.pagewidth} / ${p.pageheight}`;
+  const payload = getCleanPagePayload(p);
+  
+  if (paper && payload.pagewidth > 0 && payload.pageheight > 0) {
+    paper.style.aspectRatio = `${payload.pagewidth} / ${payload.pageheight}`;
   }
 
   try {
     const res = await fetch("/api/v1/render/svg", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(getCleanPagePayload(p))
+      body: JSON.stringify(payload)
     });
     if (res.ok) {
       const svgText = await res.text();
@@ -1314,7 +1364,7 @@ async function applyBatchNotation() {
   }
 
   if (parsedPages && parsedPages.length > 0) {
-    albumState.pages = parsedPages;
+    albumState.pages = parsedPages.map(p => normalizePage(p));
     currentPageIndex = 0;
     renderFilmstrip();
     syncUIFromCurrentPage();
