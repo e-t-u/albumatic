@@ -122,7 +122,7 @@ const PRESETS = {
       area: "1856 Soikiomalli — First Oval Issue (Portostämpel)",
       year: "1856",
       no: "1",
-      template: "BB-BB",
+      template: "LL-LL",
       texts: { "1_1": "5 kop. sininen", "1_2": "10 kop. punainen", "2_1": "5 kop. pieni helmi", "2_2": "10 kop. iso helmi" },
       labels: { "1_1": "Pystyura (Wove)", "1_2": "Pystyura", "2_1": "Vaakaura", "2_2": "Valkoinen paperi" }
     },
@@ -131,7 +131,7 @@ const PRESETS = {
       area: "1860 Vaakunamalli — Serpentine Roulette I",
       year: "1860",
       no: "2",
-      template: "BB-BB",
+      template: "LL-LL",
       texts: { "1_1": "5 kop. sininen", "1_2": "10 kop. ruusu", "2_1": "5 kop. tumma sini", "2_2": "10 kop. karmiini" },
       labels: { "1_1": "Hammaste I", "1_2": "Hammaste I", "2_1": "Uurteeton", "2_2": "Ohut paperi" }
     },
@@ -140,7 +140,7 @@ const PRESETS = {
       area: "1866 Vaakunamalli — Penni- ja markka-arvot (Hammaste II)",
       year: "1866",
       no: "3",
-      template: "BBB-BB",
+      template: "LLL-LL",
       texts: { "1_1": "5 p. ruskea", "1_2": "10 p. musta", "1_3": "20 p. sininen", "2_1": "40 p. ruusu", "2_2": "1 mk ruskea" },
       labels: { "1_1": "Hammaste II", "1_2": "Vaalea lila", "1_3": "Sininen", "2_1": "Ruusupaperi", "2_2": "Keltanahka" }
     },
@@ -149,7 +149,7 @@ const PRESETS = {
       area: "1875–1882 Helsingin painos — Vaakunakuviot",
       year: "1875",
       no: "4",
-      template: "AAAA-AAA",
+      template: "DDDD-DDD",
       texts: { "1_1": "2 p. harmaa", "1_2": "5 p. oranssi", "1_3": "8 p. vihreä", "1_4": "10 p. ruskea", "2_1": "20 p. sininen", "2_2": "32 p. karmiini", "2_3": "1 mk violetti" },
       labels: { "1_1": "Hki 11", "1_2": "Hki 11", "1_3": "Hki 12½", "1_4": "Hki 12½", "2_1": "Hki 12½", "2_2": "Hki 12½", "2_3": "Hki 14" }
     },
@@ -158,7 +158,7 @@ const PRESETS = {
       area: "1885 Vaakunamalli — Yksiväriset penniarvot",
       year: "1885",
       no: "5",
-      template: "AAA-AAA",
+      template: "DDD-DDD",
       texts: { "1_1": "2 p. harmaa", "1_2": "5 p. vihreä", "1_3": "10 p. ruusu", "2_1": "20 p. oranssi", "2_2": "25 p. sininen", "2_3": "50 p. ruskea" },
       labels: { "1_1": "12½ Hki", "1_2": "12½ Hki", "1_3": "Helsinki", "2_1": "Tampere", "2_2": "Turku / Åbo", "2_3": "Viipuri" }
     },
@@ -167,7 +167,7 @@ const PRESETS = {
       area: "1885 Vaakunamalli — Kaksiväriset markka-arvot",
       year: "1885",
       no: "6",
-      template: "BBB",
+      template: "GGG",
       texts: { "1_1": "1 mk harmaa/ruusu", "1_2": "5 mk vihreä/ruusu", "1_3": "10 mk ruskea/ruusu" },
       labels: { "1_1": "1 Mk (Hki 12½)", "1_2": "5 Mk (Hämeenlinna)", "1_3": "10 Mk (Kuopio)" }
     },
@@ -176,7 +176,7 @@ const PRESETS = {
       area: "1889 Vaakunamalli — Penniarvot (Uusi kaiverrus)",
       year: "1889",
       no: "7",
-      template: "AAA-AAA",
+      template: "DDD-DDD",
       texts: { "1_1": "2 p. harmaa", "1_2": "5 p. vihreä", "1_3": "10 p. punainen", "2_1": "20 p. keltainen", "2_2": "25 p. sininen", "2_3": "50 p. ruskea" },
       labels: { "1_1": "12½ Hki", "1_2": "12½ Hki", "1_3": "Östermyra", "2_1": "Vaasa / Wasa", "2_2": "Oulu / Uleåborg", "2_3": "Pori" }
     },
@@ -185,7 +185,7 @@ const PRESETS = {
       area: "1889 Vaakunamalli — Markka-arvot & Åland",
       year: "1889",
       no: "8",
-      template: "BBB",
+      template: "GGG",
       texts: { "1_1": "1 mk harmaa", "1_2": "5 mk vihreä", "1_3": "10 mk ruskea" },
       labels: { "1_1": "1 Mk (Helsingfors)", "1_2": "5 Mk (Mariehamn)", "1_3": "10 Mk (Saimaa)" }
     }
@@ -225,7 +225,7 @@ const PRESETS = {
       area: "1889 Vaakunamalli — Vapensköld & Cliché brût (½ Mk)",
       year: "1889",
       no: "1",
-      template: "BB-BB-BB",
+      template: "DD-DD-GG",
       texts: {
         "1_1": "5 p. vihreä",
         "1_2": "10 p. punainen",
@@ -346,14 +346,14 @@ const BATCH_SAMPLES = {
   "usa_parks_batch": "1934 | 1 | 1934 National Parks Issue (Scott 740–749) | AAA-dddd-ddd | t:1_1=1¢ green,1_2=2¢ red orange,1_3=6¢ blue,2_1=3¢ purple,2_2=4¢ brown,2_3=5¢ blue,2_4=7¢ black,3_1=8¢ gray green,3_2=9¢ pink,3_3=10¢ slate gray | l:1_1=Yosemite (El Capitan),1_2=Grand Canyon,1_3=Crater Lake,2_1=Mt. Rainier,2_2=Mesa Verde,2_3=Yellowstone,2_4=Acadia,3_1=Zion (White Throne),3_2=Glacier National Park,3_3=Great Smoky Mts",
 
   "finland_batch": [
-    "1856 | 1 | 1856 Soikiomalli — First Oval Issue (Portostämpel) | BB-BB | t:1_1=5 kop. sininen,1_2=10 kop. punainen,2_1=5 kop. pieni helmi,2_2=10 kop. iso helmi | l:1_1=Pystyura (Wove),1_2=Pystyura,2_1=Vaakaura,2_2=Valkoinen paperi",
-    "1860 | 2 | 1860 Vaakunamalli — Serpentine Roulette I | BB-BB | t:1_1=5 kop. sininen,1_2=10 kop. ruusu,2_1=5 kop. tumma sini,2_2=10 kop. karmiini | l:1_1=Hammaste I,1_2=Hammaste I,2_1=Uurteeton,2_2=Ohut paperi",
-    "1866 | 3 | 1866 Vaakunamalli — Penni- ja markka-arvot (Hammaste II) | BBB-BB | t:1_1=5 p. ruskea,1_2=10 p. musta,1_3=20 p. sininen,2_1=40 p. ruusu,2_2=1 mk ruskea | l:1_1=Hammaste II,1_2=Vaalea lila,1_3=Sininen,2_1=Ruusupaperi,2_2=Keltanahka",
-    "1875 | 4 | 1875–1882 Helsingin painos — Vaakunakuviot | AAAA-AAA | t:1_1=2 p. harmaa,1_2=5 p. oranssi,1_3=8 p. vihreä,1_4=10 p. ruskea,2_1=20 p. sininen,2_2=32 p. karmiini,2_3=1 mk violetti | l:1_1=Hki 11,1_2=Hki 11,1_3=Hki 12½,1_4=Hki 12½,2_1=Hki 12½,2_2=Hki 12½,2_3=Hki 14",
-    "1885 | 5 | 1885 Vaakunamalli — Yksiväriset penniarvot | AAA-AAA | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. ruusu,2_1=20 p. oranssi,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=12½ Hki,1_2=12½ Hki,1_3=Helsinki,2_1=Tampere,2_2=Turku / Åbo,2_3=Viipuri",
-    "1885 | 6 | 1885 Vaakunamalli — Kaksiväriset markka-arvot | BBB | t:1_1=1 mk harmaa/ruusu,1_2=5 mk vihreä/ruusu,1_3=10 mk ruskea/ruusu | l:1_1=1 Mk (Hki 12½),1_2=5 Mk (Hämeenlinna),1_3=10 Mk (Kuopio)",
-    "1889 | 7 | 1889 Vaakunamalli — Penniarvot (Uusi kaiverrus) | AAA-AAA | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. punainen,2_1=20 p. keltainen,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=12½ Hki,1_2=12½ Hki,1_3=Östermyra,2_1=Vaasa / Wasa,2_2=Oulu / Uleåborg,2_3=Pori",
-    "1889 | 8 | 1889 Vaakunamalli — Markka-arvot & Åland | BBB | t:1_1=1 mk harmaa,1_2=5 mk vihreä,1_3=10 mk ruskea | l:1_1=1 Mk (Helsingfors),1_2=5 Mk (Mariehamn),1_3=10 Mk (Saimaa)"
+    "1856 | 1 | 1856 Soikiomalli — First Oval Issue (Portostämpel) | LL-LL | t:1_1=5 kop. sininen,1_2=10 kop. punainen,2_1=5 kop. pieni helmi,2_2=10 kop. iso helmi | l:1_1=Pystyura (Wove),1_2=Pystyura,2_1=Vaakaura,2_2=Valkoinen paperi",
+    "1860 | 2 | 1860 Vaakunamalli — Serpentine Roulette I | LL-LL | t:1_1=5 kop. sininen,1_2=10 kop. ruusu,2_1=5 kop. tumma sini,2_2=10 kop. karmiini | l:1_1=Hammaste I,1_2=Hammaste I,2_1=Uurteeton,2_2=Ohut paperi",
+    "1866 | 3 | 1866 Vaakunamalli — Penni- ja markka-arvot (Hammaste II) | LLL-LL | t:1_1=5 p. ruskea,1_2=10 p. musta,1_3=20 p. sininen,2_1=40 p. ruusu,2_2=1 mk ruskea | l:1_1=Hammaste II,1_2=Vaalea lila,1_3=Sininen,2_1=Ruusupaperi,2_2=Keltanahka",
+    "1875 | 4 | 1875–1882 Helsingin painos — Vaakunakuviot | DDDD-DDD | t:1_1=2 p. harmaa,1_2=5 p. oranssi,1_3=8 p. vihreä,1_4=10 p. ruskea,2_1=20 p. sininen,2_2=32 p. karmiini,2_3=1 mk violetti | l:1_1=Hki 11,1_2=Hki 11,1_3=Hki 12½,1_4=Hki 12½,2_1=Hki 12½,2_2=Hki 12½,2_3=Hki 14",
+    "1885 | 5 | 1885 Vaakunamalli — Yksiväriset penniarvot | DDD-DDD | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. ruusu,2_1=20 p. oranssi,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=12½ Hki,1_2=12½ Hki,1_3=Helsinki,2_1=Tampere,2_2=Turku / Åbo,2_3=Viipuri",
+    "1885 | 6 | 1885 Vaakunamalli — Kaksiväriset markka-arvot | GGG | t:1_1=1 mk harmaa/ruusu,1_2=5 mk vihreä/ruusu,1_3=10 mk ruskea/ruusu | l:1_1=1 Mk (Hki 12½),1_2=5 Mk (Hämeenlinna),1_3=10 Mk (Kuopio)",
+    "1889 | 7 | 1889 Vaakunamalli — Penniarvot (Uusi kaiverrus) | DDD-DDD | t:1_1=2 p. harmaa,1_2=5 p. vihreä,1_3=10 p. punainen,2_1=20 p. keltainen,2_2=25 p. sininen,2_3=50 p. ruskea | l:1_1=12½ Hki,1_2=12½ Hki,1_3=Östermyra,2_1=Vaasa / Wasa,2_2=Oulu / Uleåborg,2_3=Pori",
+    "1889 | 8 | 1889 Vaakunamalli — Markka-arvot & Åland | GGG | t:1_1=1 mk harmaa,1_2=5 mk vihreä,1_3=10 mk ruskea | l:1_1=1 Mk (Helsingfors),1_2=5 Mk (Mariehamn),1_3=10 Mk (Saimaa)"
   ].join("\n"),
 
   "china_batch": "1878 | 1 | 大清邮政 — Large Dragon (1878) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银 (3 Candarins),1_3=伍分银 (5 Candarins),2_1=壹分 (1 Cent),2_2=贰分 (2 Cents),2_3=伍分 (5 Cents) | l:1_1=海关薄纸大龙,1_2=阔边大龙 (1882),1_3=厚纸光芒 (1883),2_1=蟠龙加盖 (1897),2_2=伦敦版蟠龙,2_3=红印花加贴 | s:X=35,35",
@@ -386,7 +386,7 @@ const BATCH_SAMPLES = {
   ].join("\n"),
 
   "unicode_batch": [
-    "1889 | 1 | 1889 Vaakunamalli — Vapensköld & Cliché brût (½ Mk) | BB-BB-BB | t:1_1=5 p. vihreä,1_2=10 p. punainen,2_1=20 p. keltainen,2_2=1 mk harmaa,3_1=5 mk Åland,3_2=10 mk Häme | l:1_1=Helsinki (Åbo),1_2=Tammerfors,2_1=Viipuri (Wiborg),2_2=Mariehamn (Åland),3_1=Östermyra & Ähtäri,3_2=Saimaan höyrylaiva",
+    "1889 | 1 | 1889 Vaakunamalli — Vapensköld & Cliché brût (½ Mk) | DD-DD-GG | t:1_1=5 p. vihreä,1_2=10 p. punainen,2_1=20 p. keltainen,2_2=1 mk harmaa,3_1=5 mk Åland,3_2=10 mk Häme | l:1_1=Helsinki (Åbo),1_2=Tammerfors,2_1=Viipuri (Wiborg),2_2=Mariehamn (Åland),3_1=Östermyra & Ähtäri,3_2=Saimaan höyrylaiva",
     "1923 | 2 | 1923 Первый стандартный выпуск (Золотой стандарт) | BBB-BBB | t:1_1=1 коп. оранж.,1_2=2 коп. зелен.,1_3=3 коп. красн.,2_1=5 коп. синий,2_2=10 коп. коричн.,2_3=1 руб. кармин | l:1_1=Рабочий (Москва),1_2=Крестьянин,1_3=Красноармеец,2_1=Рабочий (Одесса),2_2=Крестьянин (Киев),2_3=Красноармеец",
     "1861 | 3 | 1861 Μεγάλη Κεφαλή Ερμού (Hermes Heads) | AAA-AAAA | t:1_1=1 λ. καφέ,1_2=2 λ. μπιστρ,1_3=5 λ. πράσινο,2_1=10 λ. πορτοκ.,2_2=20 λ. μπλε,2_3=40 λ. ιώδες,2_4=80 λ. καρμίνιο | l:1_1=Παρίσι (1861),1_2=Αθήναι 1η,1_3=Πειραιεύς,2_1=Πάτραι,2_2=Ερμούπολις,2_3=Ναύπλιον,2_4=Κέρκυρα",
     "1878 | 4 | 大清邮政 — Large Dragon & Coiling Dragon (1878-1898) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银 (3 Candarins),1_3=伍分银 (5 Candarins),2_1=壹分 (1 Cent),2_2=贰分 (2 Cents),2_3=伍分 (5 Cents) | l:1_1=海关薄纸大龙,1_2=阔边大龙 (1882),1_3=厚纸光芒 (1883),2_1=蟠龙加盖 (1897),2_2=伦敦版蟠龙,2_3=红印花加贴 | s:X=35,35",
