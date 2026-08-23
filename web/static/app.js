@@ -72,6 +72,18 @@ const PRESETS = {
       labels: {}
     }
   ],
+  "china_demo": [
+    {
+      country: "中国 — China",
+      area: "大清邮政 — Large Dragon & Coiling Dragon (1878-1898)",
+      year: "1878",
+      no: "1",
+      template: "XXX-XXX",
+      custom_sizes: { "X": [35.0, 35.0] },
+      texts: { "1_1": "壹分银 (1 Candarin)", "1_2": "叁分银 (3 Candarins)", "1_3": "伍分银 (5 Candarins)", "2_1": "壹角 (10 Cents)", "2_2": "贰角 (20 Cents)", "2_3": "伍角 (50 Cents)" },
+      labels: { "1_1": "海关薄纸", "1_2": "阔边大龙", "1_3": "厚纸光芒", "2_1": "蟠龙加盖", "2_2": "红印花加贴", "2_3": "伦敦版" }
+    }
+  ],
   "nepal_album": [
     { country: "Nepal", year: "1881", no: "1", area: "1881 Crossed Knives, European paper", template: "XXX-X-XXX-X", texts: {"1_1":"blue","1_2":"lila","1_3":"green","2_1":"blue","3_1":"blue","3_2":"lila","3_3":"green","4_1":"blue"}, labels: {"1_1":"pin perf. 1A","1_2":"2A","1_3":"4A","2_1":"Recut 1899 1A","3_1":"no perf. 1A","3_2":"2A","3_3":"4A","4_1":"Recut 1899 1A"} },
     { country: "Nepal", year: "1881", no: "2", area: "1881 Crossed Knives, Good Local paper", template: "XXX-XXX", texts: {"1_1":"blue","1_2":"blue","1_3":"green","2_1":"blue","2_2":"blue","2_3":"green"}, labels: {"1_1":"thin 1A","1_2":"2A","1_3":"4A","2_1":"thick 1A","2_2":"2A","2_3":"4A"} },
@@ -137,6 +149,7 @@ const PRESETS = {
       year: "1878",
       no: "4",
       template: "XXX-XXX",
+      custom_sizes: { "X": [35.0, 35.0] },
       texts: { "1_1": "壹分银 (1 Candarin)", "1_2": "叁分银 (3 Candarins)", "1_3": "伍分银 (5 Candarins)", "2_1": "壹角 (10 Cents)", "2_2": "贰角 (20 Cents)", "2_3": "伍角 (50 Cents)" },
       labels: { "1_1": "海关薄纸", "1_2": "阔边大龙", "1_3": "厚纸光芒", "2_1": "蟠龙加盖", "2_2": "红印花加贴", "2_3": "伦敦版" }
     },
@@ -154,6 +167,8 @@ const PRESETS = {
 
 // Batch Sample Templates
 const BATCH_SAMPLES = {
+  "china_batch": "1878 | 1 | 大清邮政 — Large Dragon (1878) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银,1_3=伍分银,2_1=壹角,2_2=贰角,2_3=伍角 | l:1_1=海关薄纸,1_2=阔边大龙,1_3=厚纸光芒,2_1=蟠龙加盖,2_2=红印花,2_3=伦敦版 | s:X=35,35",
+
   "30_catalog": [
     "AA-BB-CC", "cc-ddd-a", "XXXX-XXXX", "AAAA-BBBB", "ee-fff-gg",
     "ABCDEFG", "HIJKLM", "NOPQR", "STUV", "WXYZ",
@@ -185,7 +200,7 @@ const BATCH_SAMPLES = {
     "1889 | 1 | 1889 Vaakunamalli — Vapensköld & Cliché brût (½ Mk) | AA-BB-CC | t:1_1=5 penniä (vihreä),1_2=10 penniä,2_1=20 penniä,2_2=1 markka,3_1=5 markkaa,3_2=10 markkaa | l:1_1=Helsinki (Åbo),1_2=Tampere (Örebro-cliché),2_1=Hämeenlinna,2_2=Åland (Mariehamn),3_1=Östermyra & Ähtäri,3_2=Saimaan höyrylaiva",
     "1923 | 2 | Стандартный выпуск (1923) | BBB-CCC | t:1_1=1 коп.,1_2=2 коп.,1_3=5 коп. | l:1_1=Москва,1_2=Петроград,1_3=Киев",
     "1861 | 3 | Ερμής (Hermes Heads) | AAA-AAA | t:1_1=1 λεπτόν,1_2=2 λεπτά,1_3=5 λεπτά | l:1_1=Αθήναι,1_2=Πειραιεύς,1_3=Πάτραι",
-    "1878 | 4 | 大清邮政 — Large Dragon (1878) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银,1_3=伍分银,2_1=壹角,2_2=贰角,2_3=伍角 | l:1_1=海关薄纸,1_2=阔边大龙,1_3=厚纸光芒,2_1=蟠龙加盖,2_2=红印花,2_3=伦敦版",
+    "1878 | 4 | 大清邮政 — Large Dragon (1878) | XXX-XXX | t:1_1=壹分银 (1 Candarin),1_2=叁分银,1_3=伍分银,2_1=壹角,2_2=贰角,2_3=伍角 | l:1_1=海关薄纸,1_2=阔边大龙,1_3=厚纸光芒,2_1=蟠龙加盖,2_2=红印花,2_3=伦敦版 | s:X=35,35",
     "1866 | 5 | البريد المصري — Postal Issue (1866) | BBB-CCC | t:1_1=١٠ بارات,1_2=٢٠ بارة,1_3=١ قرش,2_1=٢ قرشان,2_2=٥ قروش | l:1_1=القاهرة,1_2=الإسكندرية,1_3=بورسعيد,2_1=السويس,2_2=طنطا"
   ].join("\n")
 };
@@ -310,7 +325,36 @@ function setupEventListeners() {
     });
   });
 
-  // Custom size button
+  // Custom size handlers
+  const customCodeInput = document.getElementById("custom-size-code");
+  const customWidthInput = document.getElementById("custom-size-width");
+  const customHeightInput = document.getElementById("custom-size-height");
+
+  if (customCodeInput) {
+    customCodeInput.addEventListener("input", (e) => {
+      const code = e.target.value.trim().toUpperCase();
+      e.target.value = code;
+      if (code) {
+        const m = getMountMetrics(code);
+        if (m && customWidthInput && customHeightInput) {
+          const p = getCurrentPage();
+          customWidthInput.value = p.unit === "in" ? m.w_in : m.w_mm;
+          customHeightInput.value = p.unit === "in" ? m.h_in : m.h_mm;
+        }
+      }
+    });
+  }
+
+  [customCodeInput, customWidthInput, customHeightInput].forEach(inp => {
+    if (!inp) return;
+    inp.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addOrUpdateCustomSize();
+      }
+    });
+  });
+
   document.getElementById("btn-save-custom-size")?.addEventListener("click", addOrUpdateCustomSize);
 
   // Unit converter selector (Album-wide)
@@ -745,9 +789,24 @@ function renderCustomSizes() {
     const w = Array.isArray(dims) ? dims[0] : dims.width;
     const h = Array.isArray(dims) ? dims[1] : dims.height;
     const pill = document.createElement("div");
-    pill.style.cssText = "display:inline-flex; align-items:center; gap:0.35rem; background:#fff; border:1px solid #1a73e8; border-radius:12px; padding:0.15rem 0.5rem; font-size:0.75rem;";
-    pill.innerHTML = `<strong>${code}</strong>: ${w}×${h} ${p.unit || 'mm'} <span style="cursor:pointer; color:#d93025; font-weight:bold; margin-left:0.2rem;" title="Delete custom size">✕</span>`;
-    pill.querySelector("span").addEventListener("click", () => deleteCustomSize(code));
+    pill.style.cssText = "display:inline-flex; align-items:center; gap:0.35rem; background:#fff; border:1px solid #1a73e8; border-radius:12px; padding:0.2rem 0.55rem; font-size:0.75rem; cursor:pointer;";
+    pill.title = "Click to edit this custom size";
+    pill.innerHTML = `<strong>${code}</strong>: ${w}×${h} ${p.unit || 'mm'} <span class="delete-custom-btn" style="cursor:pointer; color:#d93025; font-weight:bold; margin-left:0.25rem; font-size:0.8rem;" title="Delete custom size">✕</span>`;
+    
+    pill.addEventListener("click", (e) => {
+      if (e.target.classList.contains("delete-custom-btn")) {
+        e.stopPropagation();
+        deleteCustomSize(code);
+        return;
+      }
+      const codeInput = document.getElementById("custom-size-code");
+      const widthInput = document.getElementById("custom-size-width");
+      const heightInput = document.getElementById("custom-size-height");
+      if (codeInput) codeInput.value = code;
+      if (widthInput) widthInput.value = w;
+      if (heightInput) heightInput.value = h;
+    });
+
     container.appendChild(pill);
   }
 }
@@ -758,12 +817,14 @@ function addOrUpdateCustomSize() {
   const heightInput = document.getElementById("custom-size-height");
   if (!codeInput || !widthInput || !heightInput) return;
 
-  const code = codeInput.value.trim();
+  let code = codeInput.value.trim().toUpperCase();
+  if (!code) code = "X";
+  
   const width = parseFloat(widthInput.value);
   const height = parseFloat(heightInput.value);
 
-  if (!code || isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
-    alert("Please enter a valid code/letter (e.g. X) and positive width & height.");
+  if (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
+    alert("Please enter positive numeric width & height (e.g. 45 × 30).");
     return;
   }
 
@@ -772,10 +833,6 @@ function addOrUpdateCustomSize() {
   
   p.custom_sizes[code] = [width, height];
   
-  codeInput.value = "";
-  widthInput.value = "";
-  heightInput.value = "";
-
   renderCustomSizes();
   renderRowBuilder();
   updatePreview();
