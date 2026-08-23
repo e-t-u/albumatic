@@ -16,16 +16,13 @@ a.attrpush()
 a.attrpush()
 a["year"] = "1856"
 a["no"] = "1"
-a["area"] = "1856 Soikiomalli — First Oval Issue (Portostämpel)"
-a["template"] = "ee-ee"
-a["t_1_1"] = "5 kop. sininen"
-a["t_1_2"] = "10 kop. punainen"
-a["t_2_1"] = "5 kop. pieni helmi"
-a["t_2_2"] = "10 kop. iso helmi"
-a["l_1_1"] = "Pystyura (Wove)"
-a["l_1_2"] = "Pystyura"
-a["l_2_1"] = "Vaakaura"
-a["l_2_2"] = "Valkoinen paperi"
+a["area"] = "1856 Soikiomalli — Oval Issue"
+a["template"] = "ee-e"
+a["t_1_1"] = "5 kop"
+a["t_1_2"] = "10 kop"
+a["t_2_1"] = "5 kop"
+a["l_1_1"] = "Small Pearl"
+a["l_2_1"] = "Large Pearl"
 a.writefile("finland_1856.pdf")
 a.attrpop()
 

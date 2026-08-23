@@ -34,12 +34,12 @@ curl -s -X POST "http://localhost:8000/api/v1/render/album/pdf" \
     "pages": [
       {
         "country": "Suomi — Finland",
-        "area": "1856 Soikiomalli — First Oval Issue",
+        "area": "1856 Soikiomalli — Oval Issue",
         "year": "1856",
         "no": "1",
-        "template": "ee-ee",
-        "texts": {"1_1": "5 kop. sininen", "1_2": "10 kop. punainen", "2_1": "5 kop. pieni helmi", "2_2": "10 kop. iso helmi"},
-        "labels": {"1_1": "Pystyura (Wove)", "1_2": "Pystyura", "2_1": "Vaakaura", "2_2": "Valkoinen paperi"}
+        "template": "ee-e",
+        "texts": {"1_1": "5 kop", "1_2": "10 kop", "2_1": "5 kop"},
+        "labels": {"1_1": "Small Pearl", "2_1": "Large Pearl"}
       },
       {
         "country": "Suomi — Finland",
@@ -97,7 +97,7 @@ Use the included helper script `render_album.py` to generate complete albums in 
 # Generate both multi-page PDF and individual Inkscape SVGs from batch text
 python3 skills/albumatic/scripts/render_album.py \
   --country "Finland" \
-  --batch "1856 | 1 | 1856 Soikiomalli | ee-ee | t:1_1=5 kop.,1_2=10 kop. | l:1_1=Wove,1_2=Laid
+  --batch "1856 | 1 | 1856 Soikiomalli | ee-e | t:1_1=5 kop,1_2=10 kop,2_1=5 kop | l:1_1=Small Pearl,2_1=Large Pearl
 1860 | 2 | 1860 Roulette I | LL-LL | t:1_1=5 kop.,1_2=10 kop. | l:1_1=Perf I,1_2=Perf I" \
   --format both \
   --outdir ./my_finland_album

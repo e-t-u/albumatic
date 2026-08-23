@@ -119,12 +119,12 @@ const PRESETS = {
   "finland_album": [
     {
       country: "Suomi — Finland",
-      area: "1856 Soikiomalli — First Oval Issue (Portostämpel)",
+      area: "1856 Soikiomalli — Oval Issue",
       year: "1856",
       no: "1",
-      template: "ee-ee",
-      texts: { "1_1": "5 kop. sininen", "1_2": "10 kop. punainen", "2_1": "5 kop. pieni helmi", "2_2": "10 kop. iso helmi" },
-      labels: { "1_1": "Pystyura (Wove)", "1_2": "Pystyura", "2_1": "Vaakaura", "2_2": "Valkoinen paperi" }
+      template: "ee-e",
+      texts: { "1_1": "5 kop", "1_2": "10 kop", "2_1": "5 kop" },
+      labels: { "1_1": "Small Pearl", "1_2": "", "2_1": "Large Pearl" }
     },
     {
       country: "Suomi — Finland",
@@ -334,7 +334,7 @@ const BATCH_SAMPLES = {
   "usa_parks_batch": "1934 | 1 | 1934 National Parks Issue (Scott 740–749) | AAA-dddd-ddd | t:1_1=1¢ green,1_2=2¢ red orange,1_3=6¢ blue,2_1=3¢ purple,2_2=4¢ brown,2_3=5¢ blue,2_4=7¢ black,3_1=8¢ gray green,3_2=9¢ pink,3_3=10¢ slate gray | l:1_1=Yosemite (El Capitan),1_2=Grand Canyon,1_3=Crater Lake,2_1=Mt. Rainier,2_2=Mesa Verde,2_3=Yellowstone,2_4=Acadia,3_1=Zion (White Throne),3_2=Glacier National Park,3_3=Great Smoky Mts",
 
   "finland_batch": [
-    "1856 | 1 | 1856 Soikiomalli — First Oval Issue (Portostämpel) | ee-ee | t:1_1=5 kop. sininen,1_2=10 kop. punainen,2_1=5 kop. pieni helmi,2_2=10 kop. iso helmi | l:1_1=Pystyura (Wove),1_2=Pystyura,2_1=Vaakaura,2_2=Valkoinen paperi",
+    "1856 | 1 | 1856 Soikiomalli — Oval Issue | ee-e | t:1_1=5 kop,1_2=10 kop,2_1=5 kop | l:1_1=Small Pearl,2_1=Large Pearl",
     "1860 | 2 | 1860 Vaakunamalli — Serpentine Roulette I | LL-LL | t:1_1=5 kop. sininen,1_2=10 kop. ruusu,2_1=5 kop. tumma sini,2_2=10 kop. karmiini | l:1_1=Hammaste I,1_2=Hammaste I,2_1=Uurteeton,2_2=Ohut paperi",
     "1866 | 3 | 1866 Vaakunamalli — Penni- ja markka-arvot (Hammaste II) | LLL-LL | t:1_1=5 p. ruskea,1_2=10 p. musta,1_3=20 p. sininen,2_1=40 p. ruusu,2_2=1 mk ruskea | l:1_1=Hammaste II,1_2=Vaalea lila,1_3=Sininen,2_1=Ruusupaperi,2_2=Keltanahka",
     "1875 | 4 | 1875–1882 Helsingin painos — Vaakunakuviot | DDDD-DDD | t:1_1=2 p. harmaa,1_2=5 p. oranssi,1_3=8 p. vihreä,1_4=10 p. ruskea,2_1=20 p. sininen,2_2=32 p. karmiini,2_3=1 mk violetti | l:1_1=Hki 11,1_2=Hki 11,1_3=Hki 12½,1_4=Hki 12½,2_1=Hki 12½,2_2=Hki 12½,2_3=Hki 14",

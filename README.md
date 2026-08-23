@@ -112,7 +112,7 @@ Albumatic includes an automated **Antigravity Skill** (`skills/albumatic/`) that
 # Generate both multi-page PDF and individual Inkscape SVGs from batch text
 python3 skills/albumatic/scripts/render_album.py \
   --country "Suomi — Finland" \
-  --batch "1856 | 1 | 1856 Soikiomalli | ee-ee | t:1_1=5 kop. sininen,1_2=10 kop. punainen | l:1_1=Pystyura,1_2=Pystyura
+  --batch "1856 | 1 | 1856 Soikiomalli | ee-e | t:1_1=5 kop,1_2=10 kop,2_1=5 kop | l:1_1=Small Pearl,2_1=Large Pearl
 1860 | 2 | 1860 Roulette I | LL-LL | t:1_1=5 kop. sininen,1_2=10 kop. ruusu | l:1_1=Hammaste I,1_2=Hammaste I" \
   --format both \
   --outdir ./my_finland_album
@@ -139,12 +139,12 @@ curl -s -X POST "http://localhost:8000/api/v1/render/album/pdf" \
     "country": "Suomi — Finland",
     "pages": [
       {
-        "area": "1856 Soikiomalli — First Oval Issue",
+        "area": "1856 Soikiomalli — Oval Issue",
         "year": "1856",
         "no": "1",
-        "template": "ee-ee",
-        "texts": {"1_1": "5 kop. sininen", "1_2": "10 kop. punainen"},
-        "labels": {"1_1": "Pystyura (Wove)", "1_2": "Pystyura"}
+        "template": "ee-e",
+        "texts": {"1_1": "5 kop", "1_2": "10 kop", "2_1": "5 kop"},
+        "labels": {"1_1": "Small Pearl", "2_1": "Large Pearl"}
       },
       {
         "area": "1860 Vaakunamalli — Serpentine Roulette I",
